@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_in.c                                         :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 20:26:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/26 12:58:22 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/04/26 15:25:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_is_in(const char c, const char *s)
+void	minishell(void)
 {
-	size_t	i;
+	char	*str;
+	t_mline	line;
 
-	if (!s || !c)
-		return (-1);
-	i = 0;
-	while (s[i])
+	add_history(str);
+	while (line.goon)
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		str = readline("minishell > ");
+		ms_parse(str, &line);
 	}
-	return (-1);
+}
+
+int	main(void)
+{
+	minishell();
+	return (0);
 }

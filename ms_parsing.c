@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_in.c                                         :+:      :+:    :+:   */
+/*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 20:26:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/26 12:58:22 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/04/26 15:25:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_is_in(const char c, const char *s)
+t_mline	*line_init(char	*str, t_mline *line)
 {
-	size_t	i;
+	(void) str;
+	return (line);
+}
 
-	if (!s || !c)
-		return (-1);
-	i = 0;
-	while (s[i])
+void	ms_parse(char *str, t_mline *line)
+{
+	if (ft_strequal(str, "exit"))
+		line->goon = 0;
+	else
 	{
-		if (s[i] == c)
-			return (1);
-		i++;
+		line_init(str, line);
 	}
-	return (-1);
 }

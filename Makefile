@@ -10,20 +10,13 @@ WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS := -lreadline# -Wall -Wextra -Werror -g -fsanitize=address
 LIBFT := ./libft/libft.a
-NAME := pipex
-SRC :=	pipex.c\
-		px_utils.c\
-
-BSRC :=	pipex_bonus.c\
-		px_utils.c\
-		px_util_bonus.c\
-		px_init_bonus.c\
+NAME := minishell
+SRC :=	minishell.c\
+		ms_parsing.c\
 
 OBJ := $(SRC:.c=.o)
-
-BOBJ := $(BSRC:.c=.o)
 
 all: lib $(NAME)
 
@@ -34,10 +27,6 @@ lib:
 	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-bonus: lib $(BOBJ)
-	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o $(NAME)
-	@printf '$(RED)- Bonus done -$(RESET)\n'
-
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
@@ -45,7 +34,6 @@ $(NAME): $(OBJ)
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
 	@rm -f $(OBJ)
-	@rm -f $(BOBJ)
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean
