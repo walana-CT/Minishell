@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/26 15:24:49 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:10:32 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct s_mline
 	int		goon;
 	int		nbcmd;
 	int		**pipe;
+	char	**tmpcmd;
 	pid_t	*pid;
 	t_cmd	*cmd;
 };
