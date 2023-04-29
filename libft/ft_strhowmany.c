@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strhowmany.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 12:52:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/26 14:43:05 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/libft.h"
 
 // move index to the next occurence of c in str. Returns 0 if c was not in str
 int	ft_strjumpto(char *str, int *j, char c)

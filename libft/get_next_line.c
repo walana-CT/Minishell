@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:41:35 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/01/04 17:51:15 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:26:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../Includes/get_next_line.h"
 
 char	*gnl_eof(char **line)
 {

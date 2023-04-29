@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_2lst_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:13:00 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/02/02 12:11:48 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/libft.h"
 
 t_2list	*ft_2lstlast(t_2list *lst)
 {

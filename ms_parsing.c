@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/26 16:11:53 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:27:50 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../Includes/minishell.h"
 
 t_mline	*line_init(char	*str, t_mline *line)
 {

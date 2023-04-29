@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printstrtab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:32:06 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/03/13 11:57:24 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/libft.h"
 
 void	ft_printstrtab(char **tab, char *titre)
 {

@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"../Includes/libft.h": "c",
+		"../Includes/get_next_line.h": "c"
+	}
+}

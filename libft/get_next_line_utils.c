@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:41:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/01/04 17:18:16 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:26:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../Includes/get_next_line.h"
 
 int	where_is_nl(char *s)
 {

@@ -6,12 +6,12 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:05:51 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/25 16:35:04 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/29 15:27:50 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-# include "minishell.h"
+# include "../Includes/minishell.h"
  
 /* Restore terminal to original settings
 */

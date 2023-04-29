@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_exemple.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:20:03 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/25 10:20:39 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:27:50 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../Includes/minishell.h"
 
 
 static int            terminal_descriptor = -1;

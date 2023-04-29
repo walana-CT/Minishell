@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ../Includes/minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:13:07 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 14:44:39 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:21:02 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/stat.h>
 # include <term.h>
 # include <unistd.h>
+# include "libft.h"
 
 # define FALSE	0
 # define TRUE	1
@@ -36,9 +37,9 @@ typedef struct s_cmd	t_cmd;
 
 typedef struct s_program
 {
-	int            term_fd;
-	struct termios term_original;
-	struct termios term_settings;
+	int				term_fd;
+	struct termios	term_original;
+	struct termios	term_settings;
 }	t_program;
 
 struct s_mline

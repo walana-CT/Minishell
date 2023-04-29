@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 12:06:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/29 15:46:04 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include"../Includes/minishell.h"
 
 //pour les char utiliser des const ou non ??
 int	*main(char *str, int n_flag)
@@ -35,15 +35,25 @@ int	*main(char *str, int n_flag)
 	return (0);
 }
 
-
 int arg_valid(int argc, char const *argv[])
 (
+	
+	if (argc == 0)
+		return (0);
+	if (ft_str)
+	{
+		/* code */
+	}
+	ft_
 	
 )
 
 int main(int argc, char const *argv[])
 {
-	arg_valid(argc--, argv++);
-	
+	int n_flag;
+
+	n_flag = 0;
+	n_flag_val(argc--, argv++, &n_flag);
+
 	return 0;
 }

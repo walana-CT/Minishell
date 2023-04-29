@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strfjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:22:56 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/03/30 15:17:28 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/libft.h"
 
 // CAUTION : s1 will be freed
 // usage should only be str = ft_strfjoin(mallocated str, "more_str");

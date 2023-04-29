@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   px_init_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:40:06 by mamat             #+#    #+#             */
-/*   Updated: 2023/03/30 15:42:24 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:27:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../Includes/pipex_bonus.h"
 
 void	px_init_pipes(t_pipex *p, int argc)
 {

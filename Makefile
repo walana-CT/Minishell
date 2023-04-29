@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 15:12:46 by rficht            #+#    #+#              #
-#    Updated: 2023/04/29 14:44:19 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/04/29 15:31:33 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJ = $(SOURCES:.c=.o)
 CC = cc
 
 # main rule called by default
-all: $(NAME)
+all: lib $(NAME)
 
 # rule for compile .c -> .o
 %.o : %.c
@@ -73,6 +73,9 @@ fclean: clean
 
 # force to recompile everything
 re: fclean $(AR_NAME)
+
+lib:
+	@$(MAKE) -C ./libft
 
 #help:
 #	@echo 'Sources:'

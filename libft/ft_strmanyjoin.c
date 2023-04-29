@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmanyjoin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:52:50 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/03/17 11:45:10 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft.h"
+#include "../Includes/libft.h"
 
 char	*ft_strmanyjoin(char *str, ...)
 {
