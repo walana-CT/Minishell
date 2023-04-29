@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   px_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:18:03 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/03/31 16:27:34 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:36:14 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./Includes/pipex_bonus.h"
 
 char	**px_get_path(char **envp)
 {

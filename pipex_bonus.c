@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:37:16 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/29 16:35:56 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/29 17:36:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/pipex_bonus.h"
+#include "Includes/pipex_bonus.h"
 
 int	px_end_bonus(t_pipex *p)
 {

@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 15:12:46 by rficht            #+#    #+#              #
-#    Updated: 2023/04/29 15:31:33 by rficht           ###   ########.fr        #
+#    Updated: 2023/04/29 17:33:11 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RESET	:= \033[0m
 
 #avoid inheriting variables from the environement
 SHELL = /bin/sh
-
+LIBFT := ./libft/libft.a
 #Sometimes you may need to set suffixes manualy
 #.SUFFIXES:
 #.SUFFIXES: .c .o
@@ -37,8 +37,10 @@ AR_NAME = $(NAME).a
 CFLAG = -Wall -Wextra -Werror -fsanitize=address
 
 # Definition of sources (.c from libft + curr dir def by hand)
-SOURCES =	main.c
-			
+SOURCES = minishell.c \
+		ms_echo.c \
+		ms_parsing.c
+
 OBJ = $(SOURCES:.c=.o)
 
 # Compiler used for this project
@@ -57,7 +59,7 @@ $(AR_NAME): $(OBJ)
 
 # create a program assuming that main is contained inside a main.c
 $(NAME): $(AR_NAME)
-	@$(CC) $(CFLAG) $(GFLAG) -o $(NAME) -g $(AR_NAME) -g3 -lreadline
+	@$(CC) $(CFLAG) $(GFLAG) -o $(NAME) -g $(AR_NAME) $(LIBFT) -g3 -lreadline
 
 # create prog and launch it
 test: all

@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/29 15:27:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/29 17:35:06 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/minishell.h"
+#include "Includes/minishell.h"
 
 t_mline	*line_init(char	*str, t_mline *line)
 {

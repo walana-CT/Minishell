@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 17:22:07 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/29 18:30:13 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../Includes/minishell.h"
+#include"Includes/minishell.h"
 
 int	n_flag_val(char **args)
 {
@@ -36,12 +36,12 @@ int	n_flag_val(char **args)
 
 int	write_args(char **args, int fdout, int n_flag)
 {
-	while (cmd.arg[0])
+	while (args[0])
 	{
-		if (ft_putstr(cmd.arg[0], fdout) == -1)
+		if (ft_putstr(args[0], fdout) == -1)
 			return (1);
-		cmd.arg++;
-		if (cmd.arg)
+		args++;
+		if (args)
 		{
 			if (write(fdout, " ", 1) == -1)
 				return (1);
@@ -59,16 +59,16 @@ int	ms_echo(t_cmd cmd)
 {
 	int	n_flag;
 
-	if (!cmd.arg[0])
+	if (!cmd.args[0])
 	{
 		printf("echo received 0 args\n");
 		return (1);
 	}
-	cmd.arg++;
-	n_flag = n_flag_val(cmd.arg[0]);
+	cmd.args++;
+	n_flag = n_flag_val(cmd.args[0]);
 	if (n_flag == TRUE)
-		cmd.arg++;
-	if (write_args(cmd.arg, cmd.fdout, n_flag))
+		cmd.args++;
+	if (write_args(cmd.args, cmd.fdout, n_flag))
 		return (1);
 	return (0);
 }
