@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/30 10:27:29 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/30 11:04:01 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"Includes/minishell.h"
+#include "Includes/minishell.h"
 
 int	n_flag_val(char **args)
 {
