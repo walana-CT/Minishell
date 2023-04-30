@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
-# include "libft/../Includes/libft.h"
+# include "libft.h"
 # define RED "\033[31;1m"
 # define GREEN "\033[32;1m"
 # define YELLOW	"\033[33;1m"

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ms_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 19:45:04 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/30 10:26:46 by rficht           ###   ########.fr       */
+/*   Created: 2023/04/30 09:55:49 by rficht            #+#    #+#             */
+/*   Updated: 2023/04/30 10:31:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/libft.h"
+#include"Includes/minishell.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	pwd(t_cmd cmd)
 {
-	if (s)
-		return (write(fd, s, ft_strlen(s)));
-	return (-1);
+	char	buffer[MAXPATHLEN + 1];
+	char	*result;
+
+	buffer[MAXPATHLEN] = 0;
+	result = getcwd(buffer, MAXPATHLEN);
+	if (!result)
+		return (1);
+	if (ft_putstr_fd(buffer, cmd.fdout) == -1)
+		return (1);
+	return (0);
 }

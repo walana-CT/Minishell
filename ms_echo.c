@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 18:30:13 by rficht           ###   ########.fr       */
+/*   Updated: 2023/04/30 10:27:29 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	write_args(char **args, int fdout, int n_flag)
 {
 	while (args[0])
 	{
-		if (ft_putstr(args[0], fdout) == -1)
+		if (ft_putstr_fd(args[0], fdout) == -1)
 			return (1);
 		args++;
 		if (args)
@@ -65,7 +65,7 @@ int	ms_echo(t_cmd cmd)
 		return (1);
 	}
 	cmd.args++;
-	n_flag = n_flag_val(cmd.args[0]);
+	n_flag = n_flag_val(cmd.args);
 	if (n_flag == TRUE)
 		cmd.args++;
 	if (write_args(cmd.args, cmd.fdout, n_flag))

@@ -88,13 +88,13 @@ long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
 
 int		ft_printf(const char *base, ...);
-void	ft_printstrtab(char **tab, char *titre);
+void	ft_printstrtab(char **str_tab, char *titre);
 char	*get_next_line(int fd);
 
 void	ft_putchar_fd(char c, int fd);
 // ft_putendl_fd : write s then write "\n" on the specified fd
 void	ft_putendl_fd(char *s, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 int		ft_abs(int a);

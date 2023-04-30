@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 15:12:46 by rficht            #+#    #+#              #
-#    Updated: 2023/04/29 17:33:11 by rficht           ###   ########.fr        #
+#    Updated: 2023/04/30 10:14:42 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,10 @@ CFLAG = -Wall -Wextra -Werror -fsanitize=address
 
 # Definition of sources (.c from libft + curr dir def by hand)
 SOURCES = minishell.c \
-		ms_echo.c \
-		ms_parsing.c
+			ms_cd.c \
+			ms_echo.c \
+			ms_parsing.c \
+			ms_pwd.c
 
 OBJ = $(SOURCES:.c=.o)
 

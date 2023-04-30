@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"../Includes/libft.h": "c",
-		"../Includes/get_next_line.h": "c"
+		"../Includes/get_next_line.h": "c",
+		"minishell.h": "c",
+		"ioctl.h": "c"
 	}
 }
