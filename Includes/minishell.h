@@ -45,22 +45,24 @@ typedef struct s_program
 
 struct s_mline
 {
-	int		err;
-	int		goon;
-	int		nbcmd;
-	int		**pipe;
-	char	**tmpcmd;
-	pid_t	*pid;
-	t_cmd	*cmd;
+	char	*line; //la ligne 'de base' retournee par readline
+	int		*status; // PROPOSITION : int[i] indique le statut de line[i] (1 si entre ' ', 2 si entre " ", 0 si 'libre')
+	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
+	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
+	int		nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
+	int		**pipe; // pour pipex
+	pid_t	*pid; // pour pipex
+	t_cmd	*cmd; // struct necessaire à l'éxécution de la commande par execve()
 };
 
 struct s_cmd
 {
-	int		fdin;
-	int		fdout;
-	char	*cmd;
-	char	**args;
-	char	*path;
+	char	*line;
+	int		fdin; // dup2(fdin, 0) ; initialiser à -1 ?
+	int		fdout; // dup2(fdout, 1) ; initialiser à -1 ?
+	char	*cmd; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
+	char	**args; // arguments de la commande a fournir à execve()
+	char	*path; // path à strjoin avec cmd avant de execve()
 };
 
 t_mline	*line_init(char	*str, t_mline *line);
