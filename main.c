@@ -6,20 +6,20 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:05:51 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 15:27:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/02 17:57:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-# include "../Includes/minishell.h"
+# include "Includes/minishell.h"
  
 /* Restore terminal to original settings
 */
-static int terminal_reset(t_program *program)
+static int terminal_reset(t_prog *program)
 {
-    if (program->term_fd != -1)
+	if (program->term_fd != -1)
 	{
-        if(tcsetattr(program->term_fd, TCSANOW, &program->term_original))
+		if(tcsetattr(program->term_fd, TCSANOW, &program->term_original))
 			return errno = ENOTSUP;
 	}
 	return errno = 0;

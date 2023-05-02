@@ -36,16 +36,12 @@
 typedef struct s_rline	t_rline;
 typedef struct s_cmd	t_cmd;
 
-typedef struct s_program
+typedef struct s_prog
 {
 	char 			**envp;
 	int				term_fd;
 	struct termios	term_original;
 	struct termios	term_settings;
-}	t_program;
-
-struct s_rline
-{
 	char	*line; //la ligne 'de base' retournee par readline
 	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
 	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
@@ -53,14 +49,14 @@ struct s_rline
 	int		**pipe; // pour pipex
 	pid_t	*pid; // pour pipex
 	t_cmd	*cmd; // struct necessaire à l'éxécution de la commande par execve()
-};
+}	t_prog;
 
 struct s_cmd
 {
 	char	*line;
 	int		fdin; // dup2(fdin, 0) ; initialiser à -1 ?
 	int		fdout; // dup2(fdout, 1) ; initialiser à -1 ?
-	char	*cmd; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
+	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
 };
@@ -69,6 +65,21 @@ void	line_init(char	*str, t_rline *rl);
 void	ms_parse(char *str, t_rline *rl);
 int		ms_status(char *str, int i);
 int		ms_checksyntax()
+
+
+
+//init
+//err
+//parsing
+
+//lexing
+//terminal
+static int	terminal_init(t_prog *program);
+void		line_init(char	*str, t_rline *rl);
+void		ms_parse(char *str, t_rline *rl);
+//builtins
+
+
 
 
 #endif
