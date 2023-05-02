@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/02 10:37:18 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/02 12:04:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	set_sig(void)
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		ft_crash("SIGQUIT assignation failed\n");
 }
-
 
 int	main(int argc, char *argv[], char *envp[])
 {
