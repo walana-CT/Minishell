@@ -14,9 +14,34 @@ Gros problèmes.
 
   
 
-1. vérifier que les quotes et simple quotes sont bien fermés
+1. Interpréter les dollars
 
-(Avec t_line.status ?)
+  
+
+```
+var1=oignon
+var2=fi
+var3=Var
+var4=coll
+salade tomate $var1 'j'ai la $var2 icelle' "j'habite dans le $var3" il est un peu $var4ant
+```
+
+va donner
+```
+salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Var" il est un peu
+```
+
+  
+les dollard point d'interrogation.
+
+```mermaid
+graph LR
+A($?) ---> B(statut de sortie du dernier pipeline)
+```
+
+2. vérifier que les doubles et simples quotes sont bien fermés
+
+(Avec check_syntax ?)
 
 Bien
 ```
@@ -58,39 +83,13 @@ Desormais on ne devrait plus avoir qu'a travailler sur t_cmd[i].line
 
   
 
-3. Interpréter les dollars
-
-  
-
-```
-var1=oignon
-var2=fi
-var3=Var
-var4=coll
-salade tomate $var1 'j'ai la $var2 icelle' "j'habite dans le $var3" il est un peu $var4ant
-```
-
-va donner
-```
-salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Var" il est un peu
-```
-
-  
-les dollard point d'interrogation.
-
-```mermaid
-graph LR
-A($?) ---> B(statut de sortie du dernier pipeline)
-```
-  
-
-3. b. Gerer les redirections ( < << >> >)
+3. a. Gerer les redirections ( < << >> >)
 
 chaque fois qu'on tombe sur une redirection > ou >>, on crée le fichier cible, on modifie le fdout et on detruit ou ignore la redirection dans t_cmd.line
 
   
 
-3. c Splitter avec espace (+trim les quotes ??)
+3. b Splitter avec espace (+trim les quotes ??)
 
 Sauf entre les quotes, et les quotes doivent rester dans les bouts de string finaux (ca doit pas split quand " ou ' sinon 'e''c''h''o' ne marche pas). Remplir les champs de t_cmd avec le char** qui sort de split
 

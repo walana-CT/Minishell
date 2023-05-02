@@ -47,8 +47,6 @@ typedef struct s_program
 struct s_rline
 {
 	char	*line; //la ligne 'de base' retournee par readline
-	int		size; // taille de *line
-	int		*status; // PROPOSITION : int[i] indique le statut de line[i] (1 si entre ' ', 2 si entre " ", 0 si 'libre')
 	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
 	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
 	int		nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
@@ -69,5 +67,8 @@ struct s_cmd
 
 void	line_init(char	*str, t_rline *rl);
 void	ms_parse(char *str, t_rline *rl);
+int		ms_status(char *str, int i);
+int		ms_checksyntax()
+
 
 #endif
