@@ -7,8 +7,12 @@ Gros problèmes.
 ### vérifier qu'il n'y a pas d'erreur
 
  1. vérifier que les quotes et simple quotes sont bien fermés 
- ``` al"l"o 'alh'u"il"e ```    Bien
- ``` al'lo "alhu'il"e ```    Pas bien
+ ``` 
+ al"l"o 'alh'u"il"e 
+ ```    Bien
+ ``` 
+ al'lo "alhu'il"e 
+ ```    Pas bien
 
 ### Interpréter les caractères spéciaux
 
@@ -36,7 +40,10 @@ var4=coll
 salade tomate $var1 'j'ai la $var2 icelle' "j'habite dans le $var3" il est un peu $var4ant
 ```
 va donner
-``` salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Vars" il est un peu ```
+```
+salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Vars" il est un peu 
+```
 
+les dollard point d'interrogation.
 
 
