@@ -36,38 +36,46 @@
 typedef struct s_rline	t_rline;
 typedef struct s_cmd	t_cmd;
 
-typedef struct s_program
+typedef struct s_prog
 {
 	char 			**envp;
 	int				term_fd;
 	struct termios	term_original;
 	struct termios	term_settings;
-}	t_program;
-
-struct s_rline
-{
 	char	*line; //la ligne 'de base' retournee par readline
-	int		size; // taille de *line
-	int		*status; // PROPOSITION : int[i] indique le statut de line[i] (1 si entre ' ', 2 si entre " ", 0 si 'libre')
-	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
+	int		exit_status; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
 	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
 	int		nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
 	int		**pipe; // pour pipex
 	pid_t	*pid; // pour pipex
 	t_cmd	*cmd; // struct necessaire à l'éxécution de la commande par execve()
-};
+}	t_prog;
 
 struct s_cmd
 {
 	char	*line;
 	int		fdin; // dup2(fdin, 0) ; initialiser à -1 ?
 	int		fdout; // dup2(fdout, 1) ; initialiser à -1 ?
-	char	*cmd; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
+	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
 };
 
-void	line_init(char	*str, t_rline *rl);
-void	ms_parse(char *str, t_rline *rl);
+
+
+
+//init
+//err
+//parsing
+
+//lexing
+//terminal
+static int	terminal_init(t_prog *program);
+void		line_init(char	*str, t_rline *rl);
+void		ms_parse(char *str, t_rline *rl);
+//builtins
+
+
+
 
 #endif
