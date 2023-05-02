@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/30 14:37:28 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/02 10:37:18 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,33 @@ void	minishell(void)
 	}
 }
 
+static void	ft_sighandle(int sig, siginfo_t *info, void *context)
+{
+	if (sig == SIGINT)
+	{
+		printf("received a SIGINT (ctrl + C)\n");
+	}
+	if (sig == SIGQUIT)
+	{
+		printf("received a SIGQUIT (ctrl + C)\n");
+	}
+}
+
+static void	set_sig(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_sigaction = ft_sighandle;
+	if (sigaction(SIGINT, &sa, NULL) == -1)
+		ft_crash("SIGINT assignation failed\n");
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		ft_crash("SIGQUIT assignation failed\n");
+}
+
+
 int	main(int argc, char *argv[], char *envp[])
 {
+	set_sig();
 	(void) argv;
 	if (argc > 1)
 		printf("minishel doesn't need arguments ;)\n");

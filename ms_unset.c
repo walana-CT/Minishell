@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/30 15:01:01 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/02 10:08:46 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	unset_arg(char *arg)
 {
-	char	buffer
+	char	buffer;
 }
 
 void	ms_unset(t_cmd cmd)
