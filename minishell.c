@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/02 12:04:56 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/02 14:24:58 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
-char	**g_env_lst;
 
-void	minishell(void)
+void	minishell(t_program ms)
 {
 	char	*str;
-	t_mline	line;
+	t_rline	line;
 
 	add_history(str);
 	while (line.goon)
@@ -34,7 +33,7 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 	}
 	if (sig == SIGQUIT)
 	{
-		printf("received a SIGQUIT (ctrl + C)\n");
+		printf("received a SIGQUIT (ctrl + \\)\n");
 	}
 }
 
@@ -51,11 +50,13 @@ static void	set_sig(void)
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	t_program	ms;
+
 	set_sig();
 	(void) argv;
 	if (argc > 1)
 		printf("minishel doesn't need arguments ;)\n");
 	g_env_lst = envp;
-	minishell();
+	minishell(ms);
 	return (0);
 }

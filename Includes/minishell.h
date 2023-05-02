@@ -33,19 +33,21 @@
 # define FALSE	0
 # define TRUE	1
 
-typedef struct s_mline	t_mline;
+typedef struct s_rline	t_rline;
 typedef struct s_cmd	t_cmd;
 
 typedef struct s_program
 {
+	char 			**envp;
 	int				term_fd;
 	struct termios	term_original;
 	struct termios	term_settings;
 }	t_program;
 
-struct s_mline
+struct s_rline
 {
 	char	*line; //la ligne 'de base' retournee par readline
+	int		size; // taille de *line
 	int		*status; // PROPOSITION : int[i] indique le statut de line[i] (1 si entre ' ', 2 si entre " ", 0 si 'libre')
 	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
 	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
@@ -65,7 +67,7 @@ struct s_cmd
 	char	*path; // path à strjoin avec cmd avant de execve()
 };
 
-t_mline	*line_init(char	*str, t_mline *line);
-void	ms_parse(char *str, t_mline *line);
+void	line_init(char	*str, t_rline *rl);
+void	ms_parse(char *str, t_rline *rl);
 
 #endif
