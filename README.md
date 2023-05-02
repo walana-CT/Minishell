@@ -16,6 +16,8 @@ Gros problèmes.
 
 1. vérifier que les quotes et simple quotes sont bien fermés
 
+(Avec t_line.status ?)
+
 Bien
 ```
 al"l"o 'alh'u"il"e
@@ -70,7 +72,7 @@ salade tomate $var1 'j'ai la $var2 icelle' "j'habite dans le $var3" il est un pe
 
 va donner
 ```
-salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Vars" il est un peu
+salade tomate oignon 'j'ai la $var2 icelle' "j'habite dans le Var" il est un peu
 ```
 
   
@@ -88,7 +90,7 @@ chaque fois qu'on tombe sur une redirection > ou >>, on crée le fichier cible, 
 
   
 
-3. c Splitter avec espace (+trim ??)
+3. c Splitter avec espace (+trim les quotes ??)
 
 Sauf entre les quotes, et les quotes doivent rester dans les bouts de string finaux (ca doit pas split quand " ou ' sinon 'e''c''h''o' ne marche pas). Remplir les champs de t_cmd avec le char** qui sort de split
 
