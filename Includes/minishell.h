@@ -61,25 +61,20 @@ struct s_cmd
 	char	*path; // path à strjoin avec cmd avant de execve()
 };
 
-void	line_init(char	*str, t_rline *rl);
-void	ms_parse(char *str, t_rline *rl);
-int		ms_status(char *str, int i);
-int		ms_checksyntax()
 
 
 
 //init
+void	line_init(char	*str, t_prog *p);
 //err
 //parsing
+int		ms_checksyntax();
+int		ms_parse(char *str, t_prog *p);
+int		ms_status(char *str, int i);
 
 //lexing
 //terminal
-static int	terminal_init(t_prog *program);
-void		line_init(char	*str, t_rline *rl);
-void		ms_parse(char *str, t_rline *rl);
+//static int	terminal_init(t_prog *program);
 //builtins
-
-
-
 
 #endif

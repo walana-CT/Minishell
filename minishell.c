@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/02 17:59:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/03 14:34:59 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	minishell(t_prog ms)
 	while (ms.goon)
 	{
 		str = readline("minishell > ");
-		ms_parse(str, &line);
+		ms_parse(str, &ms);
 	}
 }
 
 static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 {
+	info = 0;
+	context = 0;
 	if (sig == SIGINT)
 	{
 		printf("received a SIGINT (ctrl + C)\n");
@@ -36,23 +38,33 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 	}
 }
 
+static void	ms_crash(char *str)
+{
+	printf("%s\n", str);
+}
+
 static void	set_sig(void)
 {
 	struct sigaction	sa;
 
 	sa.sa_sigaction = ft_sighandle;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-		ft_crash("SIGINT assignation failed\n");
+		ms_crash("SIGINT assignation failed\n");
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		ft_crash("SIGQUIT assignation failed\n");
+		ms_crash("SIGQUIT assignation failed\n");
 }
 
-
+static int	terminal_init(t_prog *ms)
+{
+	(void) ms;
+	return (0);
+}
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_prog	ms;
 
+	ms.envp = envp;
 	set_sig();
 	if (terminal_init(&ms))
 	{
