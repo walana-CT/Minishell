@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:05:51 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/02 17:57:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/03 09:53:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static int terminal_reset(t_prog *program)
 	}
 	return errno = 0;
 }
- 
 
 /* Initialize terminal for non-canonical, non-echo mode,
  * that should be compatible with standard C I/O.
