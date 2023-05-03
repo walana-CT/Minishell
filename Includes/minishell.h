@@ -43,7 +43,7 @@ typedef struct s_prog
 	struct termios	term_original;
 	struct termios	term_settings;
 	char	*line; //la ligne 'de base' retournee par readline
-	int		exit_status; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
+	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
 	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
 	int		nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
 	int		**pipe; // pour pipex
@@ -61,6 +61,10 @@ struct s_cmd
 	char	*path; // path à strjoin avec cmd avant de execve()
 };
 
+void	line_init(char	*str, t_rline *rl);
+void	ms_parse(char *str, t_rline *rl);
+int		ms_status(char *str, int i);
+int		ms_checksyntax()
 
 
 

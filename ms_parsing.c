@@ -6,29 +6,44 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/02 14:55:55 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:01:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	*ms_status(char *str)
+int	ms_isquote(char c)
+{
+	if (c == '\'')
+		return (1);
+	if (c == '\"')
+		return (2);
+	return (0);
+}
+
+int	ms_status(char *str, int j)
 {
 	int	*status;
 	int	i;
-	int	size;
+	int	q;
 
+	q = 0;
 	i = -1;
-	size = ft_sstrlen(str);
-	status = malloc(sizeof(int) * size);
-	while (i <  )
+	while (++i < j)
+	{
+		if (!q)
+			q = ms_isquote(str[i]);
+		else
+		{
+			blabla;
+		}
+	}
+	return (q);
 }
 
 void	rline_init(char	*str, t_rline *rl)
 {
 	rl->line = str;
-	rl->size = ft_sstrlen(str);
-	rl->status = ms_status(str);
 }
 
 void	ms_parse(char *str, t_rline *rl)
