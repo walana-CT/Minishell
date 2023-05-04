@@ -13,12 +13,13 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror -fsanitize=address
 LIBFT := ./libft/libft.a
 NAME := minishell
-AR_NAME := minishell.a
-SRC :=	minishell.c \
-		ms_cd.c \
-		ms_echo.c \
-		ms_parsing.c \
-		ms_pwd.c
+SRC :=	minishell.c\
+		ms_cd.c\
+		ms_echo.c\
+		ms_parsing.c\
+		ms_parsing_utils.c\
+		ms_parsing_utils2.c\
+		ms_pwd.c\
 
 OBJ := $(SRC:.c=.o)
 
