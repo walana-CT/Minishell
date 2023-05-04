@@ -64,12 +64,14 @@ struct s_cmd
 void	line_init(char	*str, t_rline *rl);
 void	ms_parse(char *str, t_rline *rl);
 int		ms_status(char *str, int i);
-int		ms_checksyntax()
+int		ms_checksyntax(void);
 
 
 
 //init
 //err
+void		ms_crash(t_prog *program);
+void		ms_free(t_prog	*program);
 //parsing
 
 //lexing
@@ -78,8 +80,6 @@ static int	terminal_init(t_prog *program);
 void		line_init(char	*str, t_rline *rl);
 void		ms_parse(char *str, t_rline *rl);
 //builtins
-
-
 
 
 #endif
