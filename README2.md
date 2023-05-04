@@ -8,36 +8,16 @@ Gros problèmes.
 
 ## Parsing
 
-  
-
-### vérifier qu'il n'y a pas d'erreur
-
-  
-
+### Syntaxe
 
 1. vérifier que les doubles et simples quotes sont bien fermés
 
-
-Bien
-```
-al"l"o 'alh'u"il"e
-``` 
-
-
-Pas bien
-```
-al'lo "alhu'il"e
-``` 
-
-2. Verifier les caracteres interdits (\, ;, ||, etc.)
-
+2. Verifier les caracteres interdits (\, ;, etc.)
 
 ### Interpréter les caractères spéciaux
 
 
 1. Supprimer ce qui suit apres une dièse /!\ uniquement quand # est le premier caractere d'un mot
-
-
 
 ```
 les jeunes sont accros aux réseaux et n'ont aucun recul sur les informations
@@ -50,28 +30,24 @@ les jeunes sont accros au réseaux et n'ont aucun recul sur les informations
 qu'ils voient
 ```
 
-2. Split |
+### Remplissage de t_cmd
+1. Split |
 
 Attention ce premier split ne supprime pas les quotes. Il split t_line.line sur le caractere |, compte le nb de commandes, malloc t_cmd et remplit t_cmd[i].line avec le retour de split
 
 Desormais on ne devrait plus avoir qu'a travailler sur t_cmd[i].line
 
-  
-
-3. Gerer les redirections ( < << >> >)
+2. Gerer les redirections ( < << >> >)
 
 chaque fois qu'on tombe sur une redirection > ou >>, on crée le fichier cible, on modifie le fdout et on detruit ou ignore la redirection dans t_cmd.line
 
-  
-
-4. Split sur espace (+trim les quotes ??)
+3. Split sur espace (+trim les quotes ??)
 
 Sauf entre les quotes, et les quotes doivent rester dans les bouts de string finaux (ca doit pas split quand " ou ' sinon 'e''c''h''o' ne marche pas). Remplir les champs de t_cmd avec le char** qui sort de split
 
 echo" pouet" -> command not found: echo pouet
 
-5. Interpréter les dollars
-  
+4. Interpréter les dollars
 
 ```
 var1=oignon
@@ -96,4 +72,4 @@ A($?) ---> B(statut de sortie du dernier pipeline)
   
 ## Execution
 
-1. fork + execve ou builtin
+1. fork + execve ou builtins
