@@ -42,13 +42,13 @@ typedef struct s_prog
 	int				term_fd;
 	struct termios	term_original;
 	struct termios	term_settings;
-	char	*line; //la ligne 'de base' retournee par readline
-	int		err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
-	int		goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
-	int		nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
-	int		**pipe; // pour pipex
-	pid_t	*pid; // pour pipex
-	t_cmd	*cmd; // struct necessaire à l'éxécution de la commande par execve()
+	char			*line; //la ligne 'de base' retournee par readline
+	int				err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
+	int				goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
+	int				nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
+	int				**pipe; // pour pipex
+	pid_t			*pid; // pour pipex
+	t_cmd			*cmd; // struct necessaire à l'éxécution de la commande par execve()
 }	t_prog;
 
 struct s_cmd
@@ -59,18 +59,12 @@ struct s_cmd
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
+	t_cmd	*prog;//reference du program pour free
 };
-
-void	line_init(char	*str, t_rline *rl);
-void	ms_parse(char *str, t_rline *rl);
-int		ms_status(char *str, int i);
-int		ms_checksyntax(void);
-
-
 
 //init
 void	line_init(char	*str, t_prog *p);
-//err
+//err and memory
 void		ms_crash(t_prog *program);
 void		ms_free(t_prog	*program);
 //parsing
@@ -80,7 +74,12 @@ int		ms_status(char *str, int i);
 
 //lexing
 //terminal
-//static int	terminal_init(t_prog *program);
+static int		terminal_init(t_prog *program);
+static int 		terminal_reset(t_prog *program);
 //builtins
+int			ms_exit(t_cmd cmd);
+//utils
+int			sizeof_tab(void **my_tab);
+
 
 #endif

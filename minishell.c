@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/03 14:34:59 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:12:53 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,37 @@ void	minishell(t_prog ms)
 	char	*str;
 
 	add_history(str);
-	while (ms.goon)
+	while (1)
 	{
 		str = readline("minishell > ");
 		ms_parse(str, &ms);
 	}
+	printf("exit\n");
 }
 
-static void	ft_sighandle(int sig, siginfo_t *info, void *context)
+void	copy_env(char *envp[], t_prog *prog)
 {
-	info = 0;
-	context = 0;
-	if (sig == SIGINT)
+	char **envp_copy;
+	int n;
+
+	n = 0;
+	envp_copy = malloc(sizeof_tab(envp) * sizeof(char *));
+	if (!envp_copy)
+		ms_crash(NULL);
+	while (envp[n])
 	{
-		printf("received a SIGINT (ctrl + C)\n");
+		envp_copy[n] = envp[n];
+		n++;
 	}
-	if (sig == SIGQUIT)
-	{
-		printf("received a SIGQUIT (ctrl + \\)\n");
-	}
-}
-
-static void	ms_crash(char *str)
-{
-	printf("%s\n", str);
-}
-
-static void	set_sig(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_sigaction = ft_sighandle;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		ms_crash("SIGINT assignation failed\n");
-	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		ms_crash("SIGQUIT assignation failed\n");
-}
-
-static int	terminal_init(t_prog *ms)
-{
-	(void) ms;
-	return (0);
+	prog->envp = envp_copy;	
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_prog	ms;
 
-	ms.envp = envp;
 	set_sig();
+	copy_env(envp, &ms);
 	if (terminal_init(&ms))
 	{
 		if (errno == ENOTTY)

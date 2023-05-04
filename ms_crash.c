@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/03 10:30:02 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/04 15:05:35 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	ms_free(t_prog	*program)
 {
-	if (program)
-	{
-		if(program->cmd)
-			{
-				
-			}
-	}
-		
+	(void) program;
+	printf("ms free called\n");
 }
 
 void	ms_crash(t_prog *program)

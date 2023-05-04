@@ -9,10 +9,11 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-CC := gcc
+CC := cc
 CFLAGS := -Wall -Wextra -Werror -fsanitize=address
 LIBFT := ./libft/libft.a
 NAME := minishell
+AR_NAME := minishell.a
 SRC :=	minishell.c \
 		ms_cd.c \
 		ms_echo.c \
@@ -21,23 +22,29 @@ SRC :=	minishell.c \
 
 OBJ := $(SRC:.c=.o)
 
-all: lib $(NAME)
+all: lib $(OBJ) $(AR_NAME) $(NAME) obj_store
 
 lib:
 	@$(MAKE) -C ./libft/
 
 .c.o:
-	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+	printf '$(GREEN)Compiling: $< $(RESET)$<\n'
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME): $(OBJ)
+
+$(NAME):
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
-	@printf '$(RED)- $(NAME) done -$(RESET)\n'
+	printf '$(RED)- $(NAME) done -$(RESET)\n'
+
+$(AR_NAME):
+	@ar rc $@ $(OBJ)
+
+obj_store:
+	@mv $(<:.c=.o) Objects
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
-	@rm -f $(OBJ)
-	@rm -f $(BOBJ)
+	@rm -f Objects/$(OBJ)
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

@@ -6,8 +6,26 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/30 11:05:15 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/04 16:17:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
+
+int	ms_env(t_cmd cmd)
+{
+	char **envp;
+
+	if (!cmd.args[0])
+	{
+		printf("env received 0 args\n");
+		return (1);
+	}
+	envp = cmd.prog->envp;
+	while (*envp)
+	{
+		printf("%s\n", *envp);
+		envp++;
+	}
+	return (0);	
+}
