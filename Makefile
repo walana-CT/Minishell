@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/19 15:12:46 by rficht            #+#    #+#              #
-#    Updated: 2023/05/03 10:17:51 by rficht           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 BOLD	:= \033[1m
 BLACK	:= \033[30;1m
 RED		:= \033[31;1m
@@ -21,73 +9,38 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-#avoid inheriting variables from the environement
-SHELL = /bin/sh
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror -fsanitize=address
 LIBFT := ./libft/libft.a
-#Sometimes you may need to set suffixes manualy
-#.SUFFIXES:
-#.SUFFIXES: .c .o
+NAME := minishell
+SRC :=	minishell.c \
+		ms_cd.c \
+		ms_echo.c \
+		ms_parsing.c \
+		ms_pwd.c
 
-#set the program name as current directory
-DIR_PATH = $(shell pwd)
-NAME = mini_shell
-AR_NAME = $(NAME).a
+OBJ := $(SRC:.c=.o)
 
-#general compilation flags
-CFLAG = -Wall -Wextra -Werror -fsanitize=address
-
-# Definition of sources (.c from libft + curr dir def by hand)
-SOURCES = minishell.c \
-			ms_cd.c \
-			ms_echo.c \
-			ms_parsing.c \
-			ms_pwd.c
-
-OBJ = $(SOURCES:.c=.o)
-
-# Compiler used for this project
-CC = cc
-
-# main rule called by default
 all: lib $(NAME)
 
-# rule for compile .c -> .o
-%.o : %.c
-	@$(CC) $(CFLAG) -o $@ -c $<
-
-# rule to make an archive of the project
-$(AR_NAME): $(OBJ)
-	@ar rc $@ $^
-
-# create a program assuming that main is contained inside a main.c
-$(NAME): $(AR_NAME)
-	@$(CC) $(CFLAG) $(GFLAG) -o $(NAME) -g $(AR_NAME) $(LIBFT) -g3 -lreadline
-
-# create prog and launch it
-test: all
-	./$(NAME)
-	
-# remove .o corresponding to sources	
-clean: 
-	@rm -f $(OBJ)
-
-# remove .o and .a corresponding to sources
-fclean: clean
-	@rm -f $(AR_NAME) $(NAME)
-
-# force to recompile everything
-re: fclean $(AR_NAME)
-
 lib:
-	@$(MAKE) -C ./libft
+	@$(MAKE) -C ./libft/
 
-#help:
-#	@echo 'Sources:'
-#	@echo $(SOURCES)
+.c.o:
+	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-#target: dependencies
-#		recipies
-# $@ target name
-# $< first dependencie
-# $^ dependencies list
-# $? dependencies that ar more recent than target
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+	@printf '$(RED)- $(NAME) done -$(RESET)\n'
+
+clean:
+	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
+	@rm -f $(OBJ)
+	@rm -f $(BOBJ)
+	@$(MAKE) clean -C ./libft/
+
+fclean: clean
+	@rm -f $(NAME)
+
+re: fclean all

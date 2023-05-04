@@ -69,17 +69,18 @@ int		ms_checksyntax(void);
 
 
 //init
+void	line_init(char	*str, t_prog *p);
 //err
 void		ms_crash(t_prog *program);
 void		ms_free(t_prog	*program);
 //parsing
+int		ms_checksyntax();
+int		ms_parse(char *str, t_prog *p);
+int		ms_status(char *str, int i);
 
 //lexing
 //terminal
-static int	terminal_init(t_prog *program);
-void		line_init(char	*str, t_rline *rl);
-void		ms_parse(char *str, t_rline *rl);
+//static int	terminal_init(t_prog *program);
 //builtins
-
 
 #endif
