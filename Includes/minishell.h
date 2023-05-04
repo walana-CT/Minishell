@@ -37,7 +37,7 @@ typedef struct s_cmd	t_cmd;
 
 typedef struct s_prog
 {
-	char 			**envp;
+	char			**envp;
 	int				term_fd;
 	struct termios	term_original;
 	struct termios	term_settings;
@@ -77,12 +77,13 @@ int		ms_forbiddenchar(char c); // liste de caracteres interdits pares un pipe
 
 //lexing
 //terminal
-static int		terminal_init(t_prog *program);
-static int 		terminal_reset(t_prog *program);
+int			terminal_init(t_prog *program);
+int 		terminal_reset(t_prog *program);
 //builtins
 int			ms_exit(t_cmd cmd);
 //utils
-int			sizeof_tab(void **my_tab);
+void		set_sig(void);
+int			sizeof_tab(char **my_tab);
 
 
 #endif

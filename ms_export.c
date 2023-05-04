@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 16:12:46 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:16:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	sizeof_tab(void **my_tab)
+int	sizeof_tab(char **my_tab)
 {
 	int n;
 

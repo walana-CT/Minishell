@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/04 12:11:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/04 17:19:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	*ms_noquotes(char *str)
 // liste de caracteres interdits apres un pipe
 int	ms_forbiddenchar(char c)
 {
-	if (c == '\\' || c == ';' || )
+	if (c == '\\' || c == ';')
 		return (1);
 	return (0);
 }
