@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
+#    Updated: 2023/05/05 19:14:14 by mdjemaa          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 BOLD	:= \033[1m
 BLACK	:= \033[30;1m
 RED		:= \033[31;1m
@@ -9,8 +21,9 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-CC := cc
-CFLAGS := -Wall -Wextra -Werror -fsanitize=address
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror
+SANITIZE := -fsanitize=address
 LIBFT := ./libft/libft.a
 NAME := minishell
 SRC :=	minishell.c\
@@ -29,30 +42,24 @@ SRC :=	minishell.c\
 		ms_terminal.c\
 		ms_unset.c\
 
-
 OBJ := $(SRC:.c=.o)
 
-all: lib $(OBJ) $(AR_NAME) $(NAME)
+all: lib $(NAME)
 
 lib:
 	@$(MAKE) -C ./libft/
 
-%.o : %.c
+.c.o:
 	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline $(SANITIZE)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
-
-$(AR_NAME):
-	ar rc $@ $(OBJ)
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
 	@rm -f $(OBJ)
-
-clean_lib:
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

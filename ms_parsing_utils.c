@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/05 12:48:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:26:30 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ char	*ms_noquotes(char *str)
 	i = -1;
 	cpt = 0;
 	while (++i < (int) ft_sstrlen(str))
-	{
 		if (ms_quote_status(str, i) == 0)
 			cpt++;	
-	}
 	tmp = malloc((1 + cpt) * sizeof(char));
 	if (!tmp)
 		return (0);
@@ -101,7 +99,7 @@ char	*ms_noquotes(char *str)
 	j = 0;
 	while (++i < (int) ft_sstrlen(str))
 	{
-		if (ms_status(str, i) == 0)
+		if (ms_quote_status(str, i) == 0)
 			tmp[j++] = str[i];
 	}
 	tmp[j] = 0;

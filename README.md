@@ -31,7 +31,7 @@ qu'ils voient
 ```
 
 ### Remplissage de t_cmd
-1. Split |
+1. Split | _OK
 
 Attention ce premier split ne supprime pas les quotes. Il split t_line.line sur le caractere |, compte le nb de commandes, malloc t_cmd et remplit t_cmd[i].line avec le retour de split
 

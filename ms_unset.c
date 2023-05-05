@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 10:59:26 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 17:29:18 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	unset_arg(char *arg, t_prog *prog)
 		if (is_env(arg, prog->envp[i]))
 		{
 
-			new_envp = malloc((sizeof_tab(prog->envp) - 1) * sizeof(char *));
+			new_envp = malloc((ms_sizeof_tab(prog->envp) - 1) * sizeof(char *));
 			if (!new_envp)
 				ms_crash(prog);
 			while (prog->envp[j])

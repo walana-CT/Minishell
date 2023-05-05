@@ -3,24 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/04 17:17:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 19:14:14 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	minishell(t_prog ms)
+void	minishell(t_prog *ms)
 {
 	char	*str;
+	char	*tmp;
 
-	add_history(str);
-	while (1)
+	while (ms->goon)
 	{
-		str = readline("minishell > ");
-		ms_parse(str, &ms);
+		tmp = readline("minishell > ");
+		str = ft_strtrim(tmp, SPACES);
+		if (str && !ft_strequal(str, ""))
+			if (ms_parse(str, ms))
+				ms_printcmds(*ms);
+		ms_usual_free(ms, str ,tmp);
 	}
 	printf("exit\n");
 }
@@ -31,7 +35,7 @@ void	copy_env(char *envp[], t_prog *prog)
 	int n;
 
 	n = 0;
-	envp_copy = malloc(sizeof_tab(envp) * sizeof(char *));
+	envp_copy = malloc(ms_sizeof_tab(envp) * sizeof(char *));
 	if (!envp_copy)
 		ms_crash(NULL);
 	while (envp[n])
@@ -58,7 +62,8 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	(void) argv;
 	if (argc > 1)
-		printf("minishel doesn't need arguments ;)\n");
-	minishell(ms);
+		printf("minishell doesn't need arguments ;)\n");
+	minishell(&ms);
+	//system("leaks minishell");
 	return (0);
 }

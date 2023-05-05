@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 10:56:33 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 17:28:20 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	sizeof_tab(char **my_tab)
+int	ms_sizeof_tab(char **my_tab)
 {
 	int	n;
 
@@ -34,7 +34,7 @@ void	ms_add_envp(char **args, t_prog *prog)
 	i = 0;
 	j = 0;
 
-	new_envp = malloc((sizeof_tab(args) + sizeof_tab(prog->envp))
+	new_envp = malloc((ms_sizeof_tab(args) + ms_sizeof_tab(prog->envp))
 			* sizeof(char *));
 	if (!new_envp)
 		ms_crash(prog);
