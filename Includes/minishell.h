@@ -90,5 +90,5 @@ int			ms_pwd(t_cmd *cmd);
 //utils
 void		set_sig(void);
 int			sizeof_tab(char **my_tab);
-\"-la"
+
 #endif
