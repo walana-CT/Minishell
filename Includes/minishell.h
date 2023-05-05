@@ -67,7 +67,6 @@ void		line_init(char	*str, t_prog *p);
 void		ms_crash(t_prog *program);
 void		ms_free(t_prog	*program);
 //parsing
-<<<<<<< HEAD
 int		ms_parse(char *str, t_prog *p);
 int		ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
 int		*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
@@ -75,15 +74,6 @@ int		ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence
 int		ms_quote_status(char *str, int j); // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
 char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
 int		ms_forbiddenchar(char c); // liste de caracteres interdits pares un pipe
-=======
-int			ms_parse(char *str, t_prog *p);
-int			ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
-int			*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
-int			ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence de c dans str , ou -1
-int			ms_status(char *str, int j); // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
-char		*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
-int			ms_forbiddenchar(char c); // liste de caracteres interdits pares un pipe
->>>>>>> 04b15c8cf958e90c20a19b3a7e3adc3234a2cad7
 
 //lexing
 //terminal

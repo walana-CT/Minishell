@@ -51,11 +51,8 @@ $(AR_NAME):
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
 	@rm -f $(OBJ)
-<<<<<<< HEAD
-=======
 
 clean_lib:
->>>>>>> 04b15c8cf958e90c20a19b3a7e3adc3234a2cad7
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean
