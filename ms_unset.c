@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 09:20:58 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 09:28:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	unset_arg(char *arg, t_prog *prog)
 	{
 		if (is_env(arg, prog->envp[i]))
 		{
-			free(prog->envp[i]);
+
 			new_envp = malloc((sizeof_tab(prog->envp) - 1) * sizeof(char *));
 			if (!new_envp)
 				ms_crash(prog);
@@ -53,6 +53,9 @@ void	unset_arg(char *arg, t_prog *prog)
 					new_envp[j] = prog->envp[j];				
 				j++;
 			}
+			new_envp[j] = NULL;
+			free(prog->envp[i]);
+			prog->envp = new_envp;
 		}
 	}
 }

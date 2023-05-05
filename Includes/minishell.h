@@ -81,9 +81,11 @@ int			terminal_init(t_prog *program);
 int 		terminal_reset(t_prog *program);
 //builtins
 int			ms_exit(t_cmd cmd);
+int			is_env(char *str, char *env);
 //utils
 void		set_sig(void);
 int			sizeof_tab(char **my_tab);
+
 
 
 #endif
