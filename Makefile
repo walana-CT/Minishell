@@ -15,37 +15,41 @@ LIBFT := ./libft/libft.a
 NAME := minishell
 SRC :=	minishell.c\
 		ms_cd.c\
+		ms_crash.c\
 		ms_echo.c\
+		ms_env.c\
+		ms_exit.c\
+		ms_export.c\
 		ms_parsing.c\
 		ms_parsing_utils.c\
 		ms_parsing_utils2.c\
 		ms_pwd.c\
+		ms_signals.c\
+		ms_terminal.c\
+		ms_unset.c\
+
 
 OBJ := $(SRC:.c=.o)
 
-all: lib $(OBJ) $(AR_NAME) $(NAME) obj_store
+all: lib $(OBJ) $(AR_NAME) $(NAME)
 
 lib:
 	@$(MAKE) -C ./libft/
 
-.c.o:
-	printf '$(GREEN)Compiling: $< $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
+%.o : %.c
+	printf '$(GREEN)Compiling: $(RESET)$<\n'
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 	printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 $(AR_NAME):
-	@ar rc $@ $(OBJ)
-
-obj_store:
-	@mv $(<:.c=.o) Objects
+	ar rc $@ $(OBJ)
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
-	@rm -f Objects/$(OBJ)
+	rm -f $(OBJ)
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

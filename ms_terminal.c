@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 16:11:51 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:18:33 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-static int terminal_reset(t_prog *program)
+int terminal_reset(t_prog *program)
 {
 	if (program->term_fd != -1)
 	{
@@ -22,7 +22,7 @@ static int terminal_reset(t_prog *program)
 	return errno = 0;
 }
 
-static int terminal_init(t_prog *program)
+int terminal_init(t_prog *program)
 {
 	if (program->term_fd != -1)
 		return (errno = 0);
