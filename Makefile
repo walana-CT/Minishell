@@ -37,19 +37,21 @@ lib:
 	@$(MAKE) -C ./libft/
 
 %.o : %.c
-	printf '$(GREEN)Compiling: $(RESET)$<\n'
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
-	printf '$(RED)- $(NAME) done -$(RESET)\n'
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 $(AR_NAME):
 	ar rc $@ $(OBJ)
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+
+clean_lib:
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

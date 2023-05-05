@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 09:19:40 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:56:33 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	sizeof_tab(char **my_tab)
 {
-	int n;
+	int	n;
 
 	if (!my_tab)
-		return(-1);
+		return (-1);
 	n = 0;
 	while (my_tab[n])
 		n++;
@@ -25,16 +25,17 @@ int	sizeof_tab(char **my_tab)
 }
 
 
-void	ms_add_env(char **args, t_prog *prog)
+void	ms_add_envp(char **args, t_prog *prog)
 {
-	char **new_envp;
-	int i;
-	int j;
+	char	**new_envp;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
 
-	new_envp = malloc((sizeof_tab(args) + sizeof_tab(prog->envp)) * sizeof(char *));
+	new_envp = malloc((sizeof_tab(args) + sizeof_tab(prog->envp))
+			* sizeof(char *));
 	if (!new_envp)
 		ms_crash(prog);
 	i = 0;
@@ -47,10 +48,8 @@ void	ms_add_env(char **args, t_prog *prog)
 		new_envp[i++] = args[j++];
 	new_envp[i] = NULL;
 	free(prog->envp);
-	prog->envp = new_envp;	
+	prog->envp = new_envp;
 }
-
-
 
 int	ms_export(t_cmd *cmd)
 {
@@ -66,4 +65,5 @@ int	ms_export(t_cmd *cmd)
 		return (0);
 	}
 	ms_add_envp(cmd->args, cmd->prog);
+	return (0);
 }

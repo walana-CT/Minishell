@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 10:23:15 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:47:30 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	resfresh_path(char *path, t_prog *prog)
+void	refresh_path(char *path, t_prog *prog)
 {
 	int		n;
 	char	*env_path;
@@ -24,7 +24,7 @@ int	resfresh_path(char *path, t_prog *prog)
 	{
 		if (is_env(path_stat, prog->envp[n]))
 		{
-			env_path = calloc((str_len(path) + 6), sizeof(char));
+			env_path = calloc((ft_sstrlen(path) + 6), sizeof(char));
 			if (!env_path)
 				ms_crash(prog);
 			while (*path_stat)
@@ -55,3 +55,5 @@ int	ms_cd(t_cmd *cmd)
 	refresh_path(cmd->args[0], cmd->prog);
 	return (0);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 17:17:35 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:58:48 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	set_sig(void)
 	sa.sa_sigaction = ft_sighandle;
 	sa.sa_mask = SIGQUIT;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-		ms_crash("SIGINT assignation failed\n");
+		ms_crash(NULL);
 }
