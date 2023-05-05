@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printstrtab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:32:06 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/30 10:20:35 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:48:05 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_printstrtab(char **str_tab, char *titre)
 {
-	ft_printf(GREEN"- %s -\n"RESET, titre);
+	ft_printf(GREEN"--- %s ---\n"RESET, titre);
 	while (str_tab && *str_tab)
 	{
 		ft_printf("%s\n", *str_tab);

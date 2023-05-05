@@ -25,6 +25,7 @@ SRC :=	minishell.c\
 		ms_parsing_utils2.c\
 		ms_pwd.c\
 		ms_signals.c\
+		ms_split.c\
 		ms_terminal.c\
 		ms_unset.c\
 
@@ -49,7 +50,7 @@ $(AR_NAME):
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

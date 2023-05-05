@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/04 12:11:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:58:20 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	ms_wrongchars(char	*str)
 {
 	int	i;
 
+	if (ms_strstr(str, "||"))
+		return (TRUE);
 	i = -1;
 	while (str[++i])
 		if (ms_forbiddenchar(str[i]))
-			return (1);
-	return (0);
+			return (TRUE);
+	return (FALSE);
 }
 
 int	ms_openquotes(char *str)
@@ -52,13 +54,9 @@ int	ms_syntax_ok(char *str)
 
 	if (ms_openquotes(str))
 		return(printf(RED"Open quotes\n"RESET));
-/*	tmp = ms_noquotes(str);
-	if (!tmp)
-		return (0);
-	if (ms_wrongchars(tmp))
-*/	if (ms_wrongchars(str))
+	if (ms_wrongchars(str))
 		return(printf(RED"Forbidden char\n"RESET));
-	return (1);
+	return (TRUE);
 }
 
 int	ms_parse(char *str, t_prog *ms)
