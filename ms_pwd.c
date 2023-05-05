@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:55:49 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 09:23:13 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:55:19 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	pwd(t_cmd *cmd)
+int	ms_pwd(t_cmd *cmd)
 {
 	char	buffer[MAXPATHLEN + 1];
 	char	*result;

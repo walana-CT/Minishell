@@ -58,15 +58,16 @@ struct s_cmd
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
-	t_cmd	*prog;//reference du program pour free
+	t_prog	*prog;//reference du program pour free
 };
 
 //init
-void	line_init(char	*str, t_prog *p);
+void		line_init(char	*str, t_prog *p);
 //err and memory
 void		ms_crash(t_prog *program);
 void		ms_free(t_prog	*program);
 //parsing
+<<<<<<< HEAD
 int		ms_parse(char *str, t_prog *p);
 int		ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
 int		*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
@@ -74,16 +75,30 @@ int		ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence
 int		ms_quote_status(char *str, int j); // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
 char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
 int		ms_forbiddenchar(char c); // liste de caracteres interdits pares un pipe
+=======
+int			ms_parse(char *str, t_prog *p);
+int			ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
+int			*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
+int			ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence de c dans str , ou -1
+int			ms_status(char *str, int j); // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
+char		*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
+int			ms_forbiddenchar(char c); // liste de caracteres interdits pares un pipe
+>>>>>>> 04b15c8cf958e90c20a19b3a7e3adc3234a2cad7
 
 //lexing
 //terminal
 int			terminal_init(t_prog *program);
 int 		terminal_reset(t_prog *program);
 //builtins
-int			ms_exit(t_cmd cmd);
+int			ms_exit(t_cmd *cmd);
+int			is_env(char *str, char *env);
+int			ms_env(t_cmd *cmd);
+int			ms_unset(t_cmd *cmd);
+int			ms_echo(t_cmd *cmd);
+int			ms_export(t_cmd *cmd);
+int			ms_pwd(t_cmd *cmd);
 //utils
 void		set_sig(void);
 int			sizeof_tab(char **my_tab);
-
-
+\"-la"
 #endif

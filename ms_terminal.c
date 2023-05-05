@@ -6,23 +6,23 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 17:18:33 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:34:14 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int terminal_reset(t_prog *program)
+int	terminal_reset(t_prog *program)
 {
 	if (program->term_fd != -1)
 	{
-		if(tcsetattr(program->term_fd, TCSANOW, &program->term_original))
-			return errno = ENOTSUP;
+		if (tcsetattr(program->term_fd, TCSANOW, &program->term_original))
+			return (errno = ENOTSUP);
 	}
-	return errno = 0;
+	return (errno = 0);
 }
 
-int terminal_init(t_prog *program)
+int	terminal_init(t_prog *program)
 {
 	if (program->term_fd != -1)
 		return (errno = 0);
@@ -34,8 +34,8 @@ int terminal_init(t_prog *program)
 		program->term_fd = STDOUT_FILENO;
 	else
 		return (errno = ENOTTY);
-	if (tcgetattr(program->term_fd, &program->term_original) ||
-		tcgetattr(program->term_fd, &program->term_settings))
+	if (tcgetattr(program->term_fd, &program->term_original)
+		|| tcgetattr(program->term_fd, &program->term_settings))
 		return (errno = ENOTSUP);
 	tcsetattr(program->term_fd, TCSANOW, &program->term_settings);
 	return (errno = 0);

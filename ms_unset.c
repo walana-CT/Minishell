@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 09:20:58 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:59:26 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ int	is_env(char *str, char *env)
 	while (*str && *env)
 	{
 		if (*str != *env)
-			return(FALSE);
+			return (FALSE);
 		str++;
-		env++;		
+		env++;
 	}
 	if (!(*env))
-		return(FALSE);
+		return (FALSE);
 	if (*env == '=')
-		return(TRUE);
+		return (TRUE);
 	else
-		return (FALSE);	
+		return (FALSE);
 }
 
 void	unset_arg(char *arg, t_prog *prog)
 {
-	int i;
-	int j;
-	char **new_envp;
+	int		i;
+	int		j;
+	char	**new_envp;
 
 	i = 0;
 	j = 0;
@@ -41,7 +41,7 @@ void	unset_arg(char *arg, t_prog *prog)
 	{
 		if (is_env(arg, prog->envp[i]))
 		{
-			free(prog->envp[i]);
+
 			new_envp = malloc((sizeof_tab(prog->envp) - 1) * sizeof(char *));
 			if (!new_envp)
 				ms_crash(prog);
@@ -50,14 +50,17 @@ void	unset_arg(char *arg, t_prog *prog)
 				if (j == i)
 					j++;
 				if (prog->envp[j])
-					new_envp[j] = prog->envp[j];				
+					new_envp[j] = prog->envp[j];
 				j++;
 			}
+			new_envp[j] = NULL;
+			free(prog->envp[i]);
+			prog->envp = new_envp;
 		}
 	}
 }
 
-void	ms_unset(t_cmd *cmd)
+int	ms_unset(t_cmd *cmd)
 {
 	if (!cmd->args[0])
 	{
@@ -70,4 +73,5 @@ void	ms_unset(t_cmd *cmd)
 		unset_arg(cmd->args[0], cmd->prog);
 		cmd->args++;
 	}
+	return (0);
 }
