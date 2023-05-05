@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:11:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/04 17:29:42 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:48:36 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ms_next_word_quote(char *str, char sep, int *i, int *j)
 {
 	*i = *j;
-	while (str[*i] == sep || ms_status(str, *i))
+	while (str[*i] == sep)
 		(*i)++;
-	if (ms_status(str, *i))
+	if (ms_quote_status(str, *i))
 	{
 		*j = *i + 1;
-		while (str[*j] && ms_status(str, *j))
+		while (str[*j] && ms_quote_status(str, *j))
 			(*j)++;
 	}
 	else if (str[*i])
@@ -47,9 +47,9 @@ char	**ms_quotesplit(char *s, char sep)
 	{
 		if (s[i] != sep && (s[j] == sep))
 		{
-			if (ms_status(s, i))
+			/*if (ms_status(s, i))
 				ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i + 1, j++ - i - 1)));
-			else
+			else*/
 				ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
 			ms_next_word_quote(s, sep, &i, &j);
 		}
@@ -60,14 +60,15 @@ char	**ms_quotesplit(char *s, char sep)
 		ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
 	return (ft_lst_to_strtab(l));
 }
-
+/*
 int	main(void)
 {
 	char	**split;
 
-	split = ms_quotesplit("Ceci est un test||| de decoupage rigolo ?", ' ');
-	ft_printstrtab(split, "-- SPLIT --");
+	split = ms_quotesplit("'Ceci est un test||| ' de decoupage| 1 2| 3 rigolo \"4 5 6\"", '|');
+	ft_printstrtab(split, "SPLIT");
 	ft_freetab(split);
 	//system("leaks a.out");
 	return (0);
 }
+*/

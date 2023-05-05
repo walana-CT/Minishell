@@ -25,6 +25,7 @@ SRC :=	minishell.c\
 		ms_parsing_utils2.c\
 		ms_pwd.c\
 		ms_signals.c\
+		ms_split.c\
 		ms_terminal.c\
 		ms_unset.c\
 

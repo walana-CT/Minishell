@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/05 10:41:32 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:48:36 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ms_isquote(char c)
 		return (1);
 	if (c == '\"')
 		return (2);
-	return (0);
+	return (FALSE);
 }
 
 int	ms_where_is(char c, char *str)
@@ -27,7 +27,7 @@ int	ms_where_is(char c, char *str)
 
 	i = -1;
 	while (str[++i])
-		if (str[i] == c && !ms_status(str, i))
+		if (str[i] == c && !ms_quote_status(str, i))
 			return (i);
 	return (-1);
 }
@@ -42,7 +42,7 @@ int	*ms_where_are(char c, char *str)
 	i = -1;
 	cpt = 0;
 	while (str[++i])
-		if (str[i] == c && !ms_status(str, i))
+		if (str[i] == c && !ms_quote_status(str, i))
 			cpt++;
 	res = malloc(sizeof(int) * (cpt + 1));
 	if (!res)
@@ -51,14 +51,14 @@ int	*ms_where_are(char c, char *str)
 	res[0] = cpt;
 	cpt = -1;
 	while (str[++i])
-		if (str[i] == c && !ms_status(str, i))
+		if (str[i] == c && !ms_quote_status(str, i))
 			res[++cpt] = i;
 	res[++cpt] = -1;
 	return (res);
 }
 
 // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
-int	ms_status(char *str, int j)
+int	ms_quote_status(char *str, int j)
 {
 	int	i;
 	int	q;
@@ -91,7 +91,7 @@ char	*ms_noquotes(char *str)
 	cpt = 0;
 	while (++i < (int) ft_sstrlen(str))
 	{
-		if (ms_status(str, i) == 0)
+		if (ms_quote_status(str, i) == 0)
 			cpt++;	
 	}
 	tmp = malloc((1 + cpt) * sizeof(char));
@@ -106,12 +106,4 @@ char	*ms_noquotes(char *str)
 	}
 	tmp[j] = 0;
 	return (tmp);
-}
-
-// liste de caracteres interdits apres un pipe
-int	ms_forbiddenchar(char c)
-{
-	if (c == '\\' || c == ';')
-		return (1);
-	return (0);
 }
