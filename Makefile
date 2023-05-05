@@ -31,28 +31,25 @@ SRC :=	minishell.c\
 
 OBJ := $(SRC:.c=.o)
 
-all: lib $(OBJ) $(AR_NAME) $(NAME) obj_store
+all: lib $(OBJ) $(AR_NAME) $(NAME)
 
 lib:
 	@$(MAKE) -C ./libft/
 
-.c.o:
-	printf '$(GREEN)Compiling: $< $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+%.o : %.c
+	printf '$(GREEN)Compiling: $(RESET)$<\n'
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 	printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 $(AR_NAME):
-	@ar rc $@ $(OBJ)
-
-obj_store:
-	@mv $(<:.c=.o) Objects
+	ar rc $@ $(OBJ)
 
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
-	@rm -f Objects/$(OBJ)
+	rm -f $(OBJ)
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean

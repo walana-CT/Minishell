@@ -6,19 +6,19 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 17:28:10 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 09:17:26 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	ms_env(t_cmd cmd)
+int	ms_env(t_cmd *cmd)
 {
 	char **envp;
 	t_prog *prog;
 
 	prog = cmd->prog;
-	if (!cmd.args[0])
+	if (!cmd->args[0])
 	{
 		printf("env received 0 args\n");
 		return (1);

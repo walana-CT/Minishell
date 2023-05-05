@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/04 16:56:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 09:20:58 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void	unset_arg(char *arg, t_prog *prog)
 	}
 }
 
-void	ms_unset(t_cmd cmd)
+void	ms_unset(t_cmd *cmd)
 {
-	if (!cmd.args[0])
+	if (!cmd->args[0])
 	{
 		printf("ms_unset received NULL args\n");
 		return (1);
 	}
-	cmd.args++;
-	while (cmd.args[0])
+	cmd->args++;
+	while (cmd->args[0])
 	{
-		unset_arg(cmd.args[0], cmd.prog);
-		cmd.args++;
+		unset_arg(cmd->args[0], cmd->prog);
+		cmd->args++;
 	}
 }
