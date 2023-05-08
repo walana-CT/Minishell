@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/05 19:14:14 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:40:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,22 @@ void	minishell(t_prog *ms)
 		tmp = readline("minishell > ");
 		str = ft_strtrim(tmp, SPACES);
 		if (str && !ft_strequal(str, ""))
+		{
 			if (ms_parse(str, ms))
+			{
 				ms_printcmds(*ms);
-		ms_usual_free(ms, str ,tmp);
+				//ms_get_fds(ms);
+			}
+		}
+		ms_usual_free(ms, str, tmp);
 	}
 	printf("exit\n");
 }
 
 void	copy_env(char *envp[], t_prog *prog)
 {
-	char **envp_copy;
-	int n;
+	char	**envp_copy;
+	int		n;
 
 	n = 0;
 	envp_copy = malloc(ms_sizeof_tab(envp) * sizeof(char *));
@@ -43,7 +48,7 @@ void	copy_env(char *envp[], t_prog *prog)
 		envp_copy[n] = envp[n];
 		n++;
 	}
-	prog->envp = envp_copy;	
+	prog->envp = envp_copy;
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -58,7 +63,7 @@ int	main(int argc, char *argv[], char *envp[])
 			fprintf(stderr, "This program requires a terminal.\n");
 		else
 			fprintf(stderr, "Cannot initialize terminal: %s.\n", strerror(errno));
-		return EXIT_FAILURE;
+		return (EXIT_FAILURE);
 	}
 	(void) argv;
 	if (argc > 1)

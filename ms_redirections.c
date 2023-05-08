@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_crash.c                                         :+:      :+:    :+:   */
+/*   ms_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/08 12:15:58 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/05/08 15:13:39 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	ms_usual_free(t_prog *ms, char *str, char *tmp)
+int	ms_get_fds(t_prog *ms)
 {
 	int	i;
 
 	i = -1;
-	if (str)
-		free(str);
-	if (tmp)
-		free(tmp);
 	while (++i < ms->nbcmd)
-		free(ms->cmd[i].line);
-	if (ms->nbcmd)
-		free(ms->cmd);
+	{
+		if (!ms_get_fdin(&(ms->cmd[i])) || !ms_get_fdout(&(ms->cmd[i])))
+			return (FALSE);
+	}
+	return (TRUE);
 }
 
-void	ms_free(t_prog *program)
+int	ms_get_fdin(t_cmd *cmd)
 {
-	(void) program;
-	printf("ms free called\n");
+	int	i;
+	int	heredoc;
+
+	cmd->fdin = 0;
+	heredoc = 0;
+	i = ms_where_is('<', cmd->line);
+	while (i != -1)
+	{
+		if (cmd->line[i + 1] == '<')
+			heredoc = 1;
+	}
 }
 
-void	ms_crash(t_prog *program)
+int	ms_get_fdout(t_cmd *cmd)
 {
-	if (program)
-		ms_free(program);
-	perror("minishell : ");
-}
-
-int	ms_error_msg(char *str, int err)
-{
-	write(2, str, ft_sstrlen(str));
-	write(2, "\n", 1);
-	return (err);
+	return (TRUE);
 }

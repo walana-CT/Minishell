@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:11:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/05 12:48:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:04:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 void	ms_next_word_quote(char *str, char sep, int *i, int *j)
 {
 	*i = *j;
-	while (str[*i] == sep)
+	while (!ms_quote_status(str, *i) && str[*i] == sep)
 		(*i)++;
-	if (ms_quote_status(str, *i))
-	{
-		*j = *i + 1;
-		while (str[*j] && ms_quote_status(str, *j))
-			(*j)++;
-	}
-	else if (str[*i])
+	if (str[*i])
 		*j = *i + 1;
 	else
 		*j = *i;
@@ -45,12 +39,9 @@ char	**ms_quotesplit(char *s, char sep)
 	l = ms_quote_init(s, sep, &i, &j);
 	while (s[j])
 	{
-		if (s[i] != sep && (s[j] == sep))
+		if (s[i] != sep && (s[j] == sep && !ms_quote_status(s, j)))
 		{
-			/*if (ms_status(s, i))
-				ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i + 1, j++ - i - 1)));
-			else*/
-				ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
+			ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
 			ms_next_word_quote(s, sep, &i, &j);
 		}
 		else
