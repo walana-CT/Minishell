@@ -17,7 +17,7 @@ Gros problèmes.
 ### Interpréter les caractères spéciaux
 
 
-1. Supprimer ce qui suit apres une dièse /!\ uniquement quand # est le premier caractere d'un mot
+1. Supprimer ce qui suit apres une dièse /!\ uniquement quand # est le premier caractere d'un mot _ok
 
 ```
 les jeunes sont accros aux réseaux et n'ont aucun recul sur les informations

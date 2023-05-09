@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/04 17:17:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/05 15:15:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	minishell(t_prog ms)
 
 void	copy_env(char *envp[], t_prog *prog)
 {
-	char **envp_copy;
-	int n;
+	char	**envp_copy;
+	int		n;
 
 	n = 0;
 	envp_copy = malloc(sizeof_tab(envp) * sizeof(char *));
@@ -36,10 +36,10 @@ void	copy_env(char *envp[], t_prog *prog)
 		ms_crash(NULL);
 	while (envp[n])
 	{
-		envp_copy[n] = envp[n];
+		envp_copy[n] = ft_strdup(envp[n]);
 		n++;
 	}
-	prog->envp = envp_copy;	
+	prog->envp = envp_copy;
 }
 
 int	main(int argc, char *argv[], char *envp[])

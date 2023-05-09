@@ -32,7 +32,7 @@ SRC :=	minishell.c\
 
 OBJ := $(SRC:.c=.o)
 
-all: lib $(OBJ) $(AR_NAME) $(NAME)
+all: lib $(NAME)
 
 lib:
 	@$(MAKE) -C ./libft/
@@ -41,7 +41,7 @@ lib:
 	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):
+$(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 

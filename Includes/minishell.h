@@ -90,5 +90,6 @@ int			ms_pwd(t_cmd *cmd);
 //utils
 void		set_sig(void);
 int			sizeof_tab(char **my_tab);
+int			ms_env_pos(char *str, char **envp);
 
 #endif
