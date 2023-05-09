@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_signals.c                                       :+:      :+:    :+:   */
+/*   ms_parsing_utils3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 19:21:38 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/05/08 15:12:47 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/05/08 15:13:29 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-static void	ft_sighandle(int sig, siginfo_t *info, void *context)
+// retourne la position de la premiere occurence de c dans str
+int	ms_where_is(char c, char *str)
 {
-	info = 0;
-	context = 0;
-	if (sig == SIGINT)
-	{
-		printf("received a SIGINT (ctrl + C)\n");
-	}
-}
+	int	i;
 
-void	set_sig(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_sigaction = ft_sighandle;
-	//.sa_mask = SIGQUIT;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		ms_crash(NULL);
+	i = -1;
+	while (str[++i])
+		if (str[i] == c && ms_quote_status(str, i))
+			return (i);
+	return (-1);
 }

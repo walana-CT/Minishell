@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/05 14:55:48 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/09 09:48:57 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ms_where_is(char c, char *str)
 	return (-1);
 }
 
-// renvoie un tableau de int contenant sa size dans [0] puis les index de toutes les occurences de c dans str
+// renvoie un tableau de int contenant sa size dans [0] puis
+// les index de toutes les occurences de c dans str
 int	*ms_where_are(char c, char *str)
 {
 	int	i;
@@ -57,7 +58,8 @@ int	*ms_where_are(char c, char *str)
 	return (res);
 }
 
-// renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
+// renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre
+// simples quotes ou entre doubles quotes
 int	ms_quote_status(char *str, int j)
 {
 	int	i;
@@ -79,7 +81,8 @@ int	ms_quote_status(char *str, int j)
 	return (q);
 }
 
-// retire les quotes et les caracteres entre quotes de str et retourne le resultat
+// retire les quotes et les caracteres entre quotes de str
+// et retourne le resultat
 char	*ms_noquotes(char *str)
 {
 	char	*tmp;
@@ -90,10 +93,8 @@ char	*ms_noquotes(char *str)
 	i = -1;
 	cpt = 0;
 	while (++i < (int) ft_sstrlen(str))
-	{
 		if (ms_quote_status(str, i) == 0)
-			cpt++;	
-	}
+			cpt++;
 	tmp = malloc((1 + cpt) * sizeof(char));
 	if (!tmp)
 		return (0);
@@ -101,7 +102,7 @@ char	*ms_noquotes(char *str)
 	j = 0;
 	while (++i < (int) ft_sstrlen(str))
 	{
-		if (ms_status(str, i) == 0)
+		if (ms_quote_status(str, i) == 0)
 			tmp[j++] = str[i];
 	}
 	tmp[j] = 0;

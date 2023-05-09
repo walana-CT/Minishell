@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_signals.c                                       :+:      :+:    :+:   */
+/*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 19:21:38 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/05/08 14:29:50 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
 
-static void	ft_sighandle(int sig, siginfo_t *info, void *context)
+
+void	ms_get_infile(t_pipex *p, char **argv)
 {
-	info = 0;
-	context = 0;
-	if (sig == SIGINT)
+	char	*str;
+
+	if (p->limiter)
 	{
-		printf("received a SIGINT (ctrl + C)\n");
+		str = get_next_line(0);
+		while (ft_strncmp(str, p->limiter, ft_sstrlen(str)) != 10)
+		{		
+			write(p->pipe[0][1], str, ft_sstrlen(str));
+			free(str);
+			str = get_next_line(0);
+		}
+		free(str);
+		close(p->pipe[0][1]);
+	}
+	else
+	{
+		p->pipe[0][0] = open(argv[1], O_RDONLY);
+		if (p->pipe[0][0] == -1)
+			px_file_err(argv[1]);
 	}
 }
 
-void	set_sig(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_sigaction = ft_sighandle;
-	//.sa_mask = SIGQUIT;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		ms_crash(NULL);
-}
