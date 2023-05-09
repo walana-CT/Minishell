@@ -74,6 +74,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_strtrunc(char *str, int start, int len);
+int		ft_strinsert(char *str1, char *str2, int pos);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
