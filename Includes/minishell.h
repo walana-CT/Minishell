@@ -34,7 +34,6 @@
 # define TRUE	1
 # define SPACES "\t\n\v\f\r "
 
-
 typedef struct s_cmd	t_cmd;
 
 typedef struct s_prog
@@ -89,6 +88,7 @@ int		ms_pipesplit(t_prog *ms); // split ms.line avec '|" dans cmd[i].line
 int		ms_get_fds(t_prog *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
+int		dollar_replace(char *str, t_prog *prog);
 
 //lexing
 //terminal
@@ -103,8 +103,9 @@ int		ms_echo(t_cmd *cmd);
 int		ms_export(t_cmd *cmd);
 int		ms_pwd(t_cmd *cmd);
 //utils
-void		set_sig(void);
-int			sizeof_tab(char **my_tab);
-int			ms_env_pos(char *str, char **envp);
+void	set_sig(void);
+int		sizeof_tab(char **my_tab);
+int		ms_env_pos(char *str, char **envp);
+char	*ms_getenv(char *str, t_prog *prog);
 
 #endif

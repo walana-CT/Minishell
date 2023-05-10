@@ -6,54 +6,65 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 17:27:10 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/10 10:39:52 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-char *ms_getenv(char *str, t_prog *prog)
+static int	is_dol_sep(char c)
 {
-	
+	if (c == ' ' || c == 0 || c == '$' || c == '\''
+		|| c == '"' || c == '<' || c == '>')
+		return (1);
+	else
+		return (0);
 }
 
-
-char *dol_replace(char *str, int pos, t_prog *prog)
+static int	env_var_len(char *str)
 {
-	char	*env_var;
-	char	*env_line;
-	int		i;
-	int		j;
+	int	len;
 
-	i = 0;
-	while (str[i + pos] && str[i + pos] != ' ')
-		env_var[j++] = str[i++];
-	env_var = ft_calloc(j + 1, sizeof(char));
-	i = pos + 1;
-	j = 0;
-	while (str[i] && str[i] != ' ')
-		env_var[j++] = str[i++];
-	env_line = ms_getenv(env_var, prog->envp);
-	env_var_val = ms_getenv;
-
+	len = 1;
+	while (!is_dol_sep(str[len]))
+		len++;
+	return (len);
 }
 
+static int	dol_replace(char *str, int pos, t_prog *prog)
+{
+	char	*env_val;
+	char	*result;
+	int		var_len;
 
-int	next_dol_pos(char *str)
+	env_val = ms_getenv(&str[pos + 1], prog);
+	var_len = env_var_len(&str[pos]);
+	if (ft_strtrunc(str, pos, var_len))
+		return (1);
+	if (ft_strinsert(str, env_val, pos))
+		return (1);
+	return (0);
+}
+
+static int	next_dol_pos(char *str)
 {
 	int	n;
 
 	while (str[n])
 	{
 		if (str[n] == '$' && ms_quote_status(str, n) != 1)
-			return (n);
+		{
+			if (n == 0)
+				return (n);
+			else if (str[n - 1] == ' ')
+				return (n);
+		}
 		n++;
 	}
 	return (-1);
 }
 
-
-char *dollard_replace(char *str, t_prog *prog)
+int	dollar_replace(char *str, t_prog *prog)
 {
 	int	dol_pos;
 
@@ -61,6 +72,7 @@ char *dollard_replace(char *str, t_prog *prog)
 	while (dol_pos != -1)
 	{
 		str = dol_replace(str, dol_pos, prog);
+		dol_pos = next_dol_pos(str);
 	}
-	
+	return (0);
 }

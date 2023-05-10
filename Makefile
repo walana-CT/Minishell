@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/09 09:48:44 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/10 10:42:36 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC :=	minishell.c\
 		ms_cd.c\
 		ms_crash.c\
 		ms_echo.c\
+		ms_env_utils.c\
 		ms_env.c\
 		ms_exit.c\
 		ms_export.c\
