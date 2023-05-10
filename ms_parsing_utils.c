@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/08 12:15:17 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:12:36 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ms_isquote(char c)
 	return (FALSE);
 }
 
+// retourne la position de la premiere occurence hors quotes de c dans str
 int	ms_where_is(char c, char *str)
 {
 	int	i;

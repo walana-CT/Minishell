@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/08 13:40:08 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/10 16:47:56 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void	minishell(t_prog *ms)
 
 	while (ms->goon)
 	{
-		tmp = readline("minishell > ");
+		tmp = readline("msh > ");
 		str = ft_strtrim(tmp, SPACES);
 		if (str && !ft_strequal(str, ""))
 		{
 			if (ms_parse(str, ms))
 			{
-				ms_printcmds(*ms);
-				//ms_get_fds(ms);
+				ms_get_fds(ms);
 			}
 		}
 		ms_usual_free(ms, str, tmp);
@@ -56,7 +55,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_prog	ms;
 
 	set_sig();
-	copy_env(envp, &ms);
+	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
 	if (terminal_init(&ms))
 	{
 		if (errno == ENOTTY)

@@ -39,7 +39,7 @@ Desormais on ne devrait plus avoir qu'a travailler sur t_cmd[i].line
 
 2. Gerer les redirections ( < << >> >)
 
-chaque fois qu'on tombe sur une redirection > ou >>, on crée le fichier cible, on modifie le fdout et on detruit ou ignore la redirection dans t_cmd.line
+chaque fois qu'on tombe sur une redirection > ou >>, on gere les dollars concernés, on crée le fichier cible, on modifie le fdout et on detruit ou ignore la redirection dans t_cmd.line
 
 3. Split sur espace (+trim les quotes ??)
 
