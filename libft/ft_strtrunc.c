@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrunc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:17:09 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/09 14:52:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:09:37 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_strtrunc(char *str, int start, int len)
 {
 	int		n;
 	char	*result;
-	char	temp;
 
 	if (!str)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 11:58:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:11:22 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	ms_usual_free(t_prog *ms, char *str, char *tmp)
 	if (str)
 		free(str);
 	str = 0;
-	ft_freenull(&str);
 	if (tmp)
 		free(tmp);
 	tmp = 0;
 	while (++i < ms->nbcmd)
 	{
-		free(ms->cmd[i].line); 
+		free(ms->cmd[i].line);
 		ms->cmd[i].line = 0;
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
@@ -49,7 +48,7 @@ void	ms_free(t_prog *program)
 	if (program->envp)
 	{
 		while (program->envp[n])
-			ft_freestr(program->envp[n++]);
+			ft_freestr(&program->envp[n++]);
 	}
 }
 
@@ -57,7 +56,7 @@ void	ms_crash(t_prog *program)
 {
 	if (program)
 		ms_free(program);
-	perror("minishell : ");
+	perror("msh : ");
 }
 
 int	ms_error_msg(char *str, int err)

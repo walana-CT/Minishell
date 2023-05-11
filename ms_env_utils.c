@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/10 10:39:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:12:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ms_getenv(char *str, t_prog *prog)
 	while (envp[i])
 	{
 		if (envcmp(str, envp[i]))
-			return (env_linetovar(envp));
+			return (env_linetovar(envp[i]));
 	}
 	return (NULL);
 }

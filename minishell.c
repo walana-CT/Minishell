@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 11:58:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:14:53 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	minishell(t_prog *ms)
 	while (ms->goon)
 	{
 		tmp = readline("msh > ");
+		add_history(tmp);
 		str = ft_strtrim(tmp, SPACES);
 		if (str && !ft_strequal(str, ""))
 		{
