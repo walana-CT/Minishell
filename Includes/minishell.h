@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 16:14:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 18:30:27 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
 int		dollar_replace(char **str, t_prog *prog);
 int		ms_get_limiter(t_cmd *cmd, int i);
+int		ms_getappendfd(t_cmd cmd);
+void	ms_heredoc(t_cmd cmd);
 
 //lexing
 //terminal
