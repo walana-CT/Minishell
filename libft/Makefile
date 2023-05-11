@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/09 17:05:29 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/11 11:31:53 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC =	ft_2lst_utils.c\
 		ft_atoi.c\
 		ft_bzero.c\
 		ft_calloc.c\
+		ft_freenull.c\
+		ft_freestr.c\
 		ft_freetab.c\
 		ft_inc_value.c\
 		ft_is_in.c\
