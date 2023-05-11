@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/10 16:35:24 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:28:18 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	ms_usual_free(t_prog *ms, char *str, char *tmp)
 	if (str)
 		free(str);
 	str = 0;
+	ft_freenull(&str);
 	if (tmp)
 		free(tmp);
 	tmp = 0;
 	while (++i < ms->nbcmd)
 	{
-		free(ms->cmd[i].line);
+		free(ms->cmd[i].line); 
 		ms->cmd[i].line = 0;
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
