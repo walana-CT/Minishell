@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/09 09:51:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 10:12:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	copy_env(char *envp[], t_prog *prog)
 	int		n;
 
 	n = 0;
-	envp_copy = malloc(ms_sizeof_tab(envp) * sizeof(char *));
+	envp_copy = calloc(ms_sizeof_tab(envp), sizeof(char *));
 	if (!envp_copy)
 		ms_crash(NULL);
 	while (envp[n])
 	{
 		envp_copy[n] = ft_strdup(envp[n]);
+		if (!envp_copy[n])
+			ms_crash(prog);
 		n++;
 	}
 	prog->envp = envp_copy;
@@ -56,15 +58,9 @@ int	main(int argc, char *argv[], char *envp[])
 	t_prog	ms;
 
 	set_sig();
-	copy_env(envp, &ms);
 	if (terminal_init(&ms))
-	{
-		if (errno == ENOTTY)
-			fprintf(stderr, "This program requires a terminal.\n");
-		else
-			fprintf(stderr, "Cannot initialize terminal: %s.\n", strerror(errno));
-		return (EXIT_FAILURE);
-	}
+		ms_crash(NULL);
+	copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");

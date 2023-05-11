@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/08 12:15:58 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:51:58 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
+
+
 
 void	ms_usual_free(t_prog *ms, char *str, char *tmp)
 {
@@ -29,8 +31,15 @@ void	ms_usual_free(t_prog *ms, char *str, char *tmp)
 
 void	ms_free(t_prog *program)
 {
-	(void) program;
+	int	n;
+
+	n = 0;
 	printf("ms free called\n");
+	if (program->envp)
+	{
+		while (program->envp[n])
+			ft_freestr(program->envp[n++]);
+	}
 }
 
 void	ms_crash(t_prog *program)

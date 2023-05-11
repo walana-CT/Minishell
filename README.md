@@ -73,3 +73,18 @@ A($?) ---> B(statut de sortie du dernier pipeline)
 ## Execution
 
 1. fork + execve ou builtins
+
+##
+
+valeur utiles pour implementer des securite
+
+```
+#define MAXPATHLEN      PATH_MAX
+#define MAX_CANON                1024   /* max bytes in term canon input line */
+#define MAX_INPUT                1024   /* max bytes in terminal input */
+#define NAME_MAX                  255   /* max bytes in a file name */
+#define PATH_MAX                 1024   /* max bytes in pathname */
+#define PIPE_BUF                  512   /* max bytes for atomic pipe writes */
+#define LINE_MAX                 2048   /* max bytes in an input line */
+
+```

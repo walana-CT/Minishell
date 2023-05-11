@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 17:28:20 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:00:14 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ms_sizeof_tab(char **my_tab)
 	return (n);
 }
 
-
 void	ms_add_envp(char **args, t_prog *prog)
 {
 	char	**new_envp;
@@ -33,7 +32,6 @@ void	ms_add_envp(char **args, t_prog *prog)
 
 	i = 0;
 	j = 0;
-
 	new_envp = malloc((ms_sizeof_tab(args) + ms_sizeof_tab(prog->envp))
 			* sizeof(char *));
 	if (!new_envp)
