@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   temp_hashignore.c                                  :+:      :+:    :+:   */
+/*   ms_hashignore.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:37:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 11:50:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:48:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ char	*str_cut(char *str, int n)
 {
 	char	*result;
 
-	if (n > ft_strlen(str) || !str)
+	if ((size_t) n > ft_strlen(str) || !str)
 	{
 		printf("str_cur received invalid arg \n");
 		return (NULL);
 	}
-	result = calloc((n + 1) * sizeof(char));
+	result = calloc((n + 1), sizeof(char));
 	while (n)
 	{
 		result[n] = str[n];
@@ -49,10 +49,10 @@ char	*ms_trim_hashtag(char *str)
 	n = 0;
 	while (str[n])
 	{
-		if (str[n] == '#' && ms_status(str, n) == 0)
+		if (str[n] == '#' && ms_quote_status(str, n) == 0)
 		{
 			if (is_comment(str, n))
-				return (str_cut(*str, n));
+				return (str_cut(str, n));
 		}
 		n++;
 	}

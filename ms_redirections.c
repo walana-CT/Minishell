@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 16:06:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:53:09 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	ms_getinfile(t_cmd *cmd, int i)
 		i++;
 	cmd->filein = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(cmd->line, delstart, i - delstart);
-	if (!ft_dollar_replace(cmd->filein))
+	if (!dollar_replace(&cmd->filein, cmd->prog))
 		return (0);
-	ft_trimquotes(cmd->filein);
+	ms_trimquotes(cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
 	return (1);
 }

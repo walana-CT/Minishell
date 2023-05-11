@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 12:10:34 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:14:36 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,13 @@ char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quote
 int		ms_str2pipes(char *str); // true si str contient "||"
 int		ms_badchev(char *str); // true si str contient "<<<" ou ">>>"
 int		ms_pipesplit(t_prog *ms); // split ms.line avec '|" dans cmd[i].line
+void	ms_trimquotes(char *str);
 
 //parsing 2 (cmd)
 int		ms_get_fds(t_prog *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
-int		dollar_replace(char *str, t_prog *prog);
+int		dollar_replace(char **str, t_prog *prog);
 int		ms_get_limiter(t_cmd *cmd, int i);
 
 //lexing

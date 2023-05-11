@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/11 11:58:42 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/11 16:43:42 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,13 @@ NAME := minishell
 SRC :=	minishell.c\
 		ms_cd.c\
 		ms_crash.c\
+		ms_dollar_replace.c\
 		ms_echo.c\
 		ms_env_utils.c\
 		ms_env.c\
 		ms_exit.c\
 		ms_export.c\
+		ms_hashignore.c\
 		ms_parsing.c\
 		ms_parsing_utils.c\
 		ms_parsing_utils2.c\

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   temp_dollard_replace.c                             :+:      :+:    :+:   */
+/*   ms_dollar_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:07 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:47:33 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ static int	env_var_len(char *str)
 static int	dol_replace(char **str, int pos, t_prog *prog)
 {
 	char	*env_val;
-	char	*result;
 	int		var_len;
 
-	env_val = ms_getenv(&str[pos + 1], prog);
-	var_len = env_var_len(&str[pos]);
+	env_val = ms_getenv(&str[0][pos + 1], prog);
+	var_len = env_var_len(&str[0][pos]);
 	if (ft_strtrunc(str, pos, var_len))
 		return (1);
 	if (ft_strinsert(str, env_val, pos))
@@ -50,6 +49,7 @@ static int	next_dol_pos(char *str)
 {
 	int	n;
 
+	n = 0;
 	while (str[n])
 	{
 		if (str[n] == '$' && ms_quote_status(str, n) != 1)
