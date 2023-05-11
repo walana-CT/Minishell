@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 19:21:38 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 17:00:29 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 	if (sig == SIGINT)
 	{
 		printf("received a SIGINT (ctrl + C)\n");
+		exit(EXIT_FAILURE);
 	}
 }
 
