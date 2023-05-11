@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 12:14:53 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:39:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	copy_env(char *envp[], t_prog *prog)
 	int		n;
 
 	n = 0;
-	envp_copy = calloc(ms_sizeof_tab(envp), sizeof(char *));
+	envp_copy = calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
 	if (!envp_copy)
 		ms_crash(NULL);
 	while (envp[n])
