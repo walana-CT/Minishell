@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 14:54:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 16:07:56 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
+
+void	ms_printms(t_prog ms)
+{
+	int	i;
+
+	i = -1;
+	printf("Nb commandes %d\n", ms.nbcmd);
+	while (++i < ms.nbcmd)
+	{
+		printf(YELLOW"commande %d\n"RESET, ms.cmd[i].nb);
+		printf("Line : %s\n", ms.cmd[i].line);
+		printf("Filein : %s \t fdin %d\n", ms.cmd[i].filein, ms.cmd[i].fdin);
+		printf("Fileout : %s \t fdout %d\n", ms.cmd[i].fileout, ms.cmd[i].fdout);
+		printf("Pipein %d \t Pipeout %d\n", ms.pipe[i][0], ms.pipe[i][1]);
+	}
+}
 
 void	minishell(t_prog *ms)
 {
@@ -19,7 +35,7 @@ void	minishell(t_prog *ms)
 
 	while (ms->goon)
 	{
-		tmp = readline("msh > ");
+		tmp = readline(GREEN"msh > "RESET);
 		add_history(tmp);
 		str = ft_strtrim(tmp, SPACES);
 		if (str && !ft_strequal(str, ""))
@@ -29,6 +45,7 @@ void	minishell(t_prog *ms)
 				ms_get_fds(ms);
 			}
 		}
+		ms_printms(*ms);
 		ms_usual_free(ms, str, tmp);
 	}
 	printf("exit\n");
