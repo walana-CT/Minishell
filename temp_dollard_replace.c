@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 11:50:48 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	env_var_len(char *str)
 	return (len);
 }
 
-static int	dol_replace(char *str, int pos, t_prog *prog)
+static int	dol_replace(char **str, int pos, t_prog *prog)
 {
 	char	*env_val;
 	char	*result;
@@ -64,15 +64,16 @@ static int	next_dol_pos(char *str)
 	return (-1);
 }
 
-int	dollar_replace(char *str, t_prog *prog)
+int	dollar_replace(char **str, t_prog *prog)
 {
 	int	dol_pos;
 
-	dol_pos = next_dol_pos(str);
+	dol_pos = next_dol_pos(*str);
 	while (dol_pos != -1)
 	{
-		str = dol_replace(str, dol_pos, prog);
-		dol_pos = next_dol_pos(str);
+		if (dol_replace(str, dol_pos, prog))
+			return (1);
+		dol_pos = next_dol_pos(*str);
 	}
 	return (0);
 }

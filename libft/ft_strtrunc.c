@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrunc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:17:09 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 12:09:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:11:29 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,26 @@ static int	is_valid(char *str, int start, int len)
 		return (0);
 }
 
-int	ft_strtrunc(char *str, int start, int len)
+int	ft_strtrunc(char **str, int start, int len)
 {
 	int		n;
 	char	*result;
 
-	if (!str)
+	if (!str || !(*str))
 		return (1);
 	n = start;
-	if (!is_valid(str, start, len))
+	if (!is_valid(*str, start, len))
 		return (1);
 	while (n < start + len)
 	{
-		str[n] = str[n + len];
-		if (str[n] == 0)
+		*str[n] = *str[n + len];
+		if (*str[n] == 0)
 			break ;
 		n++;
 	}
-	str[n] = 0;
-	result = ft_strdup(str);
-	free(str);
-	str = result;
+	*str[n] = 0;
+	result = ft_strdup(*str);
+	free(*str);
+	*str = result;
 	return (0);
 }
