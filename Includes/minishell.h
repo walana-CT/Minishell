@@ -114,8 +114,8 @@ int		ms_echo(t_cmd *cmd);
 int		ms_export(t_cmd *cmd);
 int		ms_pwd(t_cmd *cmd);
 //utils
-void	set_sig(void);
-int		ms_sizeof_tab(char **my_tab);
-void	ms_printcmds(t_prog ms);
+void		set_sig(void);
+int			sizeof_tab(char **my_tab);
+int			ms_env_pos(char *str, char **envp);
 
 #endif

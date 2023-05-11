@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/10 16:47:56 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:19:47 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	copy_env(char *envp[], t_prog *prog)
 		ms_crash(NULL);
 	while (envp[n])
 	{
-		envp_copy[n] = envp[n];
+		envp_copy[n] = ft_strdup(envp[n]);
 		n++;
 	}
 	prog->envp = envp_copy;

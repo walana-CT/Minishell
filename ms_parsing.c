@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 11:52:15 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/10 16:37:40 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/05/11 11:20:25 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ms_parse(char *str, t_prog *ms)
 		if (!ms_syntax_ok(ms->line))
 			return (FALSE);
 		// trim ici avec # ?
-		if(!ms_cmds_init(ms))
+		if (!ms_cmds_init(ms))
 			return (FALSE);
 	}
 	return (TRUE);
