@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/10 10:42:36 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/11 11:58:42 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ SRC :=	minishell.c\
 		ms_parsing.c\
 		ms_parsing_utils.c\
 		ms_parsing_utils2.c\
+		ms_parsing_utils3.c\
 		ms_pwd.c\
+		ms_redirect_utils.c\
+		ms_redirections.c\
 		ms_signals.c\
 		ms_split.c\
 		ms_terminal.c\

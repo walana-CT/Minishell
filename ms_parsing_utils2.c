@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/08 13:39:56 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/10 15:35:57 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ms_str2pipes(char *str)
 	return (FALSE);
 }
 
-int	ms_str3chev(char *str)
+int	ms_badchev(char *str)
 {
 	int	i;
 
@@ -35,21 +35,14 @@ int	ms_str3chev(char *str)
 	while (str[i] && str [i + 1] && str [i + 2])
 	{
 		if (!ms_quote_status(str, i) && \
-			str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>')
+			str[i] == '>' && str[i + 1] == '>' && \
+			(str[i + 2] == '>' || str[i + 2] == '|'))
 			return (TRUE);
 		if (!ms_quote_status(str, i) && \
 			str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<')
 			return (TRUE);
 		i++;
 	}
-	return (FALSE);
-}
-
-// liste de caracteres interdits
-int	ms_forbiddenchar(char c)
-{
-	if (c == '\\' || c == ';')
-		return (TRUE);
 	return (FALSE);
 }
 

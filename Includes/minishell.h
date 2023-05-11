@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ../Includes/minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 15:13:07 by rficht            #+#    #+#             */
-/*   Updated: 2023/04/29 15:21:02 by rficht           ###   ########.fr       */
+/*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/05/11 11:58:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <curses.h>
 # include <dirent.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
@@ -32,7 +33,14 @@
 
 # define FALSE	0
 # define TRUE	1
+# define SYN_EUNEXT "msh : syntax error near unexpected token "
 # define SPACES "\t\n\v\f\r "
+# define END_REDIR " #<>\0"
+# define FORBID_REDIR "#<>|"
+# define END_HEREDOC " #<>|\0"
+# define FORBID_HEREDOC "#<>|"
+# define FORBID_CHAR "\\;()[]&"
+# define NO_F ": No such file or directory\n"
 
 typedef struct s_cmd	t_cmd;
 
@@ -43,7 +51,7 @@ typedef struct s_prog
 	struct termios	term_original;
 	struct termios	term_settings;
 	char			*line; //la ligne 'de base' retournee par readline
-	int				err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line
+	int				err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line. init à 0 
 	int				goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
 	int				nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
 	int				**pipe; // pour pipex
@@ -54,9 +62,12 @@ typedef struct s_prog
 struct s_cmd
 {
 	char	*line;
+	int		nb; // numero de la commande (utile pour pipe ?)
 	char	*limiter;
-	int		fdin; // dup2(fdin, 0) ; initialiser à -1 ?
-	int		fdout; // dup2(fdout, 1) ; initialiser à -1 ?
+	char	*filein;
+	char	*fileout;
+	int		fdin; // dup2(fdin, 0) ; initialiser à 0 ?
+	int		fdout; // dup2(fdout, 1) ; initialiser à 1 ?
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
@@ -70,6 +81,7 @@ void	ms_crash(t_prog *program);
 void	ms_free(t_prog	*program);
 void	ms_usual_free(t_prog *ms, char *str, char *tmp);
 int		ms_error_msg(char *str, int err);
+int		ms_error_msg_nofile(char *file, int err);
 
 //parsing 1 (line)
 int		ms_parse(char *str, t_prog *p);
@@ -79,9 +91,8 @@ int		ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence
 int		ms_quote_status(char *str, int j); // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre simples quotes ou entre doubles quotes
 char	**ms_quotesplit(char *s, char sep);
 char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
-int		ms_forbiddenchar(char c); // liste de caracteres interdits
 int		ms_str2pipes(char *str); // true si str contient "||"
-int		ms_str3chev(char *str); // true si str contient "<<<" ou ">>>"
+int		ms_badchev(char *str); // true si str contient "<<<" ou ">>>"
 int		ms_pipesplit(t_prog *ms); // split ms.line avec '|" dans cmd[i].line
 
 //parsing 2 (cmd)
@@ -89,6 +100,7 @@ int		ms_get_fds(t_prog *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
 int		dollar_replace(char *str, t_prog *prog);
+int		ms_get_limiter(t_cmd *cmd, int i);
 
 //lexing
 //terminal
