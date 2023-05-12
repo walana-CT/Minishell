@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 18:47:30 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/12 13:19:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	terminal_reset(t_prog *program)
 int	terminal_init(t_prog *program)
 {
 	program->goon = 1;
+	program->pipe = 0;
 	if (program->term_fd != -1)
 		return (errno = 0);
 	if (isatty(STDERR_FILENO))

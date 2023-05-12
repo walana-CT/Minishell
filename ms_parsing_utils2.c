@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/10 15:35:57 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/12 19:47:11 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ int	ms_pipesplit(t_prog *ms)
 	return (size);
 }
 
-void	ms_printcmds(t_prog ms)
+
+void	ms_trimquotes(char *str)
 {
 	int	i;
 
 	i = -1;
-	printf("%d commandes\n", ms.nbcmd);
-	while (++i < ms.nbcmd)
-		printf("%s\n", ms.cmd[i].line);
+	while (str[++i])
+	{
+		while (str[i] && (str[i] == '\'' || str[i] == '\"'))
+			ft_strdelchar(str, i);
+	}
 }

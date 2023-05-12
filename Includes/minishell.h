@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 18:30:27 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/12 19:38:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int		ms_getappendfd(t_cmd cmd);
 void	ms_heredoc(t_cmd cmd);
 
 //lexing
+int	ms_lex(t_prog *ms);
+
 //terminal
 int		terminal_init(t_prog *program);
 int		terminal_reset(t_prog *program);
