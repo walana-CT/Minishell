@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:45:28 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 15:14:13 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/12 10:06:49 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/libft.h"
 
-//insert str2 dans str1 a l'index pos (free str1)
+//insert str2 dans str1 a l'index pos (free str1) si str2 NULL ne fait rieng
 int	ft_strinsert(char **str1, char *str2, int pos)
 {
 	char	*result;
@@ -21,8 +21,10 @@ int	ft_strinsert(char **str1, char *str2, int pos)
 
 	if (!str1)
 		return (1);
-	if (!(*str1) || !str2)
+	if (!(*str1))
 		return (1);
+	if (!(str2))
+		return (0);
 	i = -1;
 	j = -1;
 	if ((size_t) pos > ft_strlen(*str1))

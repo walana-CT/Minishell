@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 09:17:26 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/12 10:09:18 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ms_env(t_cmd *cmd)
 {
-	char **envp;
-	t_prog *prog;
+	char		**envp;
+	t_prog		*prog;
 
 	prog = cmd->prog;
 	if (!cmd->args[0])
@@ -29,5 +29,5 @@ int	ms_env(t_cmd *cmd)
 		printf("%s\n", *envp);
 		envp++;
 	}
-	return (0);	
+	return (0);
 }
