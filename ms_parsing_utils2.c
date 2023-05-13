@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/12 19:47:11 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/13 20:26:40 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ms_pipesplit(t_prog *ms)
 	ft_freetab(tmp);
 	return (size);
 }
-
 
 void	ms_trimquotes(char *str)
 {

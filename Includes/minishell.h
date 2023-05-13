@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/12 19:38:13 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/13 21:45:21 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	line_init(char	*str, t_prog *p);
 //err and memory
 void	ms_crash(t_prog *program);
 void	ms_free(t_prog	*program);
-void	ms_usual_free(t_prog *ms, char *str, char *tmp);
+void	ms_usual_free(t_prog *ms, char **str, char **tmp);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
 
@@ -105,13 +105,16 @@ int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
 void	ms_heredoc(t_cmd cmd);
 
-//lexing
-int	ms_lex(t_prog *ms);
+//lexing & execution
+int		ms_isbuiltin(char *str);
+int		ms_lex(t_prog *ms);
+void	ms_exec(t_prog *ms);
 
 //terminal
 int		terminal_init(t_prog *program);
 int		terminal_reset(t_prog *program);
 //builtins
+int		ms_cd(t_cmd *cmd);
 int		ms_exit(t_cmd *cmd);
 int		is_env(char *str, char *env);
 int		ms_env(t_cmd *cmd);
@@ -124,5 +127,6 @@ void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
 int		ms_env_pos(char *str, char **envp);
 char	*ms_getenv(char *str, t_prog *prog);
+void	ms_printcmds(t_prog ms);
 
 #endif

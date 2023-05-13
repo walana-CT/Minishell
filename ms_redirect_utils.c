@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/12 16:05:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/13 21:26:52 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	ms_get_fds(t_prog *ms)
 	while (++i < ms->nbcmd)
 	{
 		if (!ms_get_fdin(&(ms->cmd[i])) || !ms_get_fdout(&(ms->cmd[i])))
-			return (printf(RED"Fd Error\n"RESET), FALSE);
-		printf(GREEN"Fd Ok\n"RESET);
+			return (FALSE);
 	}
 	return (TRUE);
 }

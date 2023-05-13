@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/12 18:45:30 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/13 21:38:36 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ all: $(NAME)
 
 .c.o:
 	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) #$(SANITIZE)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) $(SANITIZE)
 
 $(NAME): $(OBJ)
 	@printf '$(GREEN)Creating : $(NAME)$(RESET)\n'

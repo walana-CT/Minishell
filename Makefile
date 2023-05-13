@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/12 21:33:01 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/13 21:41:02 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,10 @@ SRC :=	minishell.c\
 		ms_echo.c\
 		ms_env_utils.c\
 		ms_env.c\
+		ms_exec.c\
 		ms_exit.c\
 		ms_export.c\
+		ms_free.c\
 		ms_hashignore.c\
 		ms_lexing.c\
 		ms_parsing.c\
@@ -60,7 +62,7 @@ lib:
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline #$(SANITIZE)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline $(SANITIZE)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:

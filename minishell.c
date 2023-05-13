@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/12 21:33:01 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/13 21:45:21 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	minishell(t_prog *ms)
 	while (ms->goon)
 	{
 		ms_print_fdstatus(*ms);
-		tmp = readline(CYAN"msh > ");
-		printf(RESET);
+		tmp = readline(CYAN"msh > "RESET);
 		str = ft_strtrim(tmp, SPACES);
 		add_history(str);
 		if (str && !ft_strequal(str, ""))
@@ -63,10 +62,10 @@ void	minishell(t_prog *ms)
 			{
 				ms_get_fds(ms);
 				ms_lex(ms);
+				ms_exec(ms);
 			}
 		}
-		ms_printcmds(*ms);
-		ms_usual_free(ms, str, tmp);
+		ms_usual_free(ms, &str, &tmp);
 	}
 	printf("exit\n");
 }
@@ -103,6 +102,6 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");
 	minishell(&ms);
-	system("leaks minishell"); // #SANITIZE en fin de ligne dans la regle .c=.o 
+//	system("leaks minishell"); // #SANITIZE en fin de ligne dans la regle .c=.o 
 	return (0);
 }

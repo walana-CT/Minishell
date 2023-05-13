@@ -10,14 +10,14 @@ Gros problèmes.
 
 ### Syntaxe
 
-1. vérifier que les doubles et simples quotes sont bien fermés _OK
+1. vérifier que les doubles et simples quotes sont bien fermés _OK_
 
-2. Verifier les caracteres interdits (\, ;, etc.) _OK
+2. Verifier les caracteres interdits (\, ;, etc.) _OK_
 
 ### Interpréter les caractères spéciaux
 
 
-1. Supprimer ce qui suit apres une dièse /!\ uniquement quand # est le premier caractere d'un mot _ok
+1. Supprimer ce qui suit apres une dièse /!\ uniquement quand # est le premier caractere d'un mot _OK_
 
 ```
 les jeunes sont accros aux réseaux et n'ont aucun recul sur les informations
@@ -31,23 +31,23 @@ qu'ils voient
 ```
 
 ### Remplissage de t_cmd
-1. Split | _OK
+1. Split | _OK_
 
 Attention ce premier split ne supprime pas les quotes. Il split t_line.line sur le caractere |, compte le nb de commandes, malloc t_cmd et remplit t_cmd[i].line avec le retour de split
 
 Desormais on ne devrait plus avoir qu'a travailler sur t_cmd[i].line
 
-2. Gerer les redirections ( < << >> >)
+2. Gerer les redirections ( < << >> >) _OK_
 
 chaque fois qu'on tombe sur une redirection > ou >>, on gere les dollars concernés, on crée le fichier cible, on modifie le fdout et on detruit ou ignore la redirection dans t_cmd.line
 
-3. Split sur espace (+trim les quotes ??)
+3. Split sur espace _OK_
 
 Sauf entre les quotes, et les quotes doivent rester dans les bouts de string finaux (ca doit pas split quand " ou ' sinon 'e''c''h''o' ne marche pas). Remplir les champs de t_cmd avec le char** qui sort de split
 
 echo" pouet" -> command not found: echo pouet
 
-4. Interpréter les dollars
+4. Interpréter les dollars (+trim les quotes)
 
 ```
 var1=oignon
