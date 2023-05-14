@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/14 16:42:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-void	ms_usual_free(t_prog *ms, char *str, char *tmp)
+/*void	ms_usual_free(t_prog *ms, char *str, char *tmp)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	ms_free(t_prog *program)
 		while (program->envp[n])
 			ft_freestr(&program->envp[n++]);
 	}
-}
+}*/
 
 void	ms_crash(t_prog *program)
 {
