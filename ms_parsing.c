@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 14:31:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/12 13:18:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ms_cmds_init(t_prog *ms)
 	ms->nbcmd = ms_pipesplit(ms);
 	if (ms->nbcmd == -1)
 		return (FALSE);
-	ms->pipe = malloc(ms->nbcmd * sizeof(int *));
+	ms->pipe = malloc((1 + ms->nbcmd) * sizeof(int *));
 	while (++i < ms->nbcmd)
 	{
 		ms->pipe[i] = malloc(2 * sizeof(int));
@@ -87,6 +87,7 @@ int	ms_cmds_init(t_prog *ms)
 		ms->cmd[i].path = 0;
 		ms->cmd[i].prog = ms;
 	}
+	ms->pipe[i] = 0;
 	return (TRUE);
 }
 

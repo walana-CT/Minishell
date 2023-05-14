@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_to_strtab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:20:35 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/13 19:53:01 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**ft_lst_to_strtab(t_list *lst)
 	deb = lst;
 	i = 0;
 	res = malloc((1 + ft_lstsize(lst)) * sizeof(char *));
+	if (!res)
+		return (0);
 	while (lst)
 	{
 		res[i++] = ft_strdup(lst->content);

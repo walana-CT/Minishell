@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/14 14:11:13 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,15 @@ SRC :=	minishell.c\
 		ms_echo.c\
 		ms_env_utils.c\
 		ms_env.c\
+		ms_exec.c\
 		ms_exit.c\
 		ms_export.c\
+		ms_free.c\
 		ms_hashignore.c\
+		ms_lexing.c\
 		ms_parsing.c\
 		ms_parsing_utils.c\
 		ms_parsing_utils2.c\
-		ms_parsing_utils3.c\
 		ms_pwd.c\
 		ms_redirect_utils.c\
 		ms_redirections.c\

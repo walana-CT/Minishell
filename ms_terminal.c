@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/14 14:53:12 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ms_terminal_reset(t_prog *program)
 int	ms_terminal_init(t_prog *program)
 {
 	program->goon = 1;
+	program->pipe = 0;
 	if (program->term_fd != -1)
 		return (errno = 0);
 	if (isatty(STDERR_FILENO))

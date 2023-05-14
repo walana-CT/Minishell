@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:11:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/08 15:04:06 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/13 19:51:54 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ char	**ms_quotesplit(char *s, char sep)
 		ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
 	return (ft_lst_to_strtab(l));
 }
+
 /*
 int	main(void)
 {
 	char	**split;
 
-	split = ms_quotesplit("'Ceci est un test||| ' de decoupage| 1 2| 3 rigolo \"4 5 6\"", '|');
+	split = ms_quotesplit("'Ceci est un test||| ' de decoup", '|');
 	ft_printstrtab(split, "SPLIT");
 	ft_freetab(split);
 	//system("leaks a.out");

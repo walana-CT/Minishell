@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:27:59 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/29 17:07:30 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/12 20:33:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**ft_quotesplit(char *s, char sep)
 		ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
 	return (ft_lst_to_strtab(l));
 }
-
+/*
 int	main(void)
 {
 	char	**split;
@@ -80,3 +80,4 @@ int	main(void)
 	//system("leaks a.out");
 	return (0);
 }
+*/

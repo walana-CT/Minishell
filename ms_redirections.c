@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 18:31:22 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/12 18:35:35 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ms_getinfile(t_cmd *cmd, int i)
 		i++;
 	cmd->filein = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(cmd->line, delstart, i - delstart);
-	if (!dollar_replace(&cmd->filein, cmd->prog))
-		return (0);
+	// if (!dollar_replace(&cmd->filein, cmd->prog))
+	// 	return (0);
 	ms_trimquotes(cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
 	return (1);
@@ -85,8 +85,8 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i++;
 	cmd->fileout = ft_substr(cmd->line, start, i - start);
-	if (!dollar_replace(&cmd->fileout, cmd->prog))
-		return (0);
+	// if (!dollar_replace(&cmd->fileout, cmd->prog))
+	// 	return (0);
 	ms_trimquotes(cmd->fileout);
 	if (append)
 		cmd->fdout = ms_getappendfd(*cmd);
