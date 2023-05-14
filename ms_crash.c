@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 18:32:52 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/14 14:45:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ms_free(t_prog *program)
 	printf("ms free called\n");
 	if (program->envp)
 	{
+		ms_terminal_reset(program);
 		while (program->envp[n])
 			ft_freestr(&program->envp[n++]);
 	}
@@ -56,6 +57,7 @@ void	ms_crash(t_prog *program)
 	if (program)
 		ms_free(program);
 	perror("msh : ");
+	exit(errno);
 }
 
 int	ms_error_msg(char *str, int err)

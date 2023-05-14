@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/11 16:43:42 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/14 14:11:13 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,14 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
+NAME := minishell
+
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
+INCLUDES = -I Includes -I /Users/$$USER/.brew/opt/readline/include
+LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib -lft -L ./libft
 SANITIZE := -fsanitize=address
-LIBFT := ./libft/libft.a
-NAME := minishell
+
 SRC :=	minishell.c\
 		ms_cd.c\
 		ms_crash.c\
@@ -57,10 +60,10 @@ lib:
 
 .c.o:
 	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline $(SANITIZE)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) $(SANITIZE)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:

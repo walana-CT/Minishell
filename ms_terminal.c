@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_terminal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 18:47:30 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/14 14:53:12 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	terminal_reset(t_prog *program)
+int	ms_terminal_reset(t_prog *program)
 {
 	if (program->term_fd != -1)
 	{
@@ -22,7 +22,7 @@ int	terminal_reset(t_prog *program)
 	return (errno = 0);
 }
 
-int	terminal_init(t_prog *program)
+int	ms_terminal_init(t_prog *program)
 {
 	program->goon = 1;
 	if (program->term_fd != -1)
@@ -38,6 +38,7 @@ int	terminal_init(t_prog *program)
 	if (tcgetattr(program->term_fd, &program->term_original)
 		|| tcgetattr(program->term_fd, &program->term_settings))
 		return (errno = ENOTSUP);
+	program->term_settings.c_lflag &= ~ (ECHO | ISIG);
 	tcsetattr(program->term_fd, TCSANOW, &program->term_settings);
 	return (errno = 0);
 }

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:45:28 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/12 10:06:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/14 13:06:15 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	ft_strinsert(char **str1, char *str2, int pos)
 	int		i;
 	int		j;
 
+	/*printf("calling strinsert\n");
+	printf("str 1 : %s\n", *str1);
+	printf("str 2 : %s\n", str2);
+	printf("pos : %d\n", pos);*/
 	if (!str1)
 		return (1);
 	if (!(*str1))
@@ -29,13 +33,16 @@ int	ft_strinsert(char **str1, char *str2, int pos)
 	j = -1;
 	if ((size_t) pos > ft_strlen(*str1))
 		return (1);
-	result = ft_calloc((ft_strlen(*str1) + ft_strlen(str2)), sizeof(char));
+	result = ft_calloc((ft_strlen(*str1) + ft_strlen(str2) + 1), sizeof(char));
 	while (++i < pos)
 		result[i] = *str1[i];
 	while (str2[++j])
 		result[i + j] = str2[j];
-	while (*str1[++i])
+	while (*str1[i])
+	{
 		result[i + j] = *str1[i];
+		i++;
+	}
 	free(*str1);
 	*str1 = result;
 	return (0);

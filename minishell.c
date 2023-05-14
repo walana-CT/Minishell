@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 16:07:56 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/14 14:57:57 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	set_sig();
 	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
-	if (terminal_init(&ms))
+	if (ms_terminal_init(&ms))
 		ms_crash(NULL);
 	copy_env(envp, &ms);
 	(void) argv;

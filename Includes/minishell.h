@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 18:30:27 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/14 14:43:31 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void	ms_heredoc(t_cmd cmd);
 
 //lexing
 //terminal
-int		terminal_init(t_prog *program);
-int		terminal_reset(t_prog *program);
+int		ms_terminal_init(t_prog *program);
+int		ms_terminal_reset(t_prog *program);
 //builtins
 int		ms_exit(t_cmd *cmd);
 int		is_env(char *str, char *env);
