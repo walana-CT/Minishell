@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/14 16:44:20 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 11:12:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void	minishell(t_prog *ms)
 	char	*str;
 	char	*tmp;
 
-	while (ms->goon)
+	while (1)
 	{
 		ms_print_fdstatus(*ms);
 		tmp = readline(CYAN"msh > "RESET);
+		if (*tmp == EOF)
+			break ;
 		str = ft_strtrim(tmp, SPACES);
 		add_history(str);
 		if (str && !ft_strequal(str, ""))
@@ -96,8 +98,8 @@ int	main(int argc, char *argv[], char *envp[])
 	set_sig();
 	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
 	rl_catch_signals = 0;
-	/*if (ms_terminal_init(&ms))
-		ms_crash(NULL);*/
+	if (ms_terminal_init(&ms))
+		ms_crash(NULL);
 //	copy_env(envp, &ms); // normal deux fois (voir ligne 95) ? ca fait leaker
 	(void) argv;
 	if (argc > 1)

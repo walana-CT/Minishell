@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:55:49 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 10:55:19 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 10:58:06 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	ms_pwd(t_cmd *cmd)
 		return (1);
 	if (ft_putstr_fd(buffer, cmd->fdout) == -1)
 		return (1);
+	write(cmd->fdout, "\n", 1);
 	return (0);
 }

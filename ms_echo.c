@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 14:25:53 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 11:28:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
 int	n_flag_val(char **args)
 {
@@ -70,5 +70,6 @@ int	ms_echo(t_cmd *cmd)
 		cmd->args++;
 	if (write_args(cmd->args, cmd->fdout, n_flag))
 		return (1);
+	write(cmd->fdout, "\n", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/15 11:18:58 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,9 +71,16 @@ $(NAME): $(OBJ)
 clean:
 	@printf '$(YELLOW)Cleaning $(NAME) $(RESET)\n'
 	@rm -f $(OBJ)
+
+ftclean:
 	@$(MAKE) clean -C ./libft/
 
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
+
+ftre: ftclean lib
+
+
+

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 11:08:18 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ms_terminal_init(t_prog *program)
 	if (tcgetattr(program->term_fd, &program->term_original)
 		|| tcgetattr(program->term_fd, &program->term_settings))
 		return (errno = ENOTSUP);
-	program->term_settings.c_lflag &= ~ (ECHO | ISIG);
 	tcsetattr(program->term_fd, TCSANOW, &program->term_settings);
 	return (errno = 0);
 }
