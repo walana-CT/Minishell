@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:13:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:53:12 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ms_parse(char *str, t_ms *ms)
 	ms->line = str;
 	if (!ms_syntax_ok(ms->line))
 		return (FALSE);
-	// trim ici avec # ?
+	//hashtrim
 	if (ms_cmds_init(ms))
 		return (FALSE);
 	return (TRUE);

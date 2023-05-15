@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:13:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:59:35 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char	*ms_findpath(char *cmd, char **path)
 	return (0);
 }
 
-// faut-il free qqchose dans dollar_replace ?
 int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:17:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:52:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		ms_error_msg_nofile(char *file, int err);
 
 //parsing 1 (line)
 int		ms_parse(char *str, t_ms *p);
+char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
 int		*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
 int		ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence de c dans str , ou -1

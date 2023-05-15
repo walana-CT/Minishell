@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:29:14 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:37:08 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,6 @@ int	main(int argc, char *argv[], char *envp[])
 	ms_init(&ms);
 	set_sig();
 	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
-	/*if (ms_terminal_init(&ms))
-		ms_crash(NULL);*/
-//	copy_env(envp, &ms); // normal deux fois (voir ligne 95) ? ca fait leaker
 	(void) argv;
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");

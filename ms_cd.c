@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 15:20:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:37:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	refresh_path(char *path, t_ms *ms)
 			free(ms->envp[n]);
 			ms->envp[n] = env_path;
 		}
+		n++;
 	}
 }
 
