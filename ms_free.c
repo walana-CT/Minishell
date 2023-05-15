@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ void	ms_usual_free(t_ms *ms, char **str, char **tmp)
 	ms->nbcmd = 0;
 }
 
-void	ms_free(t_ms *program)
+void	ms_free(t_ms *ms)
 {
 	int	n;
 
 	n = 0;
 	printf("ms free called\n");
-	if (program->envp)
+	if (ms->envp)
 	{
-		while (program->envp[n])
-			ft_freestr(&program->envp[n++]);
+		while (ms->envp[n])
+			ft_freestr(&ms->envp[n++]);
 	}
 }

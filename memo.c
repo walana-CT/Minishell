@@ -192,7 +192,7 @@ char	*getenv (const char * varName);
 /*
 - Cette fonction est utilisée pour récupérer le contenu d'une variable d'environnement. Les
 variables d'environnement sont définies par le système d'exploitation utilisé et permmettent
-d'obtenir des informations sur l'environnement dans lequel s'exécute le processus (le programme)
+d'obtenir des informations sur l'environnement dans lequel s'exécute le processus (le msme)
 en cours.
 
 - varName : définie le nom de la variable d'environnement souhaitée. Notez que,

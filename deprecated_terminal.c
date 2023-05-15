@@ -6,39 +6,39 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:12:53 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-/*int	ms_terminal_reset(t_prog *program)
+/*int	ms_terminal_reset(t_ms *ms)
 {
-	if (program->term_fd != -1)
+	if (ms->term_fd != -1)
 	{
-		if (tcsetattr(program->term_fd, TCSANOW, &program->term_original))
+		if (tcsetattr(ms->term_fd, TCSANOW, &ms->term_original))
 			return (errno = ENOTSUP);
 	}
 	return (errno = 0);
 }
 
-int	ms_terminal_init(t_prog *program)
+int	ms_terminal_init(t_ms *ms)
 {
-	program->goon = 1;
-	program->pipe = 0;
-	if (program->term_fd != -1)
+	ms->goon = 1;
+	ms->pipe = 0;
+	if (ms->term_fd != -1)
 		return (errno = 0);
 	if (isatty(STDERR_FILENO))
-		program->term_fd = STDERR_FILENO;
+		ms->term_fd = STDERR_FILENO;
 	else if (isatty(STDIN_FILENO))
-		program->term_fd = STDIN_FILENO;
+		ms->term_fd = STDIN_FILENO;
 	else if (isatty(STDOUT_FILENO))
-		program->term_fd = STDOUT_FILENO;
+		ms->term_fd = STDOUT_FILENO;
 	else
 		return (errno = ENOTTY);
-	if (tcgetattr(program->term_fd, &program->term_original)
-		|| tcgetattr(program->term_fd, &program->term_settings))
+	if (tcgetattr(ms->term_fd, &ms->term_original)
+		|| tcgetattr(ms->term_fd, &ms->term_settings))
 		return (errno = ENOTSUP);
-	tcsetattr(program->term_fd, TCSANOW, &program->term_settings);
+	tcsetattr(ms->term_fd, TCSANOW, &ms->term_settings);
 	return (errno = 0);
 }*/

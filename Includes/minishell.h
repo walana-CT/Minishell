@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:45 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ struct s_cmd
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
-	t_ms	*prog; //reference du program pour free
+	t_ms	*ms; //reference du ms pour free
 };
 
 //init
 void	line_init(char	*str, t_ms *p);
 //err and memory
-void	ms_crash(t_ms *program);
-void	ms_free(t_ms	*program);
+void	ms_crash(t_ms *ms);
+void	ms_free(t_ms	*ms);
 void	ms_usual_free(t_ms *ms, char **str, char **tmp);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
@@ -97,7 +97,7 @@ void	ms_trimquotes(char *str);
 int		ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
-int		dollar_replace(char **str, t_ms *prog);
+int		dollar_replace(char **str, t_ms *ms);
 int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
 void	ms_heredoc(t_cmd cmd);
@@ -108,11 +108,11 @@ int		ms_lex(t_ms *ms);
 void	ms_exec(t_ms *ms);
 
 //terminal
-int		ms_terminal_init(t_ms *program);
-int		ms_terminal_reset(t_ms *program);
+int		ms_terminal_init(t_ms *ms);
+int		ms_terminal_reset(t_ms *ms);
 //builtins
 int		ms_cd(t_cmd *cmd);
-int		ms_exit(t_cmd *cmd);
+int		ms_exit(t_ms *ms);
 int		is_env(char *str, char *env);
 int		ms_env(t_cmd *cmd);
 int		ms_unset(t_cmd *cmd);
@@ -123,7 +123,7 @@ int		ms_pwd(t_cmd *cmd);
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
 int		ms_env_pos(char *str, char **envp);
-char	*ms_getenv(char *str, t_ms *prog);
+char	*ms_getenv(char *str, t_ms *ms);
 void	ms_printcmds(t_ms ms);
 
 #endif

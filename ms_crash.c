@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-/*void	ms_usual_free(t_prog *ms, char *str, char *tmp)
+/*void	ms_usual_free(t_ms *ms, char *str, char *tmp)
 {
 	int	i;
 
@@ -38,24 +38,24 @@
 	ms->nbcmd = 0;
 }
 
-void	ms_free(t_prog *program)
+void	ms_free(t_ms *ms)
 {
 	int	n;
 
 	n = 0;
 	printf("ms free called\n");
-	if (program->envp)
+	if (ms->envp)
 	{
-		ms_terminal_reset(program);
-		while (program->envp[n])
-			ft_freestr(&program->envp[n++]);
+		ms_terminal_reset(ms);
+		while (ms->envp[n])
+			ft_freestr(&ms->envp[n++]);
 	}
 }*/
 
-void	ms_crash(t_ms *program)
+void	ms_crash(t_ms *ms)
 {
-	if (program)
-		ms_free(program);
+	if (ms)
+		ms_free(ms);
 	perror("msh : ");
 	exit(errno);
 }

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ms_sizeof_tab(char **my_tab)
 	return (n);
 }
 
-void	ms_add_envp(char **args, t_ms *prog)
+void	ms_add_envp(char **args, t_ms *ms)
 {
 	char	**new_envp;
 	int		i;
@@ -32,21 +32,21 @@ void	ms_add_envp(char **args, t_ms *prog)
 
 	i = 0;
 	j = 0;
-	new_envp = malloc((ms_sizeof_tab(args) + ms_sizeof_tab(prog->envp))
+	new_envp = malloc((ms_sizeof_tab(args) + ms_sizeof_tab(ms->envp))
 			* sizeof(char *));
 	if (!new_envp)
-		ms_crash(prog);
+		ms_crash(ms);
 	i = 0;
-	while (prog->envp[i])
+	while (ms->envp[i])
 	{
-		new_envp[i] = prog->envp[i];
+		new_envp[i] = ms->envp[i];
 		i++;
 	}
 	while (args[j])
 		new_envp[i++] = args[j++];
 	new_envp[i] = NULL;
-	free(prog->envp);
-	prog->envp = new_envp;
+	free(ms->envp);
+	ms->envp = new_envp;
 }
 
 int	ms_export(t_cmd *cmd)
@@ -62,6 +62,6 @@ int	ms_export(t_cmd *cmd)
 		ms_env(cmd);
 		return (0);
 	}
-	ms_add_envp(cmd->args, cmd->prog);
+	ms_add_envp(cmd->args, cmd->ms);
 	return (0);
 }

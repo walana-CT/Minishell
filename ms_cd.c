@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:20:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	refresh_path(char *path, t_ms *prog)
+void	refresh_path(char *path, t_ms *ms)
 {
 	int		n;
 	char	*env_path;
@@ -20,19 +20,19 @@ void	refresh_path(char *path, t_ms *prog)
 
 	n = 0;
 	path_stat = "PATH=";
-	while (prog->envp[n])
+	while (ms->envp[n])
 	{
-		if (is_env(path_stat, prog->envp[n]))
+		if (is_env(path_stat, ms->envp[n]))
 		{
 			env_path = calloc((ft_sstrlen(path) + 6), sizeof(char));
 			if (!env_path)
-				ms_crash(prog);
+				ms_crash(ms);
 			while (*path_stat)
 				*env_path++ = *path_stat++;
 			while (*path)
 				*env_path++ = *path++;
-			free(prog->envp[n]);
-			prog->envp[n] = env_path;
+			free(ms->envp[n]);
+			ms->envp[n] = env_path;
 		}
 	}
 }
@@ -52,7 +52,7 @@ int	ms_cd(t_cmd *cmd)
 	}
 	if (chdir(cmd->args[0]) == -1)
 		return (1);
-	refresh_path(cmd->args[0], cmd->prog);
+	refresh_path(cmd->args[0], cmd->ms);
 	return (0);
 }
 

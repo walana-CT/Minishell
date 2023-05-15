@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/14 14:56:48 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_sig(void)
 	struct sigaction	sa;
 
 	sa.sa_sigaction = ft_sighandle;
-	//sa.sa_mask
+	//sa.sa_mask = SIGKILL;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		ms_crash(NULL);
 }

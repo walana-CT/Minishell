@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:28:45 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:13:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].fdout = 1;
 		ms->cmd[i].limiter = 0;
 		ms->cmd[i].path = 0;
-		ms->cmd[i].prog = ms;
+		ms->cmd[i].ms = ms;
 	}
 	ms->pipe[i] = 0;
 	return (0);

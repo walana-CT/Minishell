@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:16:34 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static int	env_var_len(char *str)
 	return (len);
 }
 
-static int	dol_replace(char **str, int pos, t_ms *prog)
+static int	dol_replace(char **str, int pos, t_ms *ms)
 {
 	char	*env_val;
 	int		var_len;
 
-	env_val = ms_getenv(&str[0][pos + 1], prog);
+	env_val = ms_getenv(&str[0][pos + 1], ms);
 	//printf("env val found : %s\n", env_val);
 	var_len = env_var_len(&str[0][pos]);
 	//printf("var len : %d\n", var_len);
@@ -66,14 +66,14 @@ static int	next_dol_pos(char *str)
 	return (-1);
 }
 
-int	dollar_replace(char **str, t_ms *prog)
+int	dollar_replace(char **str, t_ms *ms)
 {
 	int	dol_pos;
 
 	dol_pos = next_dol_pos(*str);
 	while (dol_pos != -1)
 	{
-		if (dol_replace(str, dol_pos, prog))
+		if (dol_replace(str, dol_pos, ms))
 			return (1);
 		dol_pos = next_dol_pos(*str);
 	}

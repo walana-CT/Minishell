@@ -6,20 +6,16 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:16:32 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	ms_exit(t_cmd *cmd)
+int	ms_exit(t_ms *ms)
 {
-	ms_terminal_reset(cmd->prog);
-	if (!cmd->args[0])
-	{
-		printf("env exit 0 args\n");
+	if (!ms)
 		return (1);
-	}
-	ms_free(cmd->prog);
+	ms_free(ms);
 	exit(EXIT_SUCCESS);
 }

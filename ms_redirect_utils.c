@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:13:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	ms_heredoc(t_cmd cmd)
 	str = get_next_line(0);
 	while (ft_strncmp(str, cmd.limiter, ft_sstrlen(str)) != 10)
 	{
-		write(cmd.prog->pipe[cmd.nb][1], str, ft_sstrlen(str));
+		write(cmd.ms->pipe[cmd.nb][1], str, ft_sstrlen(str));
 		free(str);
 		str = get_next_line(0);
 	}
 	free(str);
-	close(cmd.prog->pipe[cmd.nb][1]);
+	close(cmd.ms->pipe[cmd.nb][1]);
 }

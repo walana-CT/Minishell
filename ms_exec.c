@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:13:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ms_do_builtin(t_cmd	*cmd)
 	if (ft_strequal(cmd->cmd_name, "env"))
 		return (ms_env(cmd));
 	if (ft_strequal(cmd->cmd_name, "exit"))
-		return (ms_exit(cmd));
+		return (ms_exit(cmd->ms));
 	if (ft_strequal(cmd->cmd_name, "export"))
 		return (ms_export(cmd));
 	if (ft_strequal(cmd->cmd_name, "pwd"))
@@ -38,8 +38,8 @@ void	ms_printcmd(t_cmd cmd)
 	printf("PATH : %s\n", cmd.path);
 	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
-	printf("Pipein %d \t Pipeout %d\n", cmd.prog->pipe[cmd.nb][0], \
-		cmd.prog->pipe[cmd.nb][1]);
+	printf("Pipein %d \t Pipeout %d\n", cmd.ms->pipe[cmd.nb][0], \
+		cmd.ms->pipe[cmd.nb][1]);
 }
 
 // /!\ si nbcmd > 1 on fork, attention au comportement de exit ?

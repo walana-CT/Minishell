@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:17:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,31 @@ int	ms_env_pos(char *str, char **envp)
 	return (-1);
 }
 
-void	unset_arg(char *arg, t_ms *prog)
+void	unset_arg(char *arg, t_ms *ms)
 {
 	int		n;
 	int		pos;
 	char	**new_envp;
 
 	n = 0;
-	pos = ms_env_pos(arg, prog->envp);
+	pos = ms_env_pos(arg, ms->envp);
 	if (pos == -1)
 		return ;
-	new_envp = malloc((ms_sizeof_tab(prog->envp) - 1) * sizeof(char *));
+	new_envp = malloc((ms_sizeof_tab(ms->envp) - 1) * sizeof(char *));
 	if (!new_envp)
-		ms_crash(prog);
-	while (prog->envp[n])
+		ms_crash(ms);
+	while (ms->envp[n])
 	{
 		if (n == pos)
 			n++;
-		if (prog->envp[n])
-			new_envp[n] = prog->envp[n];
+		if (ms->envp[n])
+			new_envp[n] = ms->envp[n];
 		n++;
 	}
 	new_envp[n] = NULL;
-	free(prog->envp[n]);
-	free(prog->envp);
-	prog->envp = new_envp;
+	free(ms->envp[n]);
+	free(ms->envp);
+	ms->envp = new_envp;
 }
 
 int	ms_unset(t_cmd *cmd)
@@ -82,7 +82,7 @@ int	ms_unset(t_cmd *cmd)
 	cmd->args++;
 	while (cmd->args[0])
 	{
-		unset_arg(cmd->args[0], cmd->prog);
+		unset_arg(cmd->args[0], cmd->ms);
 		cmd->args++;
 	}
 	return (0);
