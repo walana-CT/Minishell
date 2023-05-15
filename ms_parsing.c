@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/12 13:18:13 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:44:54 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,11 @@ int	ms_cmds_init(t_prog *ms)
 
 int	ms_parse(char *str, t_prog *ms)
 {
-	if (ft_strequal(str, "exit"))
-	{
-		ms->goon = 0;
-		ms->nbcmd = 0;
+	ms->line = str;
+	if (!ms_syntax_ok(ms->line))
 		return (FALSE);
-	}
-	else
-	{
-		ms->line = str;
-		if (!ms_syntax_ok(ms->line))
-			return (FALSE);
-		// trim ici avec # ?
-		if (!ms_cmds_init(ms))
-			return (FALSE);
-	}
+	// trim ici avec # ?
+	if (!ms_cmds_init(ms))
+		return (FALSE);
 	return (TRUE);
 }
