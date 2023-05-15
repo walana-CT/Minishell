@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 11:12:07 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:27:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	ms_print_fdstatus(t_prog ms)
+void	ms_print_fdstatus(t_ms ms)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	ms_print_fdstatus(t_prog ms)
 		puts("__________________________________________________");
 }
 
-void	ms_printcmds(t_prog ms)
+void	ms_printcmds(t_ms ms)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	ms_printcmds(t_prog ms)
 	}
 }
 
-void	minishell(t_prog *ms)
+void	minishell(t_ms *ms)
 {
 	char	*str;
 	char	*tmp;
@@ -72,7 +72,7 @@ void	minishell(t_prog *ms)
 	printf("exit\n");
 }
 
-void	copy_env(char *envp[], t_prog *prog)
+void	copy_env(char *envp[], t_ms *prog)
 {
 	char	**envp_copy;
 	int		n;
@@ -91,15 +91,31 @@ void	copy_env(char *envp[], t_prog *prog)
 	prog->envp = envp_copy;
 }
 
+int	ms_init(t_ms *ms)
+{
+	ms->pipe = 0;
+	ms->err = 0;
+	ms->nbcmd = 0;
+	ms->envp = NULL;
+	ms->line = NULL;
+	ms->pipe = NULL;
+	ms->pid = NULL;
+	ms->cmd = NULL;
+	return (0);
+}
+
+
+
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_prog	ms;
+	t_ms	ms;
 
 	set_sig();
 	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
 	rl_catch_signals = 0;
-	if (ms_terminal_init(&ms))
-		ms_crash(NULL);
+	ms_init(&ms);
+	/*if (ms_terminal_init(&ms))
+		ms_crash(NULL);*/
 //	copy_env(envp, &ms); // normal deux fois (voir ligne 95) ? ca fait leaker
 	(void) argv;
 	if (argc > 1)
