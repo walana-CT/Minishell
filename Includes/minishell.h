@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 11:29:04 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:09:31 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ typedef struct s_prog
 {
 	char			**envp;
 	int				term_fd;
-	struct termios	term_original;
-	struct termios	term_settings;
 	char			*line; //la ligne 'de base' retournee par readline
 	int				err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line. init à 0 
-	int				goon; // booleen ; faut-il reproposer un prompt apres l'execution de line ? (toujours 1 sauf si exit ou ctrl-C)
 	int				nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
 	int				**pipe; // pour pipex
 	pid_t			*pid; // pour pipex
