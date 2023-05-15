@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:18:33 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 15:29:14 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	minishell(t_ms *ms)
 	{
 		ms_print_fdstatus(*ms);
 		tmp = readline(CYAN"msh > "RESET);
-		if (*tmp == EOF)
+		if (!tmp)
 			ms_exit(ms);
 		str = ft_strtrim(tmp, SPACES);
 		add_history(str);
