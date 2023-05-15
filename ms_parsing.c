@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:28:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	ms_syntax_ok(char *str)
 		return (ms_error_msg("Syntax error : quotes not closed", FALSE));
 	if (ms_wrongchars(str))
 		return (FALSE);
-	// if (!ms_redir_checker(str)) // doit trim apres < ou >, check FORBID, etc ?
-	// 	return (FALSE);
 	return (TRUE);
 }
 
@@ -69,13 +67,13 @@ int	ms_cmds_init(t_ms *ms)
 	i = -1;
 	ms->nbcmd = ms_pipesplit(ms);
 	if (ms->nbcmd == -1)
-		return (FALSE);
+		return (1);
 	ms->pipe = malloc((1 + ms->nbcmd) * sizeof(int *));
 	while (++i < ms->nbcmd)
 	{
 		ms->pipe[i] = malloc(2 * sizeof(int));
 		if (!ms->pipe[i] || pipe(ms->pipe[i]) == -1)
-			return (FALSE);
+			return (1);
 		ms->cmd[i].nb = i;
 		ms->cmd[i].args = 0;
 		ms->cmd[i].cmd_name = 0;
@@ -88,7 +86,7 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].prog = ms;
 	}
 	ms->pipe[i] = 0;
-	return (TRUE);
+	return (0);
 }
 
 int	ms_parse(char *str, t_ms *ms)
@@ -97,7 +95,7 @@ int	ms_parse(char *str, t_ms *ms)
 	if (!ms_syntax_ok(ms->line))
 		return (FALSE);
 	// trim ici avec # ?
-	if (!ms_cmds_init(ms))
+	if (ms_cmds_init(ms))
 		return (FALSE);
 	return (TRUE);
 }
