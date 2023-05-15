@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 12:09:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 typedef struct s_cmd	t_cmd;
 
-typedef struct s_prog
+typedef struct s_ms
 {
 	char			**envp;
 	int				term_fd;
@@ -54,7 +54,7 @@ typedef struct s_prog
 	int				**pipe; // pour pipex
 	pid_t			*pid; // pour pipex
 	t_cmd			*cmd; // struct necessaire à l'éxécution de la commande par execve()
-}	t_prog;
+}	t_ms;
 
 struct s_cmd
 {
@@ -68,20 +68,20 @@ struct s_cmd
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
 	char	**args; // arguments de la commande a fournir à execve()
 	char	*path; // path à strjoin avec cmd avant de execve()
-	t_prog	*prog; //reference du program pour free
+	t_ms	*prog; //reference du program pour free
 };
 
 //init
-void	line_init(char	*str, t_prog *p);
+void	line_init(char	*str, t_ms *p);
 //err and memory
-void	ms_crash(t_prog *program);
-void	ms_free(t_prog	*program);
-void	ms_usual_free(t_prog *ms, char **str, char **tmp);
+void	ms_crash(t_ms *program);
+void	ms_free(t_ms	*program);
+void	ms_usual_free(t_ms *ms, char **str, char **tmp);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
 
 //parsing 1 (line)
-int		ms_parse(char *str, t_prog *p);
+int		ms_parse(char *str, t_ms *p);
 int		ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
 int		*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1
 int		ms_where_is(char c, char *str); // renvoie l'index de la premiere occurence de c dans str , ou -1
@@ -90,26 +90,26 @@ char	**ms_quotesplit(char *s, char sep);
 char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quotes de str et retourne le resultat
 int		ms_str2pipes(char *str); // true si str contient "||"
 int		ms_badchev(char *str); // true si str contient "<<<" ou ">>>"
-int		ms_pipesplit(t_prog *ms); // split ms.line avec '|" dans cmd[i].line
+int		ms_pipesplit(t_ms *ms); // split ms.line avec '|" dans cmd[i].line
 void	ms_trimquotes(char *str);
 
 //parsing 2 (cmd)
-int		ms_get_fds(t_prog *ms);
+int		ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
-int		dollar_replace(char **str, t_prog *prog);
+int		dollar_replace(char **str, t_ms *prog);
 int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
 void	ms_heredoc(t_cmd cmd);
 
 //lexing & execution
 int		ms_isbuiltin(char *str);
-int		ms_lex(t_prog *ms);
-void	ms_exec(t_prog *ms);
+int		ms_lex(t_ms *ms);
+void	ms_exec(t_ms *ms);
 
 //terminal
-int		ms_terminal_init(t_prog *program);
-int		ms_terminal_reset(t_prog *program);
+int		ms_terminal_init(t_ms *program);
+int		ms_terminal_reset(t_ms *program);
 //builtins
 int		ms_cd(t_cmd *cmd);
 int		ms_exit(t_cmd *cmd);
@@ -123,7 +123,7 @@ int		ms_pwd(t_cmd *cmd);
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
 int		ms_env_pos(char *str, char **envp);
-char	*ms_getenv(char *str, t_prog *prog);
-void	ms_printcmds(t_prog ms);
+char	*ms_getenv(char *str, t_ms *prog);
+void	ms_printcmds(t_ms ms);
 
 #endif

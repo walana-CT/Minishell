@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/14 16:42:54 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	ms_pipes_close_free_null(t_prog *ms)
+void	ms_pipes_close_free_null(t_ms *ms)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	ms_pipes_close_free_null(t_prog *ms)
 	ms->pipe = 0;
 }
 
-void	ms_free_cmd(t_prog *ms)
+void	ms_free_cmd(t_ms *ms)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	ms_free_cmd(t_prog *ms)
 	}
 }
 
-void	ms_usual_free(t_prog *ms, char **str, char **tmp)
+void	ms_usual_free(t_ms *ms, char **str, char **tmp)
 {
 	ft_freestr(str);
 	ft_freestr(tmp);
@@ -64,7 +64,7 @@ void	ms_usual_free(t_prog *ms, char **str, char **tmp)
 	ms->nbcmd = 0;
 }
 
-void	ms_free(t_prog *program)
+void	ms_free(t_ms *program)
 {
 	int	n;
 

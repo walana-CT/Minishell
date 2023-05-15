@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_terminal.c                                      :+:      :+:    :+:   */
+/*   deprecated_terminal.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:41 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 11:08:18 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:12:53 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	ms_terminal_reset(t_prog *program)
+/*int	ms_terminal_reset(t_prog *program)
 {
 	if (program->term_fd != -1)
 	{
@@ -41,4 +41,4 @@ int	ms_terminal_init(t_prog *program)
 		return (errno = ENOTSUP);
 	tcsetattr(program->term_fd, TCSANOW, &program->term_settings);
 	return (errno = 0);
-}
+}*/

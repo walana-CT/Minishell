@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 11:44:54 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ms_syntax_ok(char *str)
 	return (TRUE);
 }
 
-int	ms_cmds_init(t_prog *ms)
+int	ms_cmds_init(t_ms *ms)
 {
 	int	i;
 
@@ -91,7 +91,7 @@ int	ms_cmds_init(t_prog *ms)
 	return (TRUE);
 }
 
-int	ms_parse(char *str, t_prog *ms)
+int	ms_parse(char *str, t_ms *ms)
 {
 	ms->line = str;
 	if (!ms_syntax_ok(ms->line))

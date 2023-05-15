@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/15 12:07:37 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/15 12:10:40 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ SRC :=	minishell.c\
 		ms_redirections.c\
 		ms_signals.c\
 		ms_split.c\
-		ms_terminal.c\
 		ms_unset.c\
 
 OBJ := $(SRC:.c=.o)

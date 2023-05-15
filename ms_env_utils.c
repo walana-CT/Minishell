@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 11:13:20 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	envcmp(char *str, char *envl)
 		return (FALSE);
 }
 
-char	*ms_getenv(char *str, t_prog *prog)
+char	*ms_getenv(char *str, t_ms *prog)
 {
 	char	**envp;
 	int		i;

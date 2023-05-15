@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 14:20:55 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ms_env_pos(char *str, char **envp)
 	return (-1);
 }
 
-void	unset_arg(char *arg, t_prog *prog)
+void	unset_arg(char *arg, t_ms *prog)
 {
 	int		n;
 	int		pos;

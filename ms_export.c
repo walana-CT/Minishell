@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 10:00:14 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ms_sizeof_tab(char **my_tab)
 	return (n);
 }
 
-void	ms_add_envp(char **args, t_prog *prog)
+void	ms_add_envp(char **args, t_ms *prog)
 {
 	char	**new_envp;
 	int		i;

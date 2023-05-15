@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/13 21:24:54 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-char	**ms_getpath(t_prog *ms)
+char	**ms_getpath(t_ms *ms)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	return (err);
 }
 
-int	ms_lex(t_prog *ms)
+int	ms_lex(t_ms *ms)
 {
 	int		i;
 	char	**path;

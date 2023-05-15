@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/13 20:26:40 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ms_badchev(char *str)
 	return (FALSE);
 }
 
-int	ms_pipesplit(t_prog *ms)
+int	ms_pipesplit(t_ms *ms)
 {
 	char	**tmp;
 	int		i;

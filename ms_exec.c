@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/13 21:32:07 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ms_printcmd(t_cmd cmd)
 // /!\ si nbcmd > 1 on fork, attention au comportement de exit ?
 // est-ce qu'on gere pour de vrai qu'il y a pas de fork pour 1 ou bof.
 // autrement dit, est-ce que seul exit est concerné ?
-void	ms_exec(t_prog *ms)
+void	ms_exec(t_ms *ms)
 {
 	int	i;
 

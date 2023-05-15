@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/13 21:26:52 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ms_getappendfd(t_cmd cmd)
 	return (fd);
 }
 
-int	ms_get_fds(t_prog *ms)
+int	ms_get_fds(t_ms *ms)
 {
 	int	i;
 

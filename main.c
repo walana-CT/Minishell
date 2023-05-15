@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:05:51 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/03 09:53:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  
 /* Restore terminal to original settings
 */
-static int terminal_reset(t_prog *program)
+static int terminal_reset(t_ms *program)
 {
 	if (program->term_fd != -1)
 	{

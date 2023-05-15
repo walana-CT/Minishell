@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/05 10:47:30 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 12:14:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	refresh_path(char *path, t_prog *prog)
+void	refresh_path(char *path, t_ms *prog)
 {
 	int		n;
 	char	*env_path;
