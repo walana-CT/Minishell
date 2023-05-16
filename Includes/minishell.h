@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:52:22 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 17:58:44 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ms_free(t_ms	*ms);
 void	ms_usual_free(t_ms *ms, char **str, char **tmp);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
+int		ms_bad_child_ending(char *str);
 
 //parsing 1 (line)
 int		ms_parse(char *str, t_ms *p);
@@ -106,7 +107,8 @@ void	ms_heredoc(t_cmd cmd);
 //lexing & execution
 int		ms_isbuiltin(char *str);
 int		ms_lex(t_ms *ms);
-void	ms_exec(t_ms *ms);
+int		ms_exec(t_ms *ms);
+int		ms_launch_children(t_ms *ms);
 
 //terminal
 int		ms_terminal_init(t_ms *ms);

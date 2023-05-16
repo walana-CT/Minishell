@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:37:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 16:45:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
-
-void	ms_print_fdstatus(t_ms ms)
-{
-	int	i;
-
-	i = -1;
-	if (ms.pipe || ms.nbcmd)
-		puts("__________________________________________________\n");
-	while (ms.pipe && ms.pipe[++i])
-		printf("pipe[%d][0] : %d, pipe[%d][1] : %d\n", i, ms.pipe[i][0], i, ms.pipe[i][1]);
-	i = -1;
-	while (++i < ms.nbcmd)
-		printf("cmd %d fdin : %d, fdout : %d\n", i, ms.cmd[i].fdin, ms.cmd[i].fdout);
-	if (ms.pipe || ms.nbcmd)
-		puts("__________________________________________________");
-}
 
 void	ms_printcmds(t_ms ms)
 {
@@ -52,7 +36,6 @@ void	minishell(t_ms *ms)
 
 	while (1)
 	{
-		ms_print_fdstatus(*ms);
 		tmp = readline(CYAN"msh > "RESET);
 		if (!tmp)
 			ms_exit(ms);
