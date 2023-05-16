@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_env.c                                           :+:      :+:    :+:   */
+/*   ms_statics.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/16 14:54:14 by rficht           ###   ########.fr       */
+/*   Created: 2023/05/16 14:24:19 by rficht            #+#    #+#             */
+/*   Updated: 2023/05/16 14:24:32 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
-
-void	ms_printtab(char **str_tab)
+int	stat_interactive(int val)
 {
-	while (*str_tab)
-	{
-		printf("%s\n", *str_tab);
-		str_tab++;
-	}
-}
+	static int	interactive;
 
-int	ms_env(t_cmd *cmd)
-{
-	t_ms		*ms;
-
-	ms = cmd->ms;
-	if (!cmd->args[0])
-	{
-		printf("env received 0 args\n");
-		return (1);
-	}
-	ms_printtab(ms->envp);
-	return (0);
+	if (val >= 0)
+		interactive = val;
+	return (interactive);
 }

@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/16 16:28:54 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/16 17:03:59 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC :=	minishell.c\
 		ms_redirections.c\
 		ms_signals.c\
 		ms_split.c\
+		ms_statics.c\
 		ms_unset.c\
 
 OBJ := $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/16 16:29:03 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/16 17:03:59 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC =	ft_2lst_utils.c\
 		ft_split_by_lst.c\
 		ft_sstrlen.c\
 		ft_strchr.c\
+		ft_strcmp.c\
 		ft_strdelchar.c\
 		ft_strdup.c\
 		ft_strequal.c\

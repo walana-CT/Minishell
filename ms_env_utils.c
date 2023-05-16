@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 15:17:44 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 15:07:12 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,23 @@ char	*ms_getenv(char *str, t_ms *ms)
 			return (env_linetovar(envp[i]));
 	}
 	return (NULL);
+}
+
+void	copy_env(char *envp[], t_ms *ms)
+{
+	char	**envp_copy;
+	int		n;
+
+	n = 0;
+	envp_copy = calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
+	if (!envp_copy)
+		ms_crash(NULL);
+	while (envp[n])
+	{
+		envp_copy[n] = ft_strdup(envp[n]);
+		if (!envp_copy[n])
+			ms_crash(ms);
+		n++;
+	}
+	ms->envp = envp_copy;
 }
