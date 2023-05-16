@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:52:22 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 15:08:14 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,11 @@ int		ms_pwd(t_cmd *cmd);
 //utils
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
+void	ms_printtab(char **str_tab);
 int		ms_env_pos(char *str, char **envp);
+void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv(char *str, t_ms *ms);
 void	ms_printcmds(t_ms ms);
+int		stat_interactive(int val);
 
 #endif

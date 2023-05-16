@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/15 12:10:40 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/16 14:26:34 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC :=	minishell.c\
 		ms_redirections.c\
 		ms_signals.c\
 		ms_split.c\
+		ms_statics.c\
 		ms_unset.c\
 
 OBJ := $(SRC:.c=.o)

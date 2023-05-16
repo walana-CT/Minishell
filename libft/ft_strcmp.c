@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_env.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/16 14:54:14 by rficht           ###   ########.fr       */
+/*   Created: 2023/05/16 14:47:14 by rficht            #+#    #+#             */
+/*   Updated: 2023/05/16 15:24:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "../Includes/libft.h"
 
-void	ms_printtab(char **str_tab)
+int	ft_strcmp(char *s1, char *s2)
 {
-	while (*str_tab)
-	{
-		printf("%s\n", *str_tab);
-		str_tab++;
-	}
-}
+	int	i;
 
-int	ms_env(t_cmd *cmd)
-{
-	t_ms		*ms;
-
-	ms = cmd->ms;
-	if (!cmd->args[0])
+	i = 0;
+	while (s1[i] && s2[i])
 	{
-		printf("env received 0 args\n");
-		return (1);
+		if (s1[i] - s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
-	ms_printtab(ms->envp);
-	return (0);
+	return (s1[i] - s2[i]);
 }

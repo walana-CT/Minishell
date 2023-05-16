@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:37:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 15:11:48 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	minishell(t_ms *ms)
 	while (1)
 	{
 		ms_print_fdstatus(*ms);
+		stat_interactive(1);
 		tmp = readline(CYAN"msh > "RESET);
+		stat_interactive(0);
 		if (!tmp)
 			ms_exit(ms);
 		str = ft_strtrim(tmp, SPACES);
@@ -72,25 +74,6 @@ void	minishell(t_ms *ms)
 	ms_exit(ms);
 }
 
-void	copy_env(char *envp[], t_ms *ms)
-{
-	char	**envp_copy;
-	int		n;
-
-	n = 0;
-	envp_copy = calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
-	if (!envp_copy)
-		ms_crash(NULL);
-	while (envp[n])
-	{
-		envp_copy[n] = ft_strdup(envp[n]);
-		if (!envp_copy[n])
-			ms_crash(ms);
-		n++;
-	}
-	ms->envp = envp_copy;
-}
-
 int	ms_init(t_ms *ms)
 {
 	rl_catch_signals = 0;
@@ -104,8 +87,6 @@ int	ms_init(t_ms *ms)
 	ms->cmd = NULL;
 	return (0);
 }
-
-
 
 int	main(int argc, char *argv[], char *envp[])
 {

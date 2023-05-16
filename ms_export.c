@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 15:47:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 15:21:08 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,51 @@ int	ms_sizeof_tab(char **my_tab)
 	while (my_tab[n])
 		n++;
 	return (n);
+}
+
+void	sort_tab(char **str_tab)
+{
+	int		is_finished;
+	char	*tmp;
+	int		n;
+
+	is_finished = 0;
+	while (!is_finished)
+	{
+		is_finished = 1;
+		n = 0;
+		while (str_tab[n] && str_tab[n + 1])
+		{
+			if (ft_strcmp(str_tab[n], str_tab [n + 1]) > 0)
+			{
+				tmp = str_tab[n];
+				str_tab[n] = str_tab[n + 1];
+				str_tab[n + 1] = tmp;
+				is_finished = 0;
+			}
+			n++;
+		}
+	}
+}
+
+void	ms_no_arg_export(t_ms	*ms)
+{
+	char	**envp_copy;
+	int		n;
+
+	envp_copy = calloc(ms_sizeof_tab(ms->envp) + 1, sizeof(char *));
+	if (!envp_copy)
+	{
+		printf("ms_no_arg_export failed to malloc\n");
+		return ;
+	}
+	n = -1;
+	while (ms->envp[++n])
+		envp_copy[n] = ms->envp[n];
+	sort_tab(envp_copy);
+	ms_printtab(envp_copy);
+	free(envp_copy);
+	envp_copy = NULL;
 }
 
 void	ms_add_envp(char **args, t_ms *ms)
@@ -56,10 +101,9 @@ int	ms_export(t_cmd *cmd)
 		printf("export received empty arg\n");
 		return (1);
 	}
-	cmd->args++;
-	if (!cmd->args[0])
+	if (!cmd->args[1])
 	{
-		ms_env(cmd);
+		ms_no_arg_export(cmd->ms);
 		return (0);
 	}
 	ms_add_envp(cmd->args, cmd->ms);

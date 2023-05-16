@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/14 15:01:25 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/16 15:09:56 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC =	ft_2lst_utils.c\
 		ft_split_by_lst.c\
 		ft_sstrlen.c\
 		ft_strchr.c\
+		ft_strcmp.c\
 		ft_strdelchar.c\
 		ft_strdup.c\
 		ft_strequal.c\
