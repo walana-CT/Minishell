@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:59:35 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:17:29 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	i = -1;
 	while (cmd->args[++i])
 	{
-		if (dollar_replace(&cmd->args[i], cmd->ms))
+		if (!dollar_replace(&cmd->args[i], cmd->ms))
 			ms_trimquotes(cmd->args[i]);
 		else
 			err = 1;

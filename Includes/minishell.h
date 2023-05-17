@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/16 17:03:59 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/17 09:46:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		ms_pwd(t_cmd *cmd);
 //utils
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
-void	ms_printtab(char **str_tab);
+void	ms_printtab(char **str_tab, int fd);
 int		ms_env_pos(char *str, char **envp);
 void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv(char *str, t_ms *ms);

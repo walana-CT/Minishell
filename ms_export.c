@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/17 10:01:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	sort_tab(char **str_tab)
 	}
 }
 
-void	ms_no_arg_export(t_ms	*ms)
+void	ms_no_arg_export(t_ms *ms, int fd_out)
 {
 	char	**envp_copy;
 	int		n;
@@ -64,7 +64,7 @@ void	ms_no_arg_export(t_ms	*ms)
 	while (ms->envp[++n])
 		envp_copy[n] = ms->envp[n];
 	sort_tab(envp_copy);
-	ms_printtab(envp_copy);
+	ms_printtab(envp_copy, fd_out);
 	free(envp_copy);
 	envp_copy = NULL;
 }
@@ -103,7 +103,7 @@ int	ms_export(t_cmd *cmd)
 	}
 	if (!cmd->args[1])
 	{
-		ms_no_arg_export(cmd->ms);
+		ms_no_arg_export(cmd->ms, cmd->fdout);
 		return (0);
 	}
 	ms_add_envp(cmd->args, cmd->ms);
