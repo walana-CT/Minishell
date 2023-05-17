@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 09:46:38 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:42:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv(char *str, t_ms *ms);
 void	ms_printcmds(t_ms ms);
 int		stat_interactive(int val);
+int		ms_is_dol_sep(char c);
 
 #endif
