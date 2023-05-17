@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 11:22:09 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:32:26 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ int	ms_syntax_ok(char *str)
 	return (TRUE);
 }
 
+void	ms_disp_pipes(t_ms *ms)
+{
+	int	i;
+
+	i = -1;
+	printf("Pipes are :\n");
+	while (++i < ms->nbcmd)
+		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
+}
+
+
 int	ms_cmds_init(t_ms *ms)
 {
 	int	i;
@@ -85,6 +96,7 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].path = 0;
 		ms->cmd[i].ms = ms;
 	}
+	//ms_disp_pipes(ms);
 	return (0);
 }
 
