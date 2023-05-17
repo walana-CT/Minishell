@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:45:46 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 16:58:47 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,60 @@ void	ms_printcmd(t_cmd cmd)
 		cmd.ms->pipe[cmd.nb][1]);
 }
 
-void	ms_exec(t_ms *ms)
+void	ms_close_pipes_but(t_ms *ms, int i)
+{
+	int	j;
+
+	j = -1;
+	while (++j < ms->nbcmd)
+	{
+		if (j != i)
+			close(ms->pipe[j][0]);
+		if (j != i + 1)
+			close(ms->pipe[j][1]);
+	}
+}
+
+void	ms_child(t_ms *ms, int i)
+{
+	char	*pathcmd;
+
+	ms_close_pipes_but(ms, i);
+	dup2(ms->cmd[i].fdin, 0);
+	if (ms->cmd[i].fdin == -1)
+		dup2(ms->pipe[i][0], 0);
+	dup2(ms->cmd[i].fdout, 1);
+	if (ms->cmd[i].fdout == -1 && i + 1 >= ms->nbcmd)
+		dup2(1, 1);
+	if (ms->cmd[i].fdout == -1 && i + 1 < ms->nbcmd)
+		dup2(ms->pipe[i + 1][1], 1);
+	if (ms_isbuiltin(ms->cmd[i].cmd_name))
+		ms_do_builtin(&ms->cmd[i]);
+	else
+	{
+		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name);
+		execve(pathcmd, ms->cmd[i].args, ms->envp);
+		free(pathcmd);
+		ms_bad_child_ending(ms->cmd[i].cmd_name);
+	}
+}
+
+int	ms_exec(t_ms *ms)
 {
 	int	i;
 
+	ms->pid = malloc(ms->nbcmd * sizeof(int));
+	if (!ms->pid)
+		return (1);
+	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
+		return (ms_do_builtin(&ms->cmd[0]));
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		if (ms_isbuiltin(ms->cmd[i].cmd_name))
-			ms_do_builtin(&ms->cmd[i]);
-		else
-			ms_printcmd(ms->cmd[i]);
+		ms->pid[i] = fork();
+		if (!ms->pid[i])
+			ms_child(ms, i);
+		wait(0);
 	}
+	return (0);
 }

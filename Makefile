@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/16 14:26:34 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/16 17:03:59 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET	:= \033[0m
 NAME := minishell
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 INCLUDES = -I Includes -I /Users/$$USER/.brew/opt/readline/include
 LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib -lft -L ./libft
 SANITIZE := -fsanitize=address

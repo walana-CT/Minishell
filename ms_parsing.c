@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:53:12 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 12:12:55 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ms_cmds_init(t_ms *ms)
 	ms->nbcmd = ms_pipesplit(ms);
 	if (ms->nbcmd == -1)
 		return (1);
-	ms->pipe = malloc((1 + ms->nbcmd) * sizeof(int *));
+	ms->pipe = malloc(ms->nbcmd * sizeof(int *));
 	while (++i < ms->nbcmd)
 	{
 		ms->pipe[i] = malloc(2 * sizeof(int));
@@ -77,15 +77,14 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].nb = i;
 		ms->cmd[i].args = 0;
 		ms->cmd[i].cmd_name = 0;
-		ms->cmd[i].fdin = 0;
+		ms->cmd[i].fdin = -1;
 		ms->cmd[i].filein = 0;
 		ms->cmd[i].fileout = 0;
-		ms->cmd[i].fdout = 1;
+		ms->cmd[i].fdout = -1;
 		ms->cmd[i].limiter = 0;
 		ms->cmd[i].path = 0;
 		ms->cmd[i].ms = ms;
 	}
-	ms->pipe[i] = 0;
 	return (0);
 }
 

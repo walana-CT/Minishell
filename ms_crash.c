@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 15:38:29 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/15 18:02:48 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ int	ms_error_msg_nofile(char *file, int err)
 	write(2, file, ft_sstrlen(file));
 	write(2, NO_F"\n", 28);
 	return (err);
+}
+
+int	ms_bad_child_ending(char *str)
+{
+	char	*error;
+
+	error = ft_strmanyjoin("msh: ", str, ": command not found\n", 0);
+	write(2, error, ft_strlen(error));
+	free(error);
+	return (127);
 }
