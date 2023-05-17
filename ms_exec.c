@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/16 16:58:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/17 11:19:48 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ int	ms_do_builtin(t_cmd	*cmd)
 	if (ft_strequal(cmd->cmd_name, "unset"))
 		return (ms_unset(cmd));
 	return (0);
+}
+
+void	ms_fixfds(t_cmd	*cmd)
+{
+	int	out;
+
+	out = cmd->nb + 1;
+	if (out == cmd->ms->nbcmd)
+		out = 1;
+	if (!cmd->filein)
+		cmd->fdin = cmd->ms->pipe[cmd->nb][0];
+	if (!cmd->fileout)
+		cmd->fdout = out;
 }
 
 void	ms_printcmd(t_cmd cmd)
@@ -61,19 +74,14 @@ void	ms_child(t_ms *ms, int i)
 	char	*pathcmd;
 
 	ms_close_pipes_but(ms, i);
+	ms_fixfds(&ms->cmd[0]);
 	dup2(ms->cmd[i].fdin, 0);
-	if (ms->cmd[i].fdin == -1)
-		dup2(ms->pipe[i][0], 0);
 	dup2(ms->cmd[i].fdout, 1);
-	if (ms->cmd[i].fdout == -1 && i + 1 >= ms->nbcmd)
-		dup2(1, 1);
-	if (ms->cmd[i].fdout == -1 && i + 1 < ms->nbcmd)
-		dup2(ms->pipe[i + 1][1], 1);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		ms_do_builtin(&ms->cmd[i]);
 	else
 	{
-		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name);
+		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
 		execve(pathcmd, ms->cmd[i].args, ms->envp);
 		free(pathcmd);
 		ms_bad_child_ending(ms->cmd[i].cmd_name);
@@ -88,7 +96,10 @@ int	ms_exec(t_ms *ms)
 	if (!ms->pid)
 		return (1);
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
+	{
+		ms_fixfds(&ms->cmd[0]);
 		return (ms_do_builtin(&ms->cmd[0]));
+	}
 	i = -1;
 	while (++i < ms->nbcmd)
 	{

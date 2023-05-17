@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:17:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/16 17:41:38 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ms_pipes_close_free_null(t_ms *ms)
 	int	i;
 
 	i = -1;
-	while (ms->pipe[++i])
+	while (++i < ms->nbcmd)
 	{
 		close(ms->pipe[i][0]);
 		close(ms->pipe[i][1]);
