@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/16 14:26:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:56:04 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		if (!stat_interactive(-1))
-			rl_on_new_line();
+		if (stat_interactive(-1))
+		{
+			//printf("ctrl + c called in non interactive mode\n");
+			//write(1, "\n", 1);
+			//rl_on_new_line();			
+		}
 	}
 }
 
