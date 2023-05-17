@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/16 17:04:30 by mdjemaa          ###   ########.fr       */
+=======
+/*   Updated: 2023/05/17 10:00:45 by rficht           ###   ########.fr       */
+>>>>>>> 78ca8a43daf7b34b6539960b2eb5ba373ef815ea
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +40,10 @@ void	minishell(t_ms *ms)
 
 	while (1)
 	{
+<<<<<<< HEAD
+=======
+		//ms_print_fdstatus(*ms);
+>>>>>>> 78ca8a43daf7b34b6539960b2eb5ba373ef815ea
 		stat_interactive(1);
 		tmp = readline(CYAN"msh > "RESET);
 		stat_interactive(0);
