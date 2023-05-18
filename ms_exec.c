@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 11:19:48 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:32:26 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,34 @@ int	ms_do_builtin(t_cmd	*cmd)
 
 void	ms_fixfds(t_cmd	*cmd)
 {
-	int	out;
+	int	i;
 
-	out = cmd->nb + 1;
-	if (out == cmd->ms->nbcmd)
-		out = 1;
+	i = cmd->nb;
 	if (!cmd->filein)
-		cmd->fdin = cmd->ms->pipe[cmd->nb][0];
+	{
+		if (i == 0)
+			cmd->fdin = 0;
+		else
+			cmd->fdin = cmd->ms->pipe[i - 1][0];
+	}
 	if (!cmd->fileout)
-		cmd->fdout = out;
+	{
+		if (i == cmd->ms->nbcmd - 1)
+			cmd->fdout = 1;
+		else
+			cmd->fdout = cmd->ms->pipe[i][1];
+	}
 }
 
 void	ms_printcmd(t_cmd cmd)
 {
 	printf(YELLOW"commande %d\n"RESET, cmd.nb);
-	ft_printstrtab(cmd.args, "ARGS");
-	printf("PATH : %s\n", cmd.path);
+	// ft_printstrtab(cmd.args, "ARGS");
+	// printf("PATH : %s\n", cmd.path);
+	printf("CmdName : %s\n", cmd.cmd_name);
 	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
-	printf("Pipein %d \t Pipeout %d\n", cmd.ms->pipe[cmd.nb][0], \
-		cmd.ms->pipe[cmd.nb][1]);
+	printf("_____________________________________________\n");
 }
 
 void	ms_close_pipes_but(t_ms *ms, int i)
@@ -74,13 +82,15 @@ void	ms_child(t_ms *ms, int i)
 	char	*pathcmd;
 
 	ms_close_pipes_but(ms, i);
-	ms_fixfds(&ms->cmd[0]);
+	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
+	//printf("process reads on %d and writes on %d\n", ms->cmd[i].fdin, ms->cmd[i].fdout);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
-		ms_do_builtin(&ms->cmd[i]);
+		exit(ms_do_builtin(&ms->cmd[i]));
 	else
 	{
+		//ms_printcmd(ms->cmd[i]);
 		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
 		execve(pathcmd, ms->cmd[i].args, ms->envp);
 		free(pathcmd);
