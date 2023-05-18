@@ -78,6 +78,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
+int		ft_strresize(char **str_ptr, int val);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_strtrunc(char **str, int start, int len);
 int		ft_strinsert(char **str1, char *str2, int pos);

@@ -6,11 +6,33 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/17 15:43:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/18 11:38:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	incr_shell_lvl(t_ms *ms)
+{
+	char	*shlvl_envl;
+	int		n;
+
+	shlvl_envl = ms_getenv("SHLVL", ms);
+	n = 0;
+	while (shlvl_envl[n])
+		n++;
+	if (shlvl_envl[n - 1] == '9')
+	{
+		if (ft_strresize(&shlvl_envl, 1))
+			return (1);
+		while (shlvl_envl[--n] == '9')
+			shlvl_envl[n] == '0';
+	}
+	else
+		n++;
+	shlvl_envl[n] += 1;
+	return (0);
+}
 
 char	*env_linetovar(char *envl)
 {
