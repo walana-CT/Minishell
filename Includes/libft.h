@@ -61,7 +61,7 @@ void	ft_freetab(char **s);
 char	**ft_quotesplit(char *str, char sep);
 size_t	ft_sstrlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-int		ft_strdelchar(char *str, int i);
+int		ft_strdelchar(char **str_ptr, int i);
 int		ft_strdelfrom(char *str, int i);
 int		ft_strdelnfrom(char *str, int i, int nb_del);
 char	*ft_strdup(const char *s1);

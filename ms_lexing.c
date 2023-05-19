@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 14:20:04 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/19 14:30:52 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	while (cmd->args[++i])
 	{
 		if (!dollar_replace(&cmd->args[i], cmd->ms))
-			ms_trimquotes(cmd->args[i]);
+			ms_trimquotes(&cmd->args[i]);
 		else
 			err = 1;
 	}

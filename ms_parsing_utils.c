@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/11 11:20:00 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/19 14:28:57 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,44 @@ int	*ms_where_are(char c, char *str)
 
 // renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre
 // simples quotes ou entre doubles quotes
-int	ms_quote_status(char *str, int j)
+/*int	ms_quote_status(char *str, int j)
 {
 	int	i;
 	int	q;
 
 	q = 0;
 	i = -1;
-	while (++i <= j)
+	while (++i < j)
 	{
 		if (q == 0)
 			q = ms_isquote(str[i]);
 		else if (q == ms_isquote(str[i]))
 		{
-			if (i == j)
-				return (q);
+			if (q == i)
+				return (ms_quote_status(str, i));
 			q = 0;
 		}
 	}
 	return (q);
+}*/
+
+int	ms_quote_status(char *str, int pos)
+{
+	int	n;
+	int	status;
+
+	n = -1;
+	status = 0;
+	while (++n < pos)
+	{
+		if (!status)
+			status = ms_isquote(str[n]);
+		else if (status == ms_isquote(str[n]))
+			status = 0;
+	}
+	if (status == ms_isquote(str[n]))
+		status = 0;
+	return (status);
 }
 
 // retire les quotes et les caracteres entre quotes de str

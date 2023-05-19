@@ -6,13 +6,13 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/18 11:38:28 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/18 14:56:01 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	incr_shell_lvl(t_ms *ms)
+static int	incr_shell_lvl(t_ms *ms)
 {
 	char	*shlvl_envl;
 	int		n;
@@ -26,10 +26,10 @@ int	incr_shell_lvl(t_ms *ms)
 		if (ft_strresize(&shlvl_envl, 1))
 			return (1);
 		while (shlvl_envl[--n] == '9')
-			shlvl_envl[n] == '0';
+			shlvl_envl[n] = '0';
 	}
 	else
-		n++;
+		n--;
 	shlvl_envl[n] += 1;
 	return (0);
 }
@@ -49,7 +49,7 @@ int	envcmp(char *str, char *envl)
 	int	n;
 
 	n = 0;
-	printf("comparing %s with %s\n", str, envl);
+	//printf("comparing %s with %s\n", str, envl);
 	while (!ms_is_dol_sep(str[n]))
 	{
 		if (envl[n] == '=')
@@ -71,7 +71,7 @@ char	*ms_getenv(char *str, t_ms *ms)
 
 	i = -1;
 	envp = ms->envp;
-	printf("searshing for %s inside env\n", str);
+	//printf("searshing for %s inside env\n", str);
 	while (envp[++i])
 	{
 		if (envcmp(str, envp[i]))
@@ -97,4 +97,5 @@ void	copy_env(char *envp[], t_ms *ms)
 		n++;
 	}
 	ms->envp = envp_copy;
+	incr_shell_lvl(ms);
 }

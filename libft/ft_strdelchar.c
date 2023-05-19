@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdelchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:50:10 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/10 12:28:25 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:18:57 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/libft.h"
 
 // supprime le charactere str[i] dans str
-int	ft_strdelchar(char *str, int i)
+int	ft_strdelchar(char **str_ptr, int i)
 {
+	char	*str;
+	char	*dup;
+
+	//printf("delchar called\n");
+	str = *str_ptr;
 	if (!str || !str[0])
 		return (1);
 	if ((size_t) i >= ft_sstrlen(str) || i < 0)
@@ -24,6 +29,9 @@ int	ft_strdelchar(char *str, int i)
 		str[i] = str[i + 1];
 		i++;
 	}
+	dup = ft_strdup(str);
+	free(*str_ptr);
+	*str_ptr = dup;
 	return (0);
 }
 
@@ -47,7 +55,7 @@ int	ft_strdelnfrom(char *str, int i, int nb_del)
 		return (0);
 	while (nb_del)
 	{
-		ft_strdelchar(str, i);
+		ft_strdelchar(&str, i);
 		nb_del--;
 	}
 	return (0);

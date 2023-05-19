@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:53:23 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:38:54 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ms_get_limiter(t_cmd *cmd, int i)
 		i++;
 	cmd->limiter = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(cmd->line, delstart, i - delstart);
-	ms_trimquotes(cmd->limiter);
+	ms_trimquotes(&cmd->limiter);
 	return (1);
 }
 

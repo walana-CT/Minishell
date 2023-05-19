@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/15 15:55:57 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:43:05 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ms_getinfile(t_cmd *cmd, int i)
 	ft_strdelnfrom(cmd->line, delstart, i - delstart);
 	if (dollar_replace(&cmd->filein, cmd->ms))
 		return (0);
-	ms_trimquotes(cmd->filein);
+	ms_trimquotes(&cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
 	return (1);
 }
@@ -87,7 +87,7 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	cmd->fileout = ft_substr(cmd->line, start, i - start);
 	if (dollar_replace(&cmd->fileout, cmd->ms))
 		return (0);
-	ms_trimquotes(cmd->fileout);
+	ms_trimquotes(&cmd->fileout);
 	if (append)
 		cmd->fdout = ms_getappendfd(*cmd);
 	else

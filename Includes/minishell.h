@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 15:42:22 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:29:49 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*ms_noquotes(char *str); // retire les quotes et les caracteres entre quote
 int		ms_str2pipes(char *str); // true si str contient "||"
 int		ms_badchev(char *str); // true si str contient "<<<" ou ">>>"
 int		ms_pipesplit(t_ms *ms); // split ms.line avec '|" dans cmd[i].line
-void	ms_trimquotes(char *str);
+int		ms_trimquotes(char **str);
 
 //parsing 2 (cmd)
 int		ms_get_fds(t_ms *ms);
