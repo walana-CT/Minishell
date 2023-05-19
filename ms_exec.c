@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 17:32:26 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:34:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ms_child(t_ms *ms, int i)
 {
 	char	*pathcmd;
 
+	rl_catch_signals = 1;
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 14:36:33 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:29:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ms_str2pipes(char *str)
 	i = 0;
 	while (str[i] && str [i + 1])
 	{
-		if (!ms_quote_status(str, i) && \
-			str[i] == '|' && str[i + 1] == '|')
+		if (!ms_quote_status(str, i)
+			&& str[i] == '|' && str[i + 1] == '|')
 			return (TRUE);
 		i++;
 	}

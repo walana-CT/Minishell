@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 16:43:29 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/19 16:41:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ms_exit(t_ms *ms)
 {
 	if (!ms || ms->nbcmd > 1)
 		return (1);
+	//printf("agagaagagagaggaggagagk\n"); 
 	printf("exit\n");
 	ms_free(ms);
 	exit(EXIT_SUCCESS);
