@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 14:29:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/22 16:01:31 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	line_init(char	*str, t_ms *p);
 //err and memory
 void	ms_crash(t_ms *ms);
 void	ms_free(t_ms	*ms);
-void	ms_usual_free(t_ms *ms, char **str, char **tmp);
+void	ms_usual_free(t_ms *ms);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
 int		ms_bad_child_ending(char *str);

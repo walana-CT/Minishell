@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 18:02:48 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:49:49 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ int	ms_bad_child_ending(char *str)
 	error = ft_strmanyjoin("msh: ", str, ": command not found\n", 0);
 	write(2, error, ft_strlen(error));
 	free(error);
-	return (127);
+	exit(127);
 }

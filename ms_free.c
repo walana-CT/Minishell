@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/16 17:41:38 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:01:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	ms_pipes_close_free_null(t_ms *ms)
 	int	i;
 
 	i = -1;
-	while (++i < ms->nbcmd)
+	while (++i < ms->nbcmd - 1)
 	{
 		close(ms->pipe[i][0]);
 		close(ms->pipe[i][1]);
 		free(ms->pipe[i]);
 		ms->pipe[i] = 0;
 	}
-	free(ms->pipe);
+	if (ms->pipe)
+		free(ms->pipe);
 	ms->pipe = 0;
 }
 
@@ -35,6 +36,7 @@ void	ms_free_cmd(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
+		waitpid(ms->pid[i], &ms->err, 0);
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
 		if (ms->cmd[i].fdout != 1)
@@ -50,10 +52,9 @@ void	ms_free_cmd(t_ms *ms)
 	}
 }
 
-void	ms_usual_free(t_ms *ms, char **str, char **tmp)
+void	ms_usual_free(t_ms *ms)
 {
-	ft_freestr(str);
-	ft_freestr(tmp);
+
 	if (ms->pipe)
 		ms_pipes_close_free_null(ms);
 	if (ms->nbcmd)

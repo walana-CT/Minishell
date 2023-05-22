@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 15:34:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/22 16:03:07 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ms_fixfds(t_cmd	*cmd)
 void	ms_printcmd(t_cmd cmd)
 {
 	printf(YELLOW"commande %d\n"RESET, cmd.nb);
-	// ft_printstrtab(cmd.args, "ARGS");
-	// printf("PATH : %s\n", cmd.path);
+	ft_printstrtab(cmd.args, "ARGS");
+	printf("PATH : %s\n", cmd.path);
 	printf("CmdName : %s\n", cmd.cmd_name);
 	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
@@ -68,11 +68,12 @@ void	ms_close_pipes_but(t_ms *ms, int i)
 	int	j;
 
 	j = -1;
-	while (++j < ms->nbcmd)
+	printf("Cmd %d ", i);
+	while (++j < ms->nbcmd - 1)
 	{
-		if (j != i)
+		if (j != i - 1)
 			close(ms->pipe[j][0]);
-		if (j != i + 1)
+		if (j != i)
 			close(ms->pipe[j][1]);
 	}
 }
@@ -84,14 +85,14 @@ void	ms_child(t_ms *ms, int i)
 	rl_catch_signals = 1;
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
+	// printf("process reads on %d and writes on %d\n", ms->cmd[i].fdin, ms->cmd[i].fdout);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
-	//printf("process reads on %d and writes on %d\n", ms->cmd[i].fdin, ms->cmd[i].fdout);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
 	{
-		//ms_printcmd(ms->cmd[i]);
+		// ms_printcmd(ms->cmd[i]);
 		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
 		execve(pathcmd, ms->cmd[i].args, ms->envp);
 		free(pathcmd);
@@ -107,17 +108,13 @@ int	ms_exec(t_ms *ms)
 	if (!ms->pid)
 		return (1);
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
-	{
-		ms_fixfds(&ms->cmd[0]);
 		return (ms_do_builtin(&ms->cmd[0]));
-	}
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
 		ms->pid[i] = fork();
 		if (!ms->pid[i])
 			ms_child(ms, i);
-		wait(0);
 	}
 	return (0);
 }

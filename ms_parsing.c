@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/17 17:32:26 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:27:32 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,31 @@ void	ms_disp_pipes(t_ms *ms)
 
 	i = -1;
 	printf("Pipes are :\n");
-	while (++i < ms->nbcmd)
+	while (++i < ms->nbcmd - 1)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
 
+int ms_pipe_init(t_ms *ms)
+{
+	int	i;
+
+	if (ms->nbcmd < 2)
+	{
+		ms->pipe = 0;
+		return (0);	
+	}
+	ms->pipe = malloc((ms->nbcmd - 1) * sizeof(int *));
+	if (!ms->pipe)
+		return (1);
+	i = -1;
+	while (++i < ms->nbcmd - 1)
+	{
+		ms->pipe[i] = malloc(2 * sizeof(int));
+		if (!ms->pipe[i] || pipe(ms->pipe[i]) == -1)
+			return (1);
+	}
+	return (0);
+}
 
 int	ms_cmds_init(t_ms *ms)
 {
@@ -79,12 +100,8 @@ int	ms_cmds_init(t_ms *ms)
 	ms->nbcmd = ms_pipesplit(ms);
 	if (ms->nbcmd == -1)
 		return (1);
-	ms->pipe = malloc(ms->nbcmd * sizeof(int *));
 	while (++i < ms->nbcmd)
 	{
-		ms->pipe[i] = malloc(2 * sizeof(int));
-		if (!ms->pipe[i] || pipe(ms->pipe[i]) == -1)
-			return (1);
 		ms->cmd[i].nb = i;
 		ms->cmd[i].args = 0;
 		ms->cmd[i].cmd_name = 0;
@@ -96,7 +113,8 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].path = 0;
 		ms->cmd[i].ms = ms;
 	}
-	//ms_disp_pipes(ms);
+	ms_pipe_init(ms);
+	// ms_disp_pipes(ms);
 	return (0);
 }
 
