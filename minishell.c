@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 16:39:26 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/22 10:10:30 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	minishell(t_ms *ms)
 		}
 		ms_usual_free(ms, &str, &tmp);
 	}
-	printf("\x1b[1F\033[36;1mmsh > \033[0mexit\n"); // oui
 	ms_exit(ms);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:50:10 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 15:18:57 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/22 10:19:15 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int	ft_strdelfrom(char *str, int i)
 }
 
 // supprime nb_del caracteres dans str a partir de str[i]
-int	ft_strdelnfrom(char *str, int i, int nb_del)
+int	ft_strdelnfrom(char **str, int i, int nb_del)
 {
-	if (!str || !str[0])
+	if (!(*str) || !(*str)[0])
 		return (1);
-	if ((size_t) i >= ft_sstrlen(str) || i < 0 || nb_del < 0)
+	if ((size_t) i >= ft_sstrlen(*str) || i < 0 || nb_del < 0)
 		return (0);
 	while (nb_del)
 	{
-		ft_strdelchar(&str, i);
+		ft_strdelchar(str, i);
 		nb_del--;
 	}
 	return (0);

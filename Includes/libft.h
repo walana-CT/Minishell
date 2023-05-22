@@ -63,7 +63,7 @@ size_t	ft_sstrlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 int		ft_strdelchar(char **str_ptr, int i);
 int		ft_strdelfrom(char *str, int i);
-int		ft_strdelnfrom(char *str, int i, int nb_del);
+int		ft_strdelnfrom(char **str, int i, int nb_del);
 char	*ft_strdup(const char *s1);
 int		ft_strequal(char *str1, char *str2);
 int		ft_strisdigit(const char *str);
