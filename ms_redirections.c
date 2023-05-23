@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:42:04 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 19:46:12 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ms_getinfile(t_cmd *cmd, int i)
 }
 
 /**
- * Represent the main loop of Minishell exec.
+ * Verify the infile is valid and interpret it into a Filedescriptor.
  * @param cmd a cmd struct.
- * @return return
+ * @return return 0 or 1 whether the format of filein is valid or not.
  */
 int	ms_get_fdin(t_cmd *cmd)
 {
