@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 11:21:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 16:01:36 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	ms_getinfile(t_cmd *cmd, int i)
 	return (0);
 }
 
+/**
+ * Represent the main loop of Minishell exec.
+ * @param cmd a cmd struct.
+ * @return return
+ */
 int	ms_get_fdin(t_cmd *cmd)
 {
 	int	i;

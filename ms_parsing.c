@@ -6,12 +6,17 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 11:05:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 15:42:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
+/**
+ * return TRUE or FALSE depending on whether inapropriate char sequences 
+ * are found or not.
+ * @param str line of commande after spaces have been trimed.
+ */
 int	ms_wrongchars(char	*str)
 {
 	int	i;
@@ -29,6 +34,10 @@ int	ms_wrongchars(char	*str)
 	return (FALSE);
 }
 
+/**
+ * return TRUE or FALSE depending on whether quotes are closed or not.
+ * @param str line of commande after spaces have been trimed.
+ */
 int	ms_openquotes(char *str)
 {
 	int		open;
@@ -36,16 +45,16 @@ int	ms_openquotes(char *str)
 	char	quote;
 
 	i = -1;
-	open = 0;
+	open = FALSE;
 	while (str[++i])
 	{
 		if (!open && ms_isquote(str[i]))
 		{
 			quote = str[i];
-			open = 1;
+			open = TRUE;
 		}
 		else if (str[i] == quote)
-			open = 0;
+			open = FALSE;
 	}
 	return (open);
 }
@@ -66,6 +75,10 @@ int	ms_syntax_ok(char *str)
 	return (TRUE);
 }
 
+/**
+ * debug function that print pipes with their respectives in and out.
+ * @param ms address of minishell.
+ */
 void	ms_disp_pipes(t_ms *ms)
 {
 	int	i;
@@ -76,6 +89,11 @@ void	ms_disp_pipes(t_ms *ms)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
 
+/**
+ * Allocates memory for pipes and init them with pipe().
+ * @param ms address of minishell.
+ * @return always return 0 (unexpected working calls ms_crash).
+ */
 int	ms_pipe_init(t_ms *ms)
 {
 	int	i;
@@ -85,15 +103,15 @@ int	ms_pipe_init(t_ms *ms)
 		ms->pipe = 0;
 		return (0);
 	}
-	ms->pipe = malloc((ms->nbcmd - 1) * sizeof(int *));
+	ms->pipe = ft_calloc((ms->nbcmd - 1), sizeof(int *));
 	if (!ms->pipe)
-		return (1);
+		ms_crash(ms);
 	i = -1;
 	while (++i < ms->nbcmd - 1)
 	{
 		ms->pipe[i] = malloc(2 * sizeof(int));
 		if (!ms->pipe[i] || pipe(ms->pipe[i]) == -1)
-			return (1);
+			ms_crash(ms);
 	}
 	return (0);
 }
@@ -136,7 +154,7 @@ int	ms_cmds_init(t_ms *ms)
  * @param ms address of minishell.
  * @return return TRUE or FALSE depending on whether the line is valid or not.
  */
-int	ms_parse(char *str, t_ms *ms)
+int	ms_get_cmds(char *str, t_ms *ms)
 {
 	ms->line = str;
 	if (!ms_syntax_ok(ms->line))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 16:01:31 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:59:20 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ void	line_init(char	*str, t_ms *p);
 //err and memory
 void	ms_crash(t_ms *ms);
 void	ms_free(t_ms	*ms);
-void	ms_usual_free(t_ms *ms);
+void	ms_loop_free(t_ms *ms);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
 int		ms_bad_child_ending(char *str);
 
 //parsing 1 (line)
-int		ms_parse(char *str, t_ms *p);
+int		ms_get_cmds(char *str, t_ms *p);
 char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c); // renvoie 1 si c == ', 2  si ", ou 0 sinon
 int		*ms_where_are(char c, char *str); // renvoie un tableau de int contenant les index de toutes les occurences de c dans str et se terminant par -1

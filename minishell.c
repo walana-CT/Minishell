@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 11:25:28 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 16:07:00 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ void	ms_printcmds(t_ms ms)
 		printf("Fileout : %s \t fdout %d\n", ms.cmd[i].fileout, ms.cmd[i].fdout);
 		printf("Pipein %d \t Pipeout %d\n", ms.pipe[i][0], ms.pipe[i][1]);
 	}
+}
+
+int	ms_launch_cmds(t_ms *ms)
+{
+	if (ms_get_fds(ms))
+		return (1);
+	ms_lex(ms);
+	ms_exec(ms);
+	ms_loop_free(ms);
+	return (0);
 }
 
 /**
@@ -51,14 +61,12 @@ void	minishell(t_ms *ms)
 		add_history(str);
 		if (str && !ft_strequal(str, ""))
 		{
-			if (ms_parse(str, ms))
+			if (ms_get_cmds(str, ms))
 			{
-				ms_get_fds(ms);
-				ms_lex(ms);
-				ms_exec(ms);
-				ms_usual_free(ms);
+				ms_launch_cmds(ms);
 			}
 		}
+
 		ft_freestr(&str);
 		ft_freestr(&tmp);
 	}
