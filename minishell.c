@@ -6,28 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:07:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 16:32:53 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
-
-void	ms_printcmds(t_ms ms)
-{
-	int	i;
-
-	i = -1;
-	printf("Nb commandes %d\n", ms.nbcmd);
-	while (++i < ms.nbcmd)
-	{
-		printf(YELLOW"commande %d\n"RESET, ms.cmd[i].nb);
-		ft_printstrtab(ms.cmd[i].args, "ARGS");
-		printf("PATH : %s\n", ms.cmd[i].path);
-		printf("Filein : %s \t fdin %d\n", ms.cmd[i].filein, ms.cmd[i].fdin);
-		printf("Fileout : %s \t fdout %d\n", ms.cmd[i].fileout, ms.cmd[i].fdout);
-		printf("Pipein %d \t Pipeout %d\n", ms.pipe[i][0], ms.pipe[i][1]);
-	}
-}
 
 int	ms_launch_cmds(t_ms *ms)
 {
@@ -80,7 +63,7 @@ void	minishell(t_ms *ms)
 int	ms_init(t_ms *ms)
 {
 	rl_catch_signals = 0;
-	ms->pipe = 0;
+	ms->pipe = 0; 
 	ms->err = 0;
 	ms->nbcmd = 0;
 	ms->envp = NULL;

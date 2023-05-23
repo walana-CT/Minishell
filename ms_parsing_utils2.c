@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 15:20:02 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 16:42:18 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,14 @@ int	ms_trimquotes(char **str)
 {
 	int	i;
 
-	/*printf("trimquotes called on %s\n", str);
-	i = 0;
-	while (str[i])
-	{
-		printf("%c : %d\n", str[i], ms_quote_status(str, i));
-		i++;
-	}*/
 	i = strlen(*str);
 	while (i-- > 0)
 	{
-		//printf("testing char %c : status %d\n", str[i], ms_quote_status(*str, i));
 		if (((*str)[i] == '\'' || (*str)[i] == '\"')
 			&& !ms_quote_status(*str, i))
 		{
 			if (ft_strdelchar(str, i))
 				return (1);
-			//printf("str after delchar %s : \n", str);
 		}
 	}
 	return (0);

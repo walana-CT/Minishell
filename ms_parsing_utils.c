@@ -6,12 +6,19 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 14:28:57 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 16:31:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
+
+
+/**
+ * allow to know if a char is a quote.
+ * @param char
+ * @return 0 if no quotes 1 if ' and 2 if "
+ */
 int	ms_isquote(char c)
 {
 	if (c == '\'')
@@ -21,7 +28,11 @@ int	ms_isquote(char c)
 	return (FALSE);
 }
 
-// retourne la position de la premiere occurence hors quotes de c dans str
+/**
+ * @param c The char we try to locate.
+ * @param str The str in wich we are searching.
+ * @return the index of the first occurence of c inside str.
+ */
 int	ms_where_is(char c, char *str)
 {
 	int	i;
@@ -33,8 +44,12 @@ int	ms_where_is(char c, char *str)
 	return (-1);
 }
 
-// renvoie un tableau de int contenant sa size dans [0] puis
-// les index de toutes les occurences de c dans str
+/**
+ * @param c The char we try to locate.
+ * @param str The str in wich we are searching.
+ * @return the index of every occurence of c inside str (result[0] contains the
+ * number of occurences).
+ */
 int	*ms_where_are(char c, char *str)
 {
 	int	i;
@@ -82,6 +97,13 @@ int	*ms_where_are(char c, char *str)
 	return (q);
 }*/
 
+
+/**
+ * Allow to know if a char is affected by quotes.
+ * @param str a str that contains valids quotes.
+ * @param pos the index of the char.
+ * @return 0 if no quotes 1 if ' and 2 if "
+ */
 int	ms_quote_status(char *str, int pos)
 {
 	int	n;
