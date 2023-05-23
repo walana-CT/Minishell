@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/18 14:56:01 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 09:50:09 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	copy_env(char *envp[], t_ms *ms)
 		n++;
 	}
 	ms->envp = envp_copy;
-	incr_shell_lvl(ms);
+	if (incr_shell_lvl(ms))
+		ms_crash(ms);
 }

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 10:20:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 11:20:51 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	ms_get_limiter(t_cmd *cmd, int i)
 		i++;
 	start = i;
 	if (ft_is_in(cmd->line[i], FORBID_HEREDOC) >= 0)
-		return (0);
+		return (1);
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_HEREDOC) == -1)
 		i++;
 	cmd->limiter = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
 	ms_trimquotes(&cmd->limiter);
-	return (1);
+	return (0);
 }
 
 int	ms_getappendfd(t_cmd cmd)
@@ -42,6 +42,12 @@ int	ms_getappendfd(t_cmd cmd)
 	return (fd);
 }
 
+
+/**
+ * Interprete the filename given as input and output as Filedescriptors.
+ * @param ms address of minishell.
+ * @return return 0 or 1 or whether if the filenames are valids or not. 
+ */
 int	ms_get_fds(t_ms *ms)
 {
 	int	i;
@@ -49,10 +55,10 @@ int	ms_get_fds(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		if (!ms_get_fdin(&(ms->cmd[i])) || !ms_get_fdout(&(ms->cmd[i])))
-			return (FALSE);
+		if (ms_get_fdin(&(ms->cmd[i])) || ms_get_fdout(&(ms->cmd[i])))
+			return (1);
 	}
-	return (TRUE);
+	return (0);
 }
 
 void	ms_heredoc(t_cmd cmd)

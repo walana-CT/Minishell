@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 15:29:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 11:07:53 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	ms_badchev(char *str)
 	return (FALSE);
 }
 
+/**
+ * Separates the str line into an str array.
+ * @param ms address of minishell.
+ * @return size of cmd array.
+ */
 int	ms_pipesplit(t_ms *ms)
 {
 	char	**tmp;
@@ -54,14 +59,21 @@ int	ms_pipesplit(t_ms *ms)
 
 	tmp = ms_quotesplit(ms->line, '|');
 	if (!tmp)
-		return (-1);
+		ms_crash(ms);
 	i = -1;
 	size = ms_sizeof_tab(tmp);
 	ms->cmd = malloc((size) * sizeof(t_cmd));
 	if (!ms->cmd)
-		return (-1);
+		ms_crash(ms);
 	while (++i < size)
+	{
 		ms->cmd[i].line = ft_strtrim(tmp[i], SPACES);
+		if (!ms->cmd[i].line)
+		{
+			ft_freetab(tmp);
+			ms_crash(ms);
+		}	
+	}
 	ft_freetab(tmp);
 	return (size);
 }

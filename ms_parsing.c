@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 15:27:32 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:05:25 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,17 @@ int	ms_openquotes(char *str)
 	return (open);
 }
 
-// 0 si caracteres interdits, quotes ouverts, autres pbs de syntaxe
+/**
+ * return TRUE or FALSE depending on whether the line is valid or not.
+ * @param str line of commande after spaces have been trimed.
+ */
 int	ms_syntax_ok(char *str)
 {
 	if (ms_openquotes(str))
-		return (ms_error_msg("Syntax error : quotes not closed", FALSE));
+	{
+		return (ms_error_msg("unexpected EOF while looking\
+			for matching `\"\' ", FALSE));
+	}
 	if (ms_wrongchars(str))
 		return (FALSE);
 	return (TRUE);
@@ -70,14 +76,14 @@ void	ms_disp_pipes(t_ms *ms)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
 
-int ms_pipe_init(t_ms *ms)
+int	ms_pipe_init(t_ms *ms)
 {
 	int	i;
 
 	if (ms->nbcmd < 2)
 	{
 		ms->pipe = 0;
-		return (0);	
+		return (0);
 	}
 	ms->pipe = malloc((ms->nbcmd - 1) * sizeof(int *));
 	if (!ms->pipe)
@@ -92,6 +98,11 @@ int ms_pipe_init(t_ms *ms)
 	return (0);
 }
 
+/**
+ * Separate the str line based on the | symboles.
+ * @param ms address of minishell.
+ * @return return 0 in case of success otherwise return 1.
+ */
 int	ms_cmds_init(t_ms *ms)
 {
 	int	i;
@@ -118,12 +129,21 @@ int	ms_cmds_init(t_ms *ms)
 	return (0);
 }
 
+/**
+ * verify if the line is valid or not turn the line into an array of struct cmd.
+ * set err val. Alloc errors calls exit(). 
+ * @param str line of commande after spaces have been trimed.
+ * @param ms address of minishell.
+ * @return return TRUE or FALSE depending on whether the line is valid or not.
+ */
 int	ms_parse(char *str, t_ms *ms)
 {
 	ms->line = str;
 	if (!ms_syntax_ok(ms->line))
+	{
+		ms->err = 258;
 		return (FALSE);
-	//hashtrim
+	}
 	if (ms_cmds_init(ms))
 		return (FALSE);
 	return (TRUE);

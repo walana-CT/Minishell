@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/22 10:49:49 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 10:27:48 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
+/**
+ * Free any memory in ms before to write err message and close.
+ * This function is called after a system err and need erno to be correctly set.
+ * @param ms address of minishell.
+ */
 void	ms_crash(t_ms *ms)
 {
 	if (ms)
