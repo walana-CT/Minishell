@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 16:03:07 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:02:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ms_close_pipes_but(t_ms *ms, int i)
 	int	j;
 
 	j = -1;
-	printf("Cmd %d ", i);
 	while (++j < ms->nbcmd - 1)
 	{
 		if (j != i - 1)
@@ -85,15 +84,16 @@ void	ms_child(t_ms *ms, int i)
 	rl_catch_signals = 1;
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
-	// printf("process reads on %d and writes on %d\n", ms->cmd[i].fdin, ms->cmd[i].fdout);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
 	{
-		// ms_printcmd(ms->cmd[i]);
-		pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
+		if (ft_strequal(ms->cmd[i].path, ""))
+			pathcmd = ms->cmd[i].cmd_name;
+		else
+			pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
 		execve(pathcmd, ms->cmd[i].args, ms->envp);
 		free(pathcmd);
 		ms_bad_child_ending(ms->cmd[i].cmd_name);

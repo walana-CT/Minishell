@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 16:01:15 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:47:57 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	ms_pipes_close_free_null(t_ms *ms)
 void	ms_free_cmd(t_ms *ms)
 {
 	int	i;
+	int	err;
 
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		waitpid(ms->pid[i], &ms->err, 0);
+		waitpid(ms->pid[i], &err, 0);
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
 		if (ms->cmd[i].fdout != 1)
@@ -45,10 +46,11 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freenull((void **) &ms->cmd[i].filein);
 		if (ms->cmd[i].fileout)
 			ft_freenull((void **)&ms->cmd[i].fileout);
-		// if (ms->cmd[i].args)
-		// 	ft_freetab(ms->cmd[i].args);
+		if (ms->cmd[i].args)
+			ft_freetab(ms->cmd[i].args);
 		if (ms->cmd[i].line)
 			ft_freestr(&(ms->cmd[i].line));
+		ms->err = WEXITSTATUS(err);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 16:03:07 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:47:51 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	minishell(t_ms *ms)
 int	ms_init(t_ms *ms)
 {
 	rl_catch_signals = 0;
-	ms->pipe = 0;
+	ms->pipe = 0; 
 	ms->err = 0;
 	ms->nbcmd = 0;
 	ms->envp = NULL;
@@ -79,7 +79,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	ms_init(&ms);
 	set_sig();
-	copy_env(envp, &ms); // incrementer SHLVL maintenant ?
+	copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");
