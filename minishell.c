@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:07:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 18:13:47 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");
 	minishell(&ms);
+	system("leaks minishell");
 	return (0);
 }

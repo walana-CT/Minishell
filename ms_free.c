@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:12:09 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 18:37:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freenull((void **) &ms->cmd[i].filein);
 		if (ms->cmd[i].fileout)
 			ft_freenull((void **)&ms->cmd[i].fileout);
-		if (ms->cmd[i].args)
+		if (ms->cmd[i].args && !ms_isbuiltin(ms->cmd[i].cmd_name))
 			ft_freetab(ms->cmd[i].args);
 		if (ms->cmd[i].line)
 			ft_freestr(&(ms->cmd[i].line));

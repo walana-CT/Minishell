@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 15:59:20 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 19:26:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_ms
 	int				term_fd;
 	char			*line; //la ligne 'de base' retournee par readline
 	int				err; // code d'erreur qui sera retourné dans le shell (et dans $?) apres l'execution de line. init à 0 
-	int				nbcmd; // nb de forks à faire ; egal au nombre de pipes dans line + 1
+	int				nbcmd; // nb de commandes
 	int				**pipe; // pour pipex
 	pid_t			*pid; // pour pipex
 	t_cmd			*cmd; // struct necessaire à l'éxécution de la commande par execve()
@@ -63,6 +63,7 @@ struct s_cmd
 	char	*limiter;
 	char	*filein;
 	char	*fileout;
+	int		*herepipe;
 	int		fdin; // dup2(fdin, 0) ; initialiser à 0 ?
 	int		fdout; // dup2(fdout, 1) ; initialiser à 1 ?
 	char	*cmd_name; // nom de la commande ( = args[0]) pour execve (pas forcément utile en vrai, on peut utiliser args[0])
@@ -102,7 +103,7 @@ int		ms_get_fdout(t_cmd *cmd);
 int		dollar_replace(char **str, t_ms *ms);
 int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
-void	ms_heredoc(t_cmd cmd);
+int		ms_heredoc(t_cmd *cmd);
 
 //lexing & execution
 int		ms_isbuiltin(char *str);

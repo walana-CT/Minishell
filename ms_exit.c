@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/22 12:19:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:26:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ int	ms_exit(t_ms *ms)
 		return (1);
 	printf("exit\n");
 	ms_free(ms);
+	// system("leaks minishell");
 	exit(EXIT_SUCCESS);
 }

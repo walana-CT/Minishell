@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 15:42:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 19:41:37 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ int	ms_cmds_init(t_ms *ms)
 		ms->cmd[i].fileout = 0;
 		ms->cmd[i].fdout = 1;
 		ms->cmd[i].limiter = 0;
+		ms->cmd[i].herepipe = 0;
 		ms->cmd[i].path = 0;
 		ms->cmd[i].ms = ms;
 	}
