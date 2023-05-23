@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 10:21:21 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 11:21:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	ms_getinfile(t_cmd *cmd, int i)
 	while (cmd->line[i] == ' ')
 		i++;
 	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (0);
+		return (1);
 	start = i;
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i++;
 	cmd->filein = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
 	if (dollar_replace(&cmd->filein, cmd->ms))
-		return (0);
+		return (1);
 	ms_trimquotes(&cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
-	return (1);
+	return (0);
 }
 
 int	ms_get_fdin(t_cmd *cmd)
@@ -47,16 +47,16 @@ int	ms_get_fdin(t_cmd *cmd)
 			free(cmd->filein);
 		if (cmd->line[i + 1] == '<')
 		{
-			if (!ms_get_limiter(cmd, i + 2))
-				return (FALSE);
+			if (ms_get_limiter(cmd, i + 2))
+				return (1);
 			ms_heredoc(*cmd);
 		}
 		else
-			if (!ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
-				return (ms_error_msg_nofile(cmd->filein, FALSE));
+			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
+				return (ms_error_msg_nofile(cmd->filein, 1));
 		i = ms_where_is('<', cmd->line);
 	}
-	return (TRUE);
+	return (0);
 }
 
 void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd)
@@ -80,20 +80,20 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	while (cmd->line[i] == ' ')
 		i++;
 	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (0);
+		return (1);
 	start = i;
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i++;
 	cmd->fileout = ft_substr(cmd->line, start, i - start);
 	if (dollar_replace(&cmd->fileout, cmd->ms))
-		return (0);
+		return (1);
 	ms_trimquotes(&cmd->fileout);
 	if (append)
 		cmd->fdout = ms_getappendfd(*cmd);
 	else
 		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
-	return (1);
+	return (0);
 }
 
 int	ms_get_fdout(t_cmd *cmd)
@@ -107,9 +107,9 @@ int	ms_get_fdout(t_cmd *cmd)
 	{
 		if (cmd->fileout)
 			free(cmd->fileout);
-		if (!ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
-			return (ms_error_msg_nofile(cmd->fileout, FALSE));
+		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
+			return (ms_error_msg_nofile(cmd->fileout, 1));
 		i = ms_where_is('>', cmd->line);
 	}
-	return (TRUE);
+	return (0);
 }

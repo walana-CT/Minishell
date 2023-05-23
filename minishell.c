@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 16:47:51 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:39:10 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ms_printcmds(t_ms ms)
 	}
 }
 
+/**
+ * Represent the main loop of Minishell exec.
+ * @param ms address of minishell.
+ */
 void	minishell(t_ms *ms)
 {
 	char	*str;
@@ -42,6 +46,8 @@ void	minishell(t_ms *ms)
 		if (!tmp)
 			ms_exit(ms);
 		str = ft_strtrim(tmp, SPACES);
+		if (!str)
+			ms_crash(ms);
 		add_history(str);
 		if (str && !ft_strequal(str, ""))
 		{
@@ -59,6 +65,10 @@ void	minishell(t_ms *ms)
 	ms_exit(ms);
 }
 
+/**
+ * Init minishell values to 0.
+ * @param ms address of minishell.
+ */
 int	ms_init(t_ms *ms)
 {
 	rl_catch_signals = 0;
@@ -84,6 +94,5 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");
 	minishell(&ms);
-//	system("leaks minishell"); // #SANITIZE en fin de ligne dans la regle .c=.o 
 	return (0);
 }
