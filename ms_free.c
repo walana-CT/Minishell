@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 18:37:45 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:31:21 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ms_free(t_ms *ms)
 	int	n;
 
 	n = 0;
-	printf("ms free called\n");
+//	printf("ms free called\n");
 	if (ms->envp)
 	{
 		while (ms->envp[n])

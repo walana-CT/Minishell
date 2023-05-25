@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:20 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:27:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ms_getappendfd(t_cmd cmd)
 	return (fd);
 }
 
-
 /**
  * Interprete the filename given as input and output as Filedescriptors.
  * @param ms address of minishell.
@@ -78,15 +77,18 @@ int	ms_heredoc(t_cmd *cmd)
 	cmd->herepipe = malloc(2 * sizeof(int));
 	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
 		return (1);
+	stat_interactive(1);
 	str = get_next_line(0);
 	while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
 	{
-		write(cmd->herepipe[1], str, ft_sstrlen(str));
+		if (!dollar_replace(&str, cmd->ms))
+			write(cmd->herepipe[1], str, ft_sstrlen(str));
 		free(str);
 		str = get_next_line(0);
 	}
 	free(str);
 	close(cmd->herepipe[1]);
+	stat_interactive(0);
 	cmd->fdin = cmd->herepipe[0];
 	return (0);
 }

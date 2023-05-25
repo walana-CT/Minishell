@@ -6,18 +6,20 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/23 18:26:06 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:33:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
+//tputs
 int	ms_exit(t_ms *ms)
 {
-	printf("\033[1F\033[36;1mmsh > \033[0mexit\n"); // oui
+	printf("\033[1F\033[36;1mmsh > \033[0mexit\n");
 	if (!ms || ms->nbcmd > 1)
 		return (1);
-	printf("exit\n");
+	if (ms->cmd)
+		printf("exit\n");
 	ms_free(ms);
 	// system("leaks minishell");
 	exit(EXIT_SUCCESS);
