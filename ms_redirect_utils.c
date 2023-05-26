@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:41:24 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/25 14:27:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ms_getappendfd(t_cmd cmd)
 	return (fd);
 }
 
-
 /**
  * Interprete the filename given as input and output as Filedescriptors.
  * @param ms address of minishell.
@@ -71,17 +70,25 @@ int	ms_get_fds(t_ms *ms)
 	return (0);
 }
 
-void	ms_heredoc(t_cmd cmd)
+int	ms_heredoc(t_cmd *cmd)
 {
 	char	*str;
 
+	cmd->herepipe = malloc(2 * sizeof(int));
+	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
+		return (1);
+	stat_interactive(1);
 	str = get_next_line(0);
-	while (ft_strncmp(str, cmd.limiter, ft_sstrlen(str)) != 10)
+	while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
 	{
-		write(cmd.ms->pipe[cmd.nb][1], str, ft_sstrlen(str));
+		if (!dollar_replace(&str, cmd->ms))
+			write(cmd->herepipe[1], str, ft_sstrlen(str));
 		free(str);
 		str = get_next_line(0);
 	}
 	free(str);
-	close(cmd.ms->pipe[cmd.nb][1]);
+	close(cmd->herepipe[1]);
+	stat_interactive(0);
+	cmd->fdin = cmd->herepipe[0];
+	return (0);
 }

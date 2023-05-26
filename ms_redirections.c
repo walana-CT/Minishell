@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:20:34 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 19:46:12 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,16 @@ int	ms_get_fdin(t_cmd *cmd)
 	i = ms_where_is('<', cmd->line);
 	while (i != -1)
 	{
+		if (cmd->limiter)
+			ft_freestr(&cmd->limiter);
 		if (cmd->filein)
 			free(cmd->filein);
 		if (cmd->line[i + 1] == '<')
 		{
 			if (ms_get_limiter(cmd, i + 2))
 				return (1);
-			ms_heredoc(*cmd);
+			if (ms_heredoc(cmd))
+				return (1);
 		}
 		else
 			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)

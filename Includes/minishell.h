@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:40:02 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:44:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,18 @@ typedef struct s_ms
 
 struct s_cmd
 {
-	char		*line;
-	int			nb;
-	char		*limiter;
-	char		*filein;
-	char		*fileout;
-	int			fdin;
-	int			fdout;
-	char		*cmd_name;
-	char		**args;
-	char		*path;
-	t_ms		*ms;
+	char	*line;
+	int		nb;
+	char	*limiter;
+	char	*filein;
+	char	*fileout;
+	int		*herepipe;
+	int		fdin;
+	int		fdout;
+	char	*cmd_name;
+	char	**args;
+	char	*path;
+	t_ms	*ms;
 };
 
 //init
@@ -107,7 +108,7 @@ int		ms_get_fdout(t_cmd *cmd);
 int		dollar_replace(char **str, t_ms *ms);
 int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
-void	ms_heredoc(t_cmd cmd);
+int		ms_heredoc(t_cmd *cmd);
 
 //lexing & execution
 

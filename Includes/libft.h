@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:56:20 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/22 13:56:33 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:11:23 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		ft_strisdigit(const char *str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strfjoin(char *s1, char *s2);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strlastof(char	*str, char c);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);

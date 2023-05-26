@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/18 11:30:03 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/23 18:26:06 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ SRC =	ft_2lst_utils.c\
 		ft_striteri.c\
 		ft_strfjoin.c\
 		ft_strjoin.c\
+		ft_strlastof.c\
 		ft_strlcat.c\
 		ft_strlcpy.c\
 		ft_strlen.c\

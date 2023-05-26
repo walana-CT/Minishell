@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 14:30:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/23 18:33:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ char	*ms_findpath(char *cmd, char **path)
 {
 	char	*fullcmd;
 
-	if (cmd[0] == '.' || cmd[0] == '/')
-		return (ft_strdup(""));
-	if (ms_isbuiltin(cmd))
-		return (ft_strdup(""));
 	while (path && *path)
 	{
 		fullcmd = ft_strmanyjoin(*path, "/", cmd, 0);
