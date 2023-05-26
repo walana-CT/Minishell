@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/23 18:26:06 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/05/26 16:15:39 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SANITIZE := -fsanitize=address
 SRC :=	minishell.c\
 		ms_cd.c\
 		ms_crash.c\
+		ms_debug.c\
 		ms_dollar_replace.c\
 		ms_echo.c\
 		ms_env_utils.c\

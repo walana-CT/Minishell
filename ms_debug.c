@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/23 16:33:53 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:55:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,18 @@ void	ms_printcmds(t_ms ms)
 		printf("Pipein %d \t Pipeout %d\n", ms.pipe[i][0], ms.pipe[i][1]);
 	}
 }
+
+/**
+ * debug function that print pipes with their respectives in and out.
+ * @param ms address of minishell.
+ */
+void	ms_disp_pipes(t_ms *ms)
+{
+	int	i;
+
+	i = -1;
+	printf("Pipes are :\n");
+	while (++i < ms->nbcmd - 1)
+		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
+}
+

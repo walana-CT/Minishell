@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:44:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:24:31 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	ms_launch_cmds(t_ms *ms)
 {
 	if (ms_get_fds(ms))
 		return (1);
-	ms_lex(ms);
+	if (ms_lex(ms))
+		return (1);
 	ms_exec(ms);
 	ms_loop_free(ms);
 	return (0);

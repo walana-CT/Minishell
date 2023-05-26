@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:12 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ms_getinfile(t_cmd *cmd, int i)
 		i++;
 	cmd->filein = ft_substr(cmd->line, start, i - start);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
-	if (dollar_replace(&cmd->filein, cmd->ms))
+	if (ms_dollar_replace(&cmd->filein, cmd->ms))
 		return (1);
 	ms_trimquotes(&cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
@@ -51,7 +51,7 @@ int	ms_get_fdin(t_cmd *cmd)
 		if (cmd->limiter)
 			ft_freestr(&cmd->limiter);
 		if (cmd->filein)
-			free(cmd->filein);
+			ft_freenull((void *)cmd->filein);
 		if (cmd->line[i + 1] == '<')
 		{
 			if (ms_get_limiter(cmd, i + 2))
@@ -93,7 +93,9 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i++;
 	cmd->fileout = ft_substr(cmd->line, start, i - start);
-	if (dollar_replace(&cmd->fileout, cmd->ms))
+	if (!cmd->fileout)
+		ms_crash(cmd->ms);
+	if (ms_dollar_replace(&cmd->fileout, cmd->ms))
 		return (1);
 	ms_trimquotes(&cmd->fileout);
 	if (append)
@@ -104,6 +106,12 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	return (0);
 }
 
+
+/**
+ * Verify the outfile is valid and interpret it into a Filedescriptor.
+ * @param cmd a cmd struct.
+ * @return return 0 or 1 whether the format of filein is valid or not.
+ */
 int	ms_get_fdout(t_cmd *cmd)
 {
 	int	i;
@@ -114,7 +122,7 @@ int	ms_get_fdout(t_cmd *cmd)
 	while (i != -1)
 	{
 		if (cmd->fileout)
-			free(cmd->fileout);
+			ft_freenull((void *)cmd->fileout);
 		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
 			return (ms_error_msg_nofile(cmd->fileout, 1));
 		i = ms_where_is('>', cmd->line);

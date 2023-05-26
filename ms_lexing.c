@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:45:47 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:21:36 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	i = -1;
 	while (cmd->args[++i])
 	{
-		if (!dollar_replace(&cmd->args[i], cmd->ms))
+		if (!ms_dollar_replace(&cmd->args[i], cmd->ms))
 			ms_trimquotes(&cmd->args[i]);
 		else
 			err = 1;
@@ -93,10 +93,10 @@ int	ms_lex(t_ms *ms)
 			ms->cmd[i].cmd_name = ms->cmd[i].args[0];
 		}
 		else
-			return (0);
+			return (1);
 		path = ms_getpath(ms);
 		ms->cmd[i].path = ms_findpath(ms->cmd[i].cmd_name, path);
 		ft_freetab(path);
 	}
-	return (1);
+	return (0);
 }

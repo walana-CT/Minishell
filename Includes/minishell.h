@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:44:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		ms_trimquotes(char **str);
 int		ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
-int		dollar_replace(char **str, t_ms *ms);
+int		ms_dollar_replace(char **str, t_ms *ms);
 int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_getappendfd(t_cmd cmd);
 int		ms_heredoc(t_cmd *cmd);
@@ -147,5 +147,6 @@ int		ms_is_dol_sep(char c);
 //debug
 
 void	ms_printcmds(t_ms ms);
+void	ms_disp_pipes(t_ms *ms);
 
 #endif

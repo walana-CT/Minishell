@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:38 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:55:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,6 @@ int	ms_syntax_ok(char *str)
 	if (ms_wrongchars(str))
 		return (FALSE);
 	return (TRUE);
-}
-
-/**
- * debug function that print pipes with their respectives in and out.
- * @param ms address of minishell.
- */
-void	ms_disp_pipes(t_ms *ms)
-{
-	int	i;
-
-	i = -1;
-	printf("Pipes are :\n");
-	while (++i < ms->nbcmd - 1)
-		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
 
 /**

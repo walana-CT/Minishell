@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/26 15:45:14 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	next_dol_pos(char *str)
 	return (-1);
 }
 
-int	dollar_replace(char **str, t_ms *ms)
+int	ms_dollar_replace(char **str, t_ms *ms)
 {
 	int	dol_pos;
 

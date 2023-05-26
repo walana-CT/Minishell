@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/25 14:27:15 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	ms_getappendfd(t_cmd cmd)
 	char	str[1000];
 
 	fd = open(cmd.fileout, O_CREAT | O_RDWR, 0644);
+	if (fd == -1)
+		ms_crash(cmd.ms);
 	while (read(fd, &str, 1000))
 		;
 	return (fd);
@@ -81,7 +83,7 @@ int	ms_heredoc(t_cmd *cmd)
 	str = get_next_line(0);
 	while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
 	{
-		if (!dollar_replace(&str, cmd->ms))
+		if (!ms_dollar_replace(&str, cmd->ms))
 			write(cmd->herepipe[1], str, ft_sstrlen(str));
 		free(str);
 		str = get_next_line(0);
