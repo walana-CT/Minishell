@@ -6,13 +6,40 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:11:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/19 15:30:57 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:41:41 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-void	ms_next_word_quote(char *str, char sep, int *i, int *j)
+static void	quotesplit_crash(t_ms *ms, t_list **lst)
+{
+	ft_lstclear(lst, ft_lstdelone);
+	ms_crash(ms);
+}
+
+
+static int	cut_add(t_list **lst, char *s, int i, int j)
+{
+	char	*section;
+	t_list	*new_elem;
+
+	section = ft_substr(s, i, j - i);
+	if (!section)
+		return (1);
+	new_elem = ft_lstnew(section);
+	if (!new_elem)
+	{
+		ft_freestr(&section);
+		return (1);
+	}
+	ft_lstadd_back(lst, new_elem);
+	return (0);
+}
+
+
+
+static void	ms_next_word_quote(char *str, char sep, int *i, int *j)
 {
 	*i = *j;
 	while (!ms_quote_status(str, *i) && str[*i] == sep)
@@ -23,32 +50,45 @@ void	ms_next_word_quote(char *str, char sep, int *i, int *j)
 		*j = *i;
 }
 
-t_list	*ms_quote_init(char *str, char sep, int *i, int *j)
+static t_list	*ms_quote_init(char *str, char sep, int *i, int *j)
 {
 	*j = 0;
 	ms_next_word_quote(str, sep, i, j);
 	return (0);
 }
 
-char	**ms_quotesplit(char *s, char sep)
+
+/**
+ * split a string arround sepparators that are not between quotes. 
+ * @param s string that we want to split.
+ * @param sep the separator that will delimit the split.
+ * @return str array of the sections we obtained.
+ */
+char	**ms_quotesplit(char *s, char sep, t_ms *ms)
 {
 	t_list	*l;
 	int		i;
 	int		j;
+	char	*result;
 
 	l = ms_quote_init(s, sep, &i, &j);
 	while (s[j])
 	{
 		if (s[i] != sep && (s[j] == sep && !ms_quote_status(s, j)))
 		{
-			ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
+			if (cut_add(&l, s, i, j))
+				quotesplit_crash(ms, &l);
 			ms_next_word_quote(s, sep, &i, &j);
 		}
 		else
 			j++;
 	}
 	if (j != i && s[j] != sep)
-		ft_lstadd_back(&l, ft_lstnew(ft_substr(s, i, j - i)));
+		if (cut_add(&l, s, i, j))
+			quotesplit_crash(ms, &l);
+	result = ft_lst_to_strtab(l);
+	if (!result)
+		quotesplit_crash(ms, &l);
 	return (ft_lst_to_strtab(l));
 }
 

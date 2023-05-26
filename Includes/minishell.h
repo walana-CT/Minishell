@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:33:30 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:40:02 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		ms_isquote(char c);
 int		*ms_where_are(char c, char *str);
 int		ms_where_is(char c, char *str);
 int		ms_quote_status(char *str, int j);
-char	**ms_quotesplit(char *s, char sep);
+char	**ms_quotesplit(char *s, char sep, t_ms *ms);
 char	*ms_noquotes(char *str);
 int		ms_str2pipes(char *str);
 int		ms_badchev(char *str);

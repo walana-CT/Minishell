@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:42:18 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:40:08 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ms_pipesplit(t_ms *ms)
 	int		i;
 	int		size;
 
-	tmp = ms_quotesplit(ms->line, '|');
+	tmp = ms_quotesplit(ms->line, '|', ms);
 	if (!tmp)
 		ms_crash(ms);
 	i = -1;

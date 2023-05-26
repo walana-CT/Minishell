@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:32:53 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 14:49:46 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	minishell(t_ms *ms)
 int	ms_init(t_ms *ms)
 {
 	rl_catch_signals = 0;
-	ms->pipe = 0; 
+	ms->pipe = 0;
 	ms->err = 0;
 	ms->nbcmd = 0;
 	ms->envp = NULL;
