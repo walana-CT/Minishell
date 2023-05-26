@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strresize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:09:16 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/18 15:48:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:12:59 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strresize(char **str_ptr, int val)
 	old_len = ft_strlen(*str_ptr);
 	new_len = old_len + val;
 	if (new_len <= 0)
-		return (1);		
+		return (1);
 	new_str = ft_calloc(new_len + 1, sizeof(char *));
 	if (!new_str)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:24:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 22:53:24 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ms_launch_cmds(t_ms *ms)
 	if (ms_lex(ms))
 		return (1);
 	ms_exec(ms);
-	ms_loop_free(ms);
 	return (0);
 }
 
@@ -29,32 +28,25 @@ int	ms_launch_cmds(t_ms *ms)
  */
 void	minishell(t_ms *ms)
 {
-	char	*str;
 	char	*tmp;
 
 	while (1)
 	{
 		stat_interactive(1);
-		tmp = readline(CYAN"msh > "RESET);
+		tmp = readline("msh > ");
 		stat_interactive(0);
 		if (!tmp)
 			ms_exit(ms);
-		str = ft_strtrim(tmp, SPACES);
-		if (!str)
-			ms_crash(ms);
-		add_history(str);
-		if (str && !ft_strequal(str, ""))
-		{
-			if (ms_get_cmds(str, ms))
-			{
-				ms_launch_cmds(ms);
-			}
-		}
-
-		ft_freestr(&str);
+		ms->line = ft_strtrim(tmp, SPACES);
 		ft_freestr(&tmp);
+		if (!ms->line)
+			ms_crash(ms);
+		add_history(ms->line);
+		if (ms->line && !ft_strequal(ms->line, ""))
+			if (ms_get_cmds(ms))
+				ms_launch_cmds(ms);
+		ms_free_ms(ms);
 	}
-	ms_exit(ms);
 }
 
 /**
@@ -86,6 +78,5 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");
 	minishell(&ms);
-	system("leaks minishell");
 	return (0);
 }

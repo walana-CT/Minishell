@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:56:20 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 17:11:23 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/27 00:19:04 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**ft_lst_to_strtab(t_list *lst);
 char	**ft_lstsplit(char *str, char sep);
 char	**ft_split(char const *s, char c);
 char	**ft_split_by_lst(char *str, char sep);
-void	ft_freetab(char **s);
 char	**ft_quotesplit(char *str, char sep);
 size_t	ft_sstrlen(const char *s);
 char	*ft_strchr(const char *s, int c);
@@ -90,6 +89,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_freenull(void **ptr);
 void	ft_freestr(char **ptr);
+void	ft_freetab(char **s);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

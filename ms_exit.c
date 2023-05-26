@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/26 19:51:50 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:57:14 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 //tputs
 int	ms_exit(t_ms *ms)
 {
-	printf("\033[1F\033[36;1mmsh > \033[0mexit\n");
+	printf("\033[1Fmsh > \033[0mexit\n");
 	if (!ms || ms->nbcmd > 1)
 		return (1);
 	if (ms->cmd)
 		printf("exit\n");
-	ms_free(ms);
+	ms_free_env(ms);
+	ms_free_ms(ms);
 	system("leaks minishell");
 	exit(EXIT_SUCCESS);
 }

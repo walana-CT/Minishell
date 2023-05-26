@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strinsert.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:45:28 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/17 10:13:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:12:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,7 @@ int	ft_strinsert(char **str1, char *str2, int pos)
 	int		i;
 	int		j;
 
-	/*printf("calling strinsert\n");
-	printf("str 1 : %s\n", *str1);
-	printf("str 2 : %s\n", str2);
-	printf("pos : %d\n", pos);*/
-	if (!str1)
-		return (1);
-	if (!(*str1))
+	if (!str1 || !(*str1))
 		return (1);
 	if (!(str2))
 		return (0);

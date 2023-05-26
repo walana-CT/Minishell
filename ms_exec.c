@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:44:05 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,6 @@ void	ms_fixfds(t_cmd	*cmd)
 	}
 }
 
-void	ms_printcmd(t_cmd cmd)
-{
-	printf(YELLOW"commande %d\n"RESET, cmd.nb);
-	ft_printstrtab(cmd.args, "ARGS");
-	printf("PATH : %s\n", cmd.path);
-	printf("CmdName : %s\n", cmd.cmd_name);
-	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
-	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
-	printf("_____________________________________________\n");
-}
-
 void	ms_close_pipes_but(t_ms *ms, int i)
 {
 	int	j;
@@ -76,26 +65,6 @@ void	ms_close_pipes_but(t_ms *ms, int i)
 			close(ms->pipe[j][1]);
 	}
 }
-
-// char	*ms_getcmdpath(t_cmd *cmd)
-// {
-// 	int		i;
-// 	char	*tmp;
-
-// 	if (cmd->cmd_name[0] == '/' || cmd->cmd_name[0] == '.')
-// 	{
-// 		i = ft_strlastof(cmd->cmd_name, '/');
-// 		tmp = ft_strdup(cmd->cmd_name);
-// 		free(cmd->cmd_name);
-// 		cmd->cmd_name = ft_substr(tmp, i, ft_sstrlen(tmp) - i);
-// 		cmd->args[0] = ft_strdup(cmd->cmd_name);
-// 		free(cmd->path);
-// 		cmd->path = ft_substr(tmp, 0, i);
-// 		free(tmp);
-// 		return (ft_strmanyjoin(cmd->path, cmd->cmd_name, 0));
-// 	}
-// 	return (ft_strmanyjoin(cmd->path, "/", cmd->cmd_name, 0));
-// }
 
 void	ms_child(t_ms *ms, int i)
 {
@@ -113,7 +82,8 @@ void	ms_child(t_ms *ms, int i)
 		if (!ms->cmd[i].path)
 			pathcmd = ft_strdup(ms->cmd[i].cmd_name);
 		else
-			pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", ms->cmd[i].cmd_name, 0);
+			pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", \
+				ms->cmd[i].cmd_name, 0);
 		if (pathcmd)
 			execve(pathcmd, ms->cmd[i].args, ms->envp);
 		ft_freenull((void **)&pathcmd);
