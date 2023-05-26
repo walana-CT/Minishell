@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:55:44 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:52:49 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,11 @@ int	ms_cmds_init(t_ms *ms)
 /**
  * verify if the line is valid or not turn the line into an array of struct cmd.
  * set err val. Alloc errors calls exit(). 
- * @param str line of commande after spaces have been trimed.
  * @param ms address of minishell.
  * @return return TRUE or FALSE depending on whether the line is valid or not.
  */
-int	ms_get_cmds(char *str, t_ms *ms)
+int	ms_get_cmds(t_ms *ms)
 {
-	ms->line = str;
 	if (!ms_syntax_ok(ms->line))
 	{
 		ms->err = 258;

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:21:36 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:11:19 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**ms_getpath(t_ms *ms)
 	i = -1;
 	while (ms->envp[++i])
 		if (ft_strnstr(ms->envp[i], "PATH=", 5))
-			return (ft_quotesplit(ms->envp[i] + 5, ':'));
+			return (ms_quotesplit(ms->envp[i] + 5, ':', ms));
 	return (0);
 }
 
@@ -52,7 +52,7 @@ char	*ms_findpath(char *cmd, char **path)
 		fullcmd = ft_strmanyjoin(*path, "/", cmd, 0);
 		if (!access(fullcmd, F_OK | X_OK))
 		{
-			free(fullcmd);
+			ft_freestr(&fullcmd);
 			return (ft_strdup(*path));
 		}
 		free(fullcmd);

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:00:41 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_cmd	t_cmd;
 
 typedef struct s_ms
 {
+	char		*rl_str;
 	char		**envp;
 	int			term_fd;
 	char		*line;
@@ -87,7 +88,7 @@ int		ms_bad_child_ending(char *str);
 
 //parsing 1 (line)
 
-int		ms_get_cmds(char *str, t_ms *p);
+int		ms_get_cmds(t_ms *ms);
 char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c);
 int		*ms_where_are(char c, char *str);
@@ -148,5 +149,6 @@ int		ms_is_dol_sep(char c);
 
 void	ms_printcmds(t_ms ms);
 void	ms_disp_pipes(t_ms *ms);
+void	ms_printcmd(t_cmd cmd);
 
 #endif

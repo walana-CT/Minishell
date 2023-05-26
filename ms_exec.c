@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:01:39 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,7 @@ void	ms_fixfds(t_cmd	*cmd)
 	}
 }
 
-void	ms_printcmd(t_cmd cmd)
-{
-	printf(YELLOW"commande %d\n"RESET, cmd.nb);
-	ft_printstrtab(cmd.args, "ARGS");
-	printf("PATH : %s\n", cmd.path);
-	printf("CmdName : %s\n", cmd.cmd_name);
-	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
-	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
-	printf("_____________________________________________\n");
-}
+
 
 void	ms_close_pipes_but(t_ms *ms, int i)
 {

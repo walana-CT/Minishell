@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:40:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:38:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int	ms_pipesplit(t_ms *ms)
 	return (size);
 }
 
+/**
+ * delete the quotes that are not between quotes.
+ * @param str ptr to string.
+ * @return 0 or 1 depending on the function worked properly or not.
+ */
 int	ms_trimquotes(char **str)
 {
 	int	i;

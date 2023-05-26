@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/25 14:31:21 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:14:04 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freetab(ms->cmd[i].args);
 		if (ms->cmd[i].line)
 			ft_freestr(&(ms->cmd[i].line));
+		if (ms->cmd[i].path)
+			ft_freestr(&(ms->cmd[i].path));
 		ms->err = WEXITSTATUS(err);
 	}
 }

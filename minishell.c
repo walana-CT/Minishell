@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:24:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:56:00 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,26 @@ int	ms_launch_cmds(t_ms *ms)
  */
 void	minishell(t_ms *ms)
 {
-	char	*str;
-	char	*tmp;
-
 	while (1)
 	{
 		stat_interactive(1);
-		tmp = readline(CYAN"msh > "RESET);
+		ms->rl_str = readline(CYAN"msh > "RESET);
 		stat_interactive(0);
-		if (!tmp)
+		if (!ms->rl_str)
 			ms_exit(ms);
-		str = ft_strtrim(tmp, SPACES);
-		if (!str)
+		ms->line = ft_strtrim(ms->rl_str, SPACES);
+		if (!ms->line)
 			ms_crash(ms);
-		add_history(str);
-		if (str && !ft_strequal(str, ""))
+		add_history(ms->line);
+		if (ms->line && !ft_strequal(ms->line, ""))
 		{
-			if (ms_get_cmds(str, ms))
+			if (ms_get_cmds(ms))
 			{
 				ms_launch_cmds(ms);
 			}
 		}
-
-		ft_freestr(&str);
-		ft_freestr(&tmp);
+		ft_freestr(&ms->line);
+		ft_freestr(&ms->rl_str);
 	}
 	ms_exit(ms);
 }
@@ -67,6 +63,7 @@ int	ms_init(t_ms *ms)
 	ms->pipe = 0;
 	ms->err = 0;
 	ms->nbcmd = 0;
+	ms->rl_str = NULL;
 	ms->envp = NULL;
 	ms->pipe = NULL;
 	ms->line = NULL;
@@ -81,6 +78,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	ms_init(&ms);
 	set_sig();
+	stat_interactive(0);
 	copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)
