@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:11:41 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 15:41:41 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:51:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	quotesplit_crash(t_ms *ms, t_list **lst)
 {
-	ft_lstclear(lst, ft_lstdelone);
+	ft_lstclear(lst, free);
 	ms_crash(ms);
 }
 
@@ -69,7 +69,7 @@ char	**ms_quotesplit(char *s, char sep, t_ms *ms)
 	t_list	*l;
 	int		i;
 	int		j;
-	char	*result;
+	char	**result;
 
 	l = ms_quote_init(s, sep, &i, &j);
 	while (s[j])
@@ -89,7 +89,7 @@ char	**ms_quotesplit(char *s, char sep, t_ms *ms)
 	result = ft_lst_to_strtab(l);
 	if (!result)
 		quotesplit_crash(ms, &l);
-	return (ft_lst_to_strtab(l));
+	return (result);
 }
 
 /*

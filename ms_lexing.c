@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 18:33:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:45:47 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ms_lex(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		ms->cmd[i].args = ms_quotesplit(ms->cmd[i].line, ' ');
+		ms->cmd[i].args = ms_quotesplit(ms->cmd[i].line, ' ', ms);
 		if (ms->cmd[i].args)
 		{
 			ms_dealwith_quotes_and_dols(&ms->cmd[i]);
