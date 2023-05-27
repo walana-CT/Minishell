@@ -6,11 +6,23 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 13:57:26 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:40:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
+
+int	ms_sizeof_tab(char **my_tab)
+{
+	int	n;
+
+	if (!my_tab)
+		return (-1);
+	n = 0;
+	while (my_tab[n])
+		n++;
+	return (n);
+}
 
 void	ms_pipes_close_free_null(t_ms *ms)
 {
