@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/26 17:00:28 by rficht           ###   ########.fr       */
-=======
-/*   Updated: 2023/05/26 23:06:56 by mdjemaa          ###   ########.fr       */
->>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
+/*   Updated: 2023/05/27 11:36:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +46,6 @@ void	ms_disp_pipes(t_ms *ms)
 	while (++i < ms->nbcmd - 1)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
-<<<<<<< HEAD
 
 
 void	ms_printcmd(t_cmd cmd)
@@ -63,5 +58,3 @@ void	ms_printcmd(t_cmd cmd)
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
 	printf("_____________________________________________\n");
 }
-=======
->>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
