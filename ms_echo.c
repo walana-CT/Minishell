@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/15 11:28:24 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:19:12 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,18 @@ int	write_args(char **args, int fdout, int n_flag)
 int	ms_echo(t_cmd *cmd)
 {
 	int	n_flag;
+	int	n;
 
 	if (!cmd->args[0])
 	{
 		printf("echo received 0 args\n");
 		return (1);
 	}
-	cmd->args++;
-	n_flag = n_flag_val(cmd->args);
+	n = 1;
+	n_flag = n_flag_val(cmd->args + n);
 	if (n_flag == TRUE)
-		cmd->args++;
-	if (write_args(cmd->args, cmd->fdout, n_flag))
+		n++;
+	if (write_args(cmd->args + n, cmd->fdout, n_flag))
 		return (1);
 	write(cmd->fdout, "\n", 1);
 	return (0);

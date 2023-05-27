@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:49:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ int	ms_heredoc(t_cmd *cmd)
 		free(str);
 		str = get_next_line(0);
 	}
-	free(str);
-	close(cmd->herepipe[1]);
 	stat_interactive(0);
+	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
+	free(str);
+	free(cmd->limiter);
+	free(cmd->herepipe);
 	return (0);
 }

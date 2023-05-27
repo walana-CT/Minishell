@@ -6,8 +6,8 @@ TODO
 * export A=pouet fait un truc bizarre dans env (ligne export ?)
 * export A=pouet 10 fois va faire 10 entrees dans export et env
 * export A+=
-* signaux marchent bizarre / pas dans certains cas (heredoc, q)
-* leaks sur les builtins
+* signaux marchent bizarre / pas dans certains cas (heredoc, passwd)
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
+* leaks sur les builtins

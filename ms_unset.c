@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/17 10:24:38 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:24:58 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,17 @@ void	unset_arg(char *arg, t_ms *ms)
 
 int	ms_unset(t_cmd *cmd)
 {
+	int	n;
 	if (!cmd->args[0])
 	{
 		printf("ms_unset received NULL args\n");
 		return (1);
 	}
-	cmd->args++;
-	while (cmd->args[0])
+	n = 1;
+	while (cmd->args[n])
 	{
-		unset_arg(cmd->args[0], cmd->ms);
-		cmd->args++;
+		unset_arg(cmd->args[n], cmd->ms);
+		n++;
 	}
 	return (0);
 }

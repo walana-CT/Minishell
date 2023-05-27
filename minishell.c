@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 14:00:20 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 16:14:56 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	minishell(t_ms *ms)
 	while (1)
 	{
 		stat_interactive(1);
-		ms->rl_str = readline(CYAN"msh > "RESET);
+		ms->rl_str = readline("msh > ");
 		stat_interactive(0);
 		if (!ms->rl_str)
 			ms_exit(ms);

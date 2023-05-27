@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/26 23:09:27 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:05:53 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	ms_cd(t_cmd *cmd)
 		printf("cd received empty arg\n");
 		return (1);
 	}
-	cmd->args++;
-	if (!cmd->args[0])
+	if (!cmd->args[1])
+		return (1);
+	if (chdir(cmd->args[1]) == -1)
 	{
-		printf("cd needs a path to work\n");
+		printf("msh: cd: %s: No such file or directory\n", cmd->args[1]);
+		cmd->ms->err = 1;
 		return (1);
 	}
-	if (chdir(cmd->args[0]) == -1)
-		return (1);
-	refresh_path(cmd->args[0], cmd->ms);
+	refresh_path(cmd->args[1], cmd->ms);
 	return (0);
 }
