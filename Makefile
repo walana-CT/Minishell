@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/05/26 17:15:08 by rficht           ###   ########.fr        #
+=======
+#    Updated: 2023/05/26 23:53:15 by mdjemaa          ###   ########.fr        #
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +66,7 @@ lib:
 	@$(MAKE) -C ./libft/
 
 .c.o:
-	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+#	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)

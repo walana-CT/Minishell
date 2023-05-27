@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/26 17:00:41 by rficht           ###   ########.fr       */
+=======
+/*   Updated: 2023/05/26 23:40:22 by mdjemaa          ###   ########.fr       */
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +84,20 @@ void	line_init(char	*str, t_ms *p);
 //err and memory
 
 void	ms_crash(t_ms *ms);
-void	ms_free(t_ms	*ms);
-void	ms_loop_free(t_ms *ms);
+void	ms_free_cmd(t_ms *ms);
+void	ms_free_ms(t_ms *ms);
+void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
 int		ms_error_msg_nofile(char *file, int err);
 int		ms_bad_child_ending(char *str);
 
 //parsing 1 (line)
 
+<<<<<<< HEAD
 int		ms_get_cmds(t_ms *ms);
+=======
+int		ms_get_cmds(t_ms *p);
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c);
 int		*ms_where_are(char c, char *str);
@@ -100,6 +109,7 @@ int		ms_str2pipes(char *str);
 int		ms_badchev(char *str);
 int		ms_pipesplit(t_ms *ms);
 int		ms_trimquotes(char **str);
+int		ms_wrongchars(char	*str);
 
 //parsing 2 (cmd)
 
@@ -148,6 +158,7 @@ int		ms_is_dol_sep(char c);
 //debug
 
 void	ms_printcmds(t_ms ms);
+void	ms_printcmd(t_cmd cmd);
 void	ms_disp_pipes(t_ms *ms);
 void	ms_printcmd(t_cmd cmd);
 

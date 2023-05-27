@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdelchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:50:10 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:42:56 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:11:37 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_strdelchar(char **str_ptr, int i)
 	char	*str;
 	char	*dup;
 
-	//printf("delchar called\n");
 	str = *str_ptr;
 	if (!str || !str[0])
 		return (1);

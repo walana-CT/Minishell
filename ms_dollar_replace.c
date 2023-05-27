@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/27 11:24:54 by rficht           ###   ########.fr       */
+=======
+/*   Updated: 2023/05/26 22:43:33 by mdjemaa          ###   ########.fr       */
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +58,8 @@ static int	next_dol_pos(char *str)
 	int	n;
 
 	n = 0;
+	if (!str)
+		return (-1);
 	while (str[n])
 	{
 		if (str[n] == '$' && ms_quote_status(str, n) != 1)

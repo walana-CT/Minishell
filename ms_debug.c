@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/26 17:00:28 by rficht           ###   ########.fr       */
+=======
+/*   Updated: 2023/05/26 23:06:56 by mdjemaa          ###   ########.fr       */
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +23,18 @@ void	ms_printcmds(t_ms ms)
 	i = -1;
 	printf("Nb commandes %d\n", ms.nbcmd);
 	while (++i < ms.nbcmd)
-	{
-		printf(YELLOW"commande %d\n"RESET, ms.cmd[i].nb);
-		ft_printstrtab(ms.cmd[i].args, "ARGS");
-		printf("PATH : %s\n", ms.cmd[i].path);
-		printf("Filein : %s \t fdin %d\n", ms.cmd[i].filein, ms.cmd[i].fdin);
-		printf("Fileout : %s \t fdout %d\n", ms.cmd[i].fileout, ms.cmd[i].fdout);
-		printf("Pipein %d \t Pipeout %d\n", ms.pipe[i][0], ms.pipe[i][1]);
-	}
+		ms_printcmd(ms.cmd[i]);
+}
+
+void	ms_printcmd(t_cmd cmd)
+{
+	printf(YELLOW"commande %d\n"RESET, cmd.nb);
+	ft_printstrtab(cmd.args, "ARGS");
+	printf("PATH : %s\n", cmd.path);
+	printf("CmdName : %s\n", cmd.cmd_name);
+	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
+	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
+	printf("_____________________________________________\n");
 }
 
 /**
@@ -42,6 +50,7 @@ void	ms_disp_pipes(t_ms *ms)
 	while (++i < ms->nbcmd - 1)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
+<<<<<<< HEAD
 
 
 void	ms_printcmd(t_cmd cmd)
@@ -54,3 +63,5 @@ void	ms_printcmd(t_cmd cmd)
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
 	printf("_____________________________________________\n");
 }
+=======
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0

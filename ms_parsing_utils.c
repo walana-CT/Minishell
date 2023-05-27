@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/23 16:31:45 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:09:00 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
-
-
 
 /**
  * allow to know if a char is a quote.
@@ -96,7 +94,6 @@ int	*ms_where_are(char c, char *str)
 	}
 	return (q);
 }*/
-
 
 /**
  * Allow to know if a char is affected by quotes.

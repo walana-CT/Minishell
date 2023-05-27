@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 11:31:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 11:37:49 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freenull((void **) &ms->cmd[i].filein);
 		if (ms->cmd[i].fileout)
 			ft_freenull((void **)&ms->cmd[i].fileout);
-		if (ms->cmd[i].args && !ms_isbuiltin(ms->cmd[i].cmd_name))
+		if (ms->cmd[i].args)
 			ft_freetab(ms->cmd[i].args);
 		if (ms->cmd[i].line)
 			ft_freestr(&(ms->cmd[i].line));
@@ -58,6 +58,8 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freestr(&(ms->cmd[i].path));
 		ms->err = WEXITSTATUS(err);
 	}
+
+	ft_freenull((void **) &ms->cmd);
 }
 
 /**
@@ -70,21 +72,19 @@ void	ms_loop_free(t_ms *ms)
 	if (ms->pipe)
 		ms_pipes_close_free_null(ms);
 	if (ms->nbcmd)
-	{
 		ms_free_cmd(ms);
-		ft_freenull((void **) &ms->cmd);
-	}
+	if (ms->pid)
+		ft_freenull((void **) &ms->pid);
 	ms->nbcmd = 0;
 	ft_freestr(&ms->line);
 	ft_freestr(&ms->rl_str);
 }
 
-void	ms_free(t_ms *ms)
+void	ms_free_env(t_ms *ms)
 {
 	int	n;
 
 	n = 0;
-//	printf("ms free called\n");
 	if (ms->envp)
 	{
 		while (ms->envp[n])

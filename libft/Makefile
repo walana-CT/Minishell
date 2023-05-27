@@ -6,7 +6,11 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/05/26 17:15:14 by rficht           ###   ########.fr        #
+=======
+#    Updated: 2023/05/26 23:53:15 by mdjemaa          ###   ########.fr        #
+>>>>>>> 995f2e586865af6fde9c03dce74a4e142288c9b0
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +116,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 .c.o:
-	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+#	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) $(SANITIZE)
 
 $(NAME): $(OBJ)

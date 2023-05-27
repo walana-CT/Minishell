@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 16:16:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:09:39 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
 	return (0);
 }
-
 
 /**
  * Verify the outfile is valid and interpret it into a Filedescriptor.
