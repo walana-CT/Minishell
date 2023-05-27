@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 16:08:13 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 17:41:10 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	incr_shell_lvl(t_ms *ms)
 
 char	*env_linetovar(char *envl)
 {
+	//printf("envl line to var called on %s\n", envl);
 	while (*envl != '=' && *envl)
 		envl++;
 	if (*envl == 0)
@@ -50,16 +51,17 @@ int	envcmp(char *str, char *envl)
 
 	n = 0;
 	//printf("comparing %s with %s\n", str, envl);
-	while (str[n] && envl[n])
+	while (!ms_is_dol_sep(str[n]) && envl[n])
 	{
+		//printf("comparing %c with %c\n", str[n], envl[n]);
 		if (envl[n] != str[n])
 			return (FALSE);
 		if (envl[n] == '=' && str[n] == '=')
 			return (TRUE);
 		n++;
 	}
-	if ((envl[n] == 0 || envl[n] == '=')
-		&& (str[n] == 0 || str[n] == '='))
+	if ((ms_is_dol_sep(str[n]) || str[n] == '=')
+		&& (envl[n] == 0 || envl[n] == '='))
 		return (TRUE);
 	else
 		return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 14:18:56 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 17:41:51 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	dol_replace(char **str, int pos, t_ms *ms)
 	//printf("str after trunc : %s\n", *str);
 	if (ft_strinsert(str, env_val, pos))
 		return (1);
+	//printf("str after strinsert : %s\n", *str);
 	return (0);
 }
 
@@ -53,6 +54,7 @@ static int	next_dol_pos(char *str)
 {
 	int	n;
 
+	//printf("next dol pos called on %s\n", str);
 	n = 0;
 	if (!str)
 		return (-1);
@@ -72,6 +74,7 @@ int	ms_dollar_replace(char **str, t_ms *ms)
 	dol_pos = next_dol_pos(*str);
 	while (dol_pos != (-1))
 	{
+		//printf("dol pos found : %d\n", dol_pos);
 		if (dol_replace(str, dol_pos, ms))
 			return (1);
 		dol_pos = next_dol_pos(*str);
