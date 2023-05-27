@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 17:01:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 11:20:21 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	ms_exec(t_ms *ms)
 {
 	int	i;
 
-	ms->pid = malloc(ms->nbcmd * sizeof(int));
+	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
 		return (1);
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))

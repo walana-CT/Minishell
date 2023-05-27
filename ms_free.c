@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 17:14:04 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 11:31:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ms_pipes_close_free_null(t_ms *ms)
 	ms->pipe = 0;
 }
 
+/**
+ * free every cmds and their content.
+ * @param ms the address of minishell
+ */
 void	ms_free_cmd(t_ms *ms)
 {
 	int	i;
@@ -56,9 +60,13 @@ void	ms_free_cmd(t_ms *ms)
 	}
 }
 
+/**
+ * free all the memory that may have be allocated during the call of a
+ * comand line
+ * @param ms the address of minishell
+ */
 void	ms_loop_free(t_ms *ms)
 {
-
 	if (ms->pipe)
 		ms_pipes_close_free_null(ms);
 	if (ms->nbcmd)
@@ -67,6 +75,8 @@ void	ms_loop_free(t_ms *ms)
 		ft_freenull((void **) &ms->cmd);
 	}
 	ms->nbcmd = 0;
+	ft_freestr(&ms->line);
+	ft_freestr(&ms->rl_str);
 }
 
 void	ms_free(t_ms *ms)
@@ -80,4 +90,6 @@ void	ms_free(t_ms *ms)
 		while (ms->envp[n])
 			ft_freestr(&ms->envp[n++]);
 	}
+	if (!stat_interactive(-1))
+		ms_loop_free(ms);
 }

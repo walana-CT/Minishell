@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 17:11:19 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 11:19:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ms_findpath(char *cmd, char **path)
 			ft_freestr(&fullcmd);
 			return (ft_strdup(*path));
 		}
-		free(fullcmd);
+		ft_freestr(&fullcmd);
 		path++;
 	}
 	return (0);
@@ -78,6 +78,13 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	return (err);
 }
 
+/**
+ * will turn lines into an arg arrray to conform with c program syntax.
+ * It will first split with spcaces, replace dollards and remove quotes.
+ * @param ms ptr om minishell
+ * @return 0 if successful and 1 if fail
+ * 
+ */
 int	ms_lex(t_ms *ms)
 {
 	int		i;
