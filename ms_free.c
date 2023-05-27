@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 11:37:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 13:57:26 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freestr(&(ms->cmd[i].path));
 		ms->err = WEXITSTATUS(err);
 	}
-
 	ft_freenull((void **) &ms->cmd);
 }
 
@@ -80,7 +79,7 @@ void	ms_loop_free(t_ms *ms)
 	ft_freestr(&ms->rl_str);
 }
 
-void	ms_free_env(t_ms *ms)
+void	ms_free(t_ms *ms)
 {
 	int	n;
 

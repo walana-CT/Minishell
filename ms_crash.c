@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/26 23:06:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/27 13:58:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
  */
 void	ms_crash(t_ms *ms)
 {
-	ms_free_env(ms);
 	if (ms)
-		ms_free_ms(ms);
+		ms_free(ms);
 	perror("msh : ");
 	exit(errno);
 }

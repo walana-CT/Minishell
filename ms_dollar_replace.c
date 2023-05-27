@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 11:36:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 14:18:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	dol_replace(char **str, int pos, t_ms *ms)
 	int		var_len;
 
 	//printf("dol replace called \n");
-	env_val = ms_getenv(&str[0][pos + 1], ms);
+	env_val = ms_getenv_val(&str[0][pos + 1], ms);
 	//printf("env val found : %s\n", env_val);
 	var_len = env_var_len(&str[0][pos]);
 	//printf("var len : %d\n", var_len);

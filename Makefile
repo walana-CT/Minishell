@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/27 11:36:26 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/27 14:03:06 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ lib:
 	@$(MAKE) -C ./libft/
 
 .c.o:
-#	@printf '$(GREEN)Compiling: $(RESET)$<\n'
+	@printf '$(GREEN)Compiling: $(RESET)$<\n'
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 11:36:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 14:00:20 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ms_launch_cmds(t_ms *ms)
 		return (1);
 	if (ms_exec(ms))
 		return (1);
-	ms_loop_free(ms);
 	return (0);
 }
 
@@ -48,6 +47,7 @@ void	minishell(t_ms *ms)
 		}
 		ms_loop_free(ms);
 	}
+	ms_exit(ms);
 }
 
 /**
@@ -75,7 +75,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	ms_init(&ms);
 	set_sig();
-	stat_interactive(0);
+	stat_interactive(1);
 	copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)

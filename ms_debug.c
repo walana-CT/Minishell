@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 11:36:28 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 13:59:00 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void	ms_printcmds(t_ms ms)
 		ms_printcmd(ms.cmd[i]);
 }
 
-void	ms_printcmd(t_cmd cmd)
-{
-	printf(YELLOW"commande %d\n"RESET, cmd.nb);
-	ft_printstrtab(cmd.args, "ARGS");
-	printf("PATH : %s\n", cmd.path);
-	printf("CmdName : %s\n", cmd.cmd_name);
-	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
-	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
-	printf("_____________________________________________\n");
-}
-
 /**
  * debug function that print pipes with their respectives in and out.
  * @param ms address of minishell.
@@ -46,7 +35,6 @@ void	ms_disp_pipes(t_ms *ms)
 	while (++i < ms->nbcmd - 1)
 		printf("Pipe %d : [0]%d [1]%d\n", i, ms->pipe[i][0], ms->pipe[i][1]);
 }
-
 
 void	ms_printcmd(t_cmd cmd)
 {
