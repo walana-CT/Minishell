@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/17 11:23:18 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 14:55:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ void	ms_no_arg_export(t_ms *ms, int fd_out)
 	envp_copy = NULL;
 }
 
-void	ms_add_envp(char **args, t_ms *ms)
+void	ms_exportvar(char *new_var, t_ms *ms)
 {
-	char	**new_envp;
+	char	**new_envp = NULL;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	new_envp = malloc((ms_sizeof_tab(args) + ms_sizeof_tab(ms->envp))
-			* sizeof(char *));
+
+	(void) new_var;
 	if (!new_envp)
 		ms_crash(ms);
 	i = 0;
@@ -87,9 +87,6 @@ void	ms_add_envp(char **args, t_ms *ms)
 		new_envp[i] = ms->envp[i];
 		i++;
 	}
-	while (args[j])
-		new_envp[i++] = args[j++];
-	new_envp[i] = NULL;
 	free(ms->envp);
 	ms->envp = new_envp;
 }
@@ -106,6 +103,9 @@ int	ms_export(t_cmd *cmd)
 		ms_no_arg_export(cmd->ms, cmd->fdout);
 		return (0);
 	}
-	ms_add_envp(cmd->args, cmd->ms);
+	while (*(cmd->args++))
+	{
+		ms_exportvar(*cmd->args, cmd->ms);
+	}
 	return (0);
 }

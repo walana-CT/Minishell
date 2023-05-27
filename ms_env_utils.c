@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/23 09:50:09 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 14:35:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	incr_shell_lvl(t_ms *ms)
 	char	*shlvl_envl;
 	int		n;
 
-	shlvl_envl = ms_getenv("SHLVL", ms);
+	shlvl_envl = ms_getenv_val("SHLVL", ms);
 	n = 0;
 	while (shlvl_envl[n])
 		n++;
@@ -58,13 +58,19 @@ int	envcmp(char *str, char *envl)
 			return (FALSE);
 		n++;
 	}
-	if (envl[n] == '=')
+	if (envl[n] == 0 || envl[n] == '=')
 		return (TRUE);
 	else
 		return (FALSE);
 }
 
-char	*ms_getenv(char *str, t_ms *ms)
+/**
+ * search if a variable exists and return a ptr to it's value start
+ * @param envp the variable we are looking for
+ * @param ms the addresse of minishell
+ * @return a pointer to the first 
+ */
+char	*ms_getenv_val(char *str, t_ms *ms)
 {
 	char	**envp;
 	int		i;
@@ -80,6 +86,34 @@ char	*ms_getenv(char *str, t_ms *ms)
 	return (NULL);
 }
 
+
+/**
+ * search if a variable exists and return a ptr to it if it does
+ * @param envp the variable we are looking for
+ * @param ms the addresse of minishell
+ * @return a pointer to the first 
+ */
+char	*ms_getenv_var(char *str, t_ms *ms)
+{
+	char	**envp;
+	int		i;
+
+	i = -1;
+	envp = ms->envp;
+	//printf("searshing for %s inside env\n", str);
+	while (envp[++i])
+	{
+		if (envcmp(str, envp[i]))
+			return (envp[i]);
+	}
+	return (NULL);
+}
+
+/**
+ * create a copy of envp directclty inside minishell so we can modify it later.
+ * @param envp the original envp
+ * @param ms the addresse of minishell
+ */
 void	copy_env(char *envp[], t_ms *ms)
 {
 	char	**envp_copy;
