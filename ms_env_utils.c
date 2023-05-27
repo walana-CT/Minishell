@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 14:35:44 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 16:08:13 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,16 @@ int	envcmp(char *str, char *envl)
 
 	n = 0;
 	//printf("comparing %s with %s\n", str, envl);
-	while (!ms_is_dol_sep(str[n]))
+	while (str[n] && envl[n])
 	{
-		if (envl[n] == '=')
+		if (envl[n] != str[n])
 			return (FALSE);
-		if (envl[n] != str [n])
-			return (FALSE);
+		if (envl[n] == '=' && str[n] == '=')
+			return (TRUE);
 		n++;
 	}
-	if (envl[n] == 0 || envl[n] == '=')
+	if ((envl[n] == 0 || envl[n] == '=')
+		&& (str[n] == 0 || str[n] == '='))
 		return (TRUE);
 	else
 		return (FALSE);
@@ -88,12 +89,12 @@ char	*ms_getenv_val(char *str, t_ms *ms)
 
 
 /**
- * search if a variable exists and return a ptr to it if it does
+ * Search if a variable exists and return a ptr to it if it does
  * @param envp the variable we are looking for
  * @param ms the addresse of minishell
  * @return a pointer to the first 
  */
-char	*ms_getenv_var(char *str, t_ms *ms)
+int	ms_getenv_varl(char *str, t_ms *ms)
 {
 	char	**envp;
 	int		i;
@@ -104,15 +105,16 @@ char	*ms_getenv_var(char *str, t_ms *ms)
 	while (envp[++i])
 	{
 		if (envcmp(str, envp[i]))
-			return (envp[i]);
+			return (i);
 	}
-	return (NULL);
+	return (-1);
 }
 
 /**
- * create a copy of envp directclty inside minishell so we can modify it later.
- * @param envp the original envp
- * @param ms the addresse of minishell
+ * Create a copy of envp directclty inside minishell so we can modify it later.
+ * Also increase the shlvl. 
+ * @param envp The original envp
+ * @param ms The addresse of minishell
  */
 void	copy_env(char *envp[], t_ms *ms)
 {
