@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_dollar_replace.c                                :+:      :+:    :+:   */
+/*   ms_dollar_replace_00.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 14:21:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/28 15:17:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ms_is_dol_sep(char c)
-{
-	if (c == ' ' || c == 0 || c == '$' || c == '\''
-		|| c == '\"' || c == '<' || c == '>')
-		return (1);
-	else
-		return (0);
-}
 
 static int	env_var_len(char *str)
 {
@@ -31,6 +22,21 @@ static int	env_var_len(char *str)
 	return (len);
 }
 
+int	replace_qm(char **str, int pos, t_ms *ms)
+{
+	char	*err_str;
+
+	if (ft_strtrunc(str, pos, 2))
+		ms_crash(ms);
+	err_str = ft_itoa(stat_err(-1));
+	if (!err_str)
+		ms_crash(ms);
+	if (ft_strinsert(str, err_str, pos))
+		ms_crash(ms);
+	return (0);
+}
+
+
 static int	dol_replace(char **str, int pos, t_ms *ms)
 {
 	char	*env_val;
@@ -39,12 +45,14 @@ static int	dol_replace(char **str, int pos, t_ms *ms)
 	//printf("dol replace called \n");
 	if ((*str)[pos + 1] == '$')
 		return (ft_strtrunc(str, pos, 2));
+	if ((*str)[pos + 1] == '?')
+		return (replace_qm(str, pos, ms));
 	env_val = ms_getenv_val(&str[0][pos + 1], ms);
 	//printf("env val found : %s\n", env_val);
 	var_len = env_var_len(&str[0][pos]);
 	//printf("var len : %d\n", var_len);
 	if (ft_strtrunc(str, pos, var_len))
-		return (1);
+		ms_crash(ms);
 	//printf("str after trunc : %s\n", *str);
 	if (ft_strinsert(str, env_val, pos))
 		return (1);

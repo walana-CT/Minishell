@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/26 22:53:22 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:12:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 		if (stat_interactive(-1))
 			rl_on_new_line();
 		rl_redisplay();
+		stat_err(1);
 	}
 }
 

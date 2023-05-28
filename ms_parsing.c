@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 11:37:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/28 15:11:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	ms_get_cmds(t_ms *ms)
 {
 	if (!ms_syntax_ok(ms->line))
 	{
-		ms->err = 258;
+		stat_err(258);
 		return (FALSE);
 	}
 	if (ms_cmds_init(ms))

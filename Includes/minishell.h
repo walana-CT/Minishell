@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 16:08:02 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/28 15:07:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_ms
 	char		**envp;
 	int			term_fd;
 	char		*line;
-	int			err;
 	int			nbcmd;
 	int			**pipe;
 	pid_t		*pid;
@@ -147,7 +146,6 @@ void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
 void	ms_printcmds(t_ms ms);
-int		stat_interactive(int val);
 int		ms_is_dol_sep(char c);
 //debug
 
@@ -155,5 +153,10 @@ void	ms_printcmds(t_ms ms);
 void	ms_printcmd(t_cmd cmd);
 void	ms_disp_pipes(t_ms *ms);
 void	ms_printcmd(t_cmd cmd);
+
+//statics
+
+int		stat_interactive(int val);
+int		stat_err(int val);
 
 #endif

@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_env.c                                           :+:      :+:    :+:   */
+/*   ms_dollar_replace_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 15:09:42 by rficht           ###   ########.fr       */
+/*   Created: 2023/05/28 14:44:35 by rficht            #+#    #+#             */
+/*   Updated: 2023/05/28 14:57:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
-void	ms_printtab(char **str_tab, int fd)
+int	ms_is_dol_sep(char c)
 {
-	while (*str_tab)
-	{
-		ft_putstr_fd(*str_tab, fd);
-		write(fd, "\n", 1);
-		str_tab++;
-	}
-}
-
-int	ms_env(t_cmd *cmd)
-{
-	t_ms		*ms;
-
-	ms = cmd->ms;
-	if (!cmd->args[0])
-	{
-		printf("env received 0 args\n");
+	if (c == ' ' || c == 0 || c == '$' || c == '\''
+		|| c == '\"' || c == '<' || c == '>')
 		return (1);
-	}
-	ms_printtab(ms->envp, cmd->fdout);
-	return (0);
+	else
+		return (0);
 }
