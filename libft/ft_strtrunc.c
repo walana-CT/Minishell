@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:17:09 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/12 09:47:35 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/28 14:15:49 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ int	ft_strtrunc(char **str, int start, int len)
 	n = start;
 	if (!is_valid(*str, start, len))
 		return (1);
-	while (n < start + len)
+	while ((*str)[n + len])
 	{
 		(*str)[n] = (*str)[n + len];
-		if ((*str)[n] == 0)
-			break ;
 		n++;
 	}
 	(*str)[n] = 0;
