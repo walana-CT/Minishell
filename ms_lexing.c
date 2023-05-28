@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 13:58:06 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/27 18:38:22 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ms_isbuiltin(char *str)
 	return (0);
 }
 
-// /!\ gerer si le nom de commande commence par . ou par /
 char	*ms_findpath(char *cmd, char **path)
 {
 	char	*fullcmd;
@@ -79,8 +78,8 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 }
 
 /**
- * will turn lines into an arg arrray to conform with c program syntax.
- * It will first split with spcaces, replace dollards and remove quotes.
+ * will turn lines into an arg array to conform with c program syntax.
+ * It will first split with spcaces, replace dollars and remove quotes.
  * @param ms ptr om minishell
  * @return 0 if successful and 1 if fail
  * 
