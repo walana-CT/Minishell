@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 16:48:32 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 19:38:07 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		ms_where_is(char c, char *str);
 int		ms_quote_status(char *str, int j);
 char	**ms_quotesplit(char *s, char sep, t_ms *ms);
 char	*ms_noquotes(char *str);
-int		ms_str2pipes(char *str);
+int		ms_checkpipes(char *str);
 int		ms_badchev(char *str);
 int		ms_pipesplit(t_ms *ms);
 int		ms_trimquotes(char **str);

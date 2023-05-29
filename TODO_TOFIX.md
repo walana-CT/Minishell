@@ -1,13 +1,11 @@
 TODO
-* Gerer >| et une ligne comme ps | >| pouet ls (redirections)
-* Gerer mieux les | | | | |
 * export A+=
 * signaux marchent bizarre / pas dans certains cas (heredoc, passwd)
 * $$ le vrai bash renvoi son pid mais je ne voit pas comment faire avec les
 	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu);
-* segfault quand argument invalides. 
-
-
+* segfault quand argument invalides.
+* historique dans fichier ?
+* exit exit plus ?
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -21,3 +19,5 @@ OK
 * assigner correctement les valeurs d'err.
 * quitter une commande avec ctrl-C doit renvoyer 1 dans $?
 * Gestion d'erreurs (code d'erreur de la derniere commande stockée dans $?)
+* Gerer mieux les | | | | |
+* Gerer >| et une ligne comme ps | >| pouet ls (redirections) -> syntax error

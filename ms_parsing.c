@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 15:58:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 18:52:26 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	ms_openquotes(char *str)
 int	ms_syntax_ok(char *str)
 {
 	if (ms_openquotes(str))
-	{
-		return (ms_error_msg("unexpected EOF while looking\
-			for matching `\"\' ", FALSE));
-	}
+		return (ms_error_msg("msh : no matching `\"\' ", FALSE));
 	if (ms_wrongchars(str))
 		return (FALSE);
 	return (TRUE);

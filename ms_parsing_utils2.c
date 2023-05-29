@@ -3,28 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 11:37:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 20:45:31 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/minishell.h"
 
-int	ms_str2pipes(char *str)
+char	*ms_trim(char c, char *str)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
-	i = 0;
-	while (str[i] && str [i + 1])
+	tmp = ft_strdup(str);
+	if (!tmp)
+		return (0);
+	i = ms_where_is(c, tmp);
+	while (i != -1)
 	{
-		if (!ms_quote_status(str, i)
-			&& str[i] == '|' && str[i + 1] == '|')
-			return (TRUE);
+		ft_strdelchar(&tmp, i);
+		i = ms_where_is(c, tmp);
+	}
+	return (tmp);
+}
+
+int	ms_checkpipes(char *str)
+{
+	int		i;
+	char	*tmp;
+
+	tmp = ms_trim(' ', str);
+	if (!tmp)
+		return (0);
+	i = 0;
+	while (tmp[i] && tmp[i + 1])
+	{
+		if (!ms_quote_status(tmp, i)
+			&& tmp[i] == '|' && tmp[i + 1] == '|')
+			return (free(tmp), 1);
 		i++;
 	}
-	return (FALSE);
+	return (free(tmp), 0);
 }
 
 int	ms_badchev(char *str)
@@ -34,16 +55,21 @@ int	ms_badchev(char *str)
 	i = 0;
 	while (str[i] && str [i + 1] && str [i + 2])
 	{
-		if (!ms_quote_status(str, i) && \
-			str[i] == '>' && str[i + 1] == '>' && \
-			(str[i + 2] == '>' || str[i + 2] == '|'))
-			return (TRUE);
+		if (!ms_quote_status(str, i) && str[i] == '>')
+		{
+			if (str[i + 1] == '|')
+				return (1);
+			if (str[i + 1] == '>' && (str[i + 2] == '>' || str[i + 2] == '|'))
+				return (1);
+		}
 		if (!ms_quote_status(str, i) && \
 			str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<')
-			return (TRUE);
+			return (1);
+		if (!ms_quote_status(str, i) && str[i] == '<' && str[i + 1] == '|')
+			return (1);
 		i++;
 	}
-	return (FALSE);
+	return (0);
 }
 
 /**
@@ -111,7 +137,7 @@ int	ms_wrongchars(char	*str)
 	int	last;
 
 	last = ft_sstrlen(str) - 1;
-	if (ms_str2pipes(str) || str[0] == '|' || str[last] == '|')
+	if (ms_checkpipes(str) || str[0] == '|' || str[last] == '|')
 		return (ms_error_msg(SYN_EUNEXT"|", TRUE));
 	if (ms_badchev(str) || str[last] == '<' || str[last] == '>')
 		return (ms_error_msg(SYN_EUNEXT"< or >", TRUE));
