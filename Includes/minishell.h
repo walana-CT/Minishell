@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/28 15:07:07 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:48:32 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int		ms_isbuiltin(char *str);
 int		ms_lex(t_ms *ms);
 int		ms_exec(t_ms *ms);
 int		ms_launch_children(t_ms *ms);
+int		ms_close(t_ms *ms, int val);
 
 //terminal
 
@@ -128,8 +129,7 @@ int		ms_terminal_reset(t_ms *ms);
 //builtins
 
 int		ms_cd(t_cmd *cmd);
-int		ms_exit(t_ms *ms);
-int		is_env(char *str, char *env);
+int		ms_exit(t_cmd *cmd);
 int		ms_env(t_cmd *cmd);
 int		ms_unset(t_cmd *cmd);
 int		ms_echo(t_cmd *cmd);
@@ -147,6 +147,8 @@ char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
 void	ms_printcmds(t_ms ms);
 int		ms_is_dol_sep(char c);
+int		is_env(char *str, char *env);
+
 //debug
 
 void	ms_printcmds(t_ms ms);

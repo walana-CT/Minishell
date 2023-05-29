@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 15:09:58 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 14:48:57 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	env_addvar(char *new_var, t_ms *ms)
 void	ms_exportvar(char *new_var, t_ms *ms)
 {
 	int	env_varl;
-
 
 	env_varl = ms_getenv_varl(new_var, ms);
 	if (env_varl >= 0)

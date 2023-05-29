@@ -1,13 +1,12 @@
 TODO
-* Gestion d'erreurs (code d'erreur de la derniere commande stockée dans $?)
 * Gerer >| et une ligne comme ps | >| pouet ls (redirections)
 * Gerer mieux les | | | | |
-* quitter une commande avec ctrl-C doit renvoyer 1 dans $?
 * export A+=
 * signaux marchent bizarre / pas dans certains cas (heredoc, passwd)
 * $$ le vrai bash renvoi son pid mais je ne voit pas comment faire avec les
 	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu);
-* assigner correctement les valeurs d'err.
+* segfault quand argument invalides. 
+
 
 
 OK
@@ -19,3 +18,6 @@ OK
 * Gerer $A$B$C
 * Gerer $$
 * $? à gérer dans dollar_replace
+* assigner correctement les valeurs d'err.
+* quitter une commande avec ctrl-C doit renvoyer 1 dans $?
+* Gestion d'erreurs (code d'erreur de la derniere commande stockée dans $?)

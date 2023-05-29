@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/28 15:20:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:54:46 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ms_do_builtin(t_cmd	*cmd)
 	if (ft_strequal(cmd->cmd_name, "env"))
 		return (ms_env(cmd));
 	if (ft_strequal(cmd->cmd_name, "exit"))
-		return (ms_exit(cmd->ms));
+		return (ms_exit(cmd));
 	if (ft_strequal(cmd->cmd_name, "export"))
 		return (ms_export(cmd));
 	if (ft_strequal(cmd->cmd_name, "pwd"))
@@ -98,8 +98,8 @@ int	ms_exec(t_ms *ms)
 	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
 		return (1);
-	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
-		return (ms_do_builtin(&ms->cmd[0]));
+	/*if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
+		return (ms_do_builtin(&ms->cmd[0]));*/
 	i = -1;
 	while (++i < ms->nbcmd)
 	{

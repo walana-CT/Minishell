@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 16:16:32 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:04:23 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ms_free_cmd(t_ms *ms)
 	{
 		// ms_printcmd(ms->cmd[i]);
 		waitpid(ms->pid[i], &err, 0);
+		stat_err(err);
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
 		if (ms->cmd[i].fdout != 1)

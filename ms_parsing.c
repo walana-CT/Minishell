@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/28 15:11:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 15:58:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ int	ms_cmds_init(t_ms *ms)
  */
 int	ms_get_cmds(t_ms *ms)
 {
+	if (ft_strequal(ms->line, ""))
+	{
+		ms->nbcmd = 0;
+		stat_err(0);
+		return (FALSE);
+	}
 	if (!ms_syntax_ok(ms->line))
 	{
 		stat_err(258);

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/28 15:08:04 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:10:55 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,15 @@ void	minishell(t_ms *ms)
 		ms->rl_str = readline("msh > ");
 		stat_interactive(0);
 		if (!ms->rl_str)
-			ms_exit(ms);
+			ms_close(ms, 127);
 		ms->line = ft_strtrim(ms->rl_str, SPACES);
 		if (!ms->line)
 			ms_crash(ms);
 		add_history(ms->line);
-		if (ms->line && !ft_strequal(ms->line, ""))
-		{
-			if (ms_get_cmds(ms))
-				ms_launch_cmds(ms);
-		}
+		if (ms_get_cmds(ms))
+			ms_launch_cmds(ms);
 		ms_loop_free(ms);
 	}
-	ms_exit(ms);
 }
 
 /**
