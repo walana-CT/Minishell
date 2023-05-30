@@ -1,10 +1,9 @@
 TODO
 * export A+=
-* signaux marchent bizarre / pas dans certains cas (heredoc, passwd)
-* $$ le vrai bash renvoi son pid mais je ne voit pas comment faire avec les
-	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu);
+* signaux marchent bizarre / pas dans certains cas (heredoc, passwd, minishell dans minishell)
+* $$ le vrai bash renvoi son pid mais je ne vois pas comment faire avec les
+	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu); -> en vrai je pensais que $$ etait un caractere d'echappement.
 * segfault quand argument invalides.
-* historique dans fichier ?
 * exit exit plus ?
 
 OK
@@ -21,3 +20,4 @@ OK
 * Gestion d'erreurs (code d'erreur de la derniere commande stockée dans $?)
 * Gerer mieux les | | | | |
 * Gerer >| et une ligne comme ps | >| pouet ls (redirections) -> syntax error
+* historique permanent dans fichier .ms_history

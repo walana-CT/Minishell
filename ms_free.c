@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 16:04:23 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/30 12:15:14 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ms_free_cmd(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		// ms_printcmd(ms->cmd[i]);
 		waitpid(ms->pid[i], &err, 0);
 		stat_err(err);
 		if (ms->cmd[i].fdin != 0)
@@ -104,4 +103,5 @@ void	ms_free(t_ms *ms)
 	}
 	if (!stat_interactive(-1))
 		ms_loop_free(ms);
+	close(ms->histofd);
 }

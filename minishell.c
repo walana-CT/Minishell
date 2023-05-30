@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 16:10:55 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/30 12:04:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,26 @@ void	minishell(t_ms *ms)
 		if (!ms->line)
 			ms_crash(ms);
 		add_history(ms->line);
+		write(ms->histofd, ms->line, ft_sstrlen(ms->line));
+		write(ms->histofd, "\n", 1);
 		if (ms_get_cmds(ms))
 			ms_launch_cmds(ms);
 		ms_loop_free(ms);
 	}
+}
+
+void	ms_gethistory(t_ms *ms)
+{
+	char	*str;
+
+	str = get_next_line(ms->histofd);
+	while (str)
+	{
+		str[ft_sstrlen(str) - 1] = 0;
+		add_history(str);
+		str = get_next_line(ms->histofd);
+	}		
+	free(str);
 }
 
 /**
@@ -62,6 +78,10 @@ int	ms_init(t_ms *ms)
 	ms->line = NULL;
 	ms->pid = NULL;
 	ms->cmd = NULL;
+	ms->histofd = open(".ms_history", O_CREAT | O_RDWR, 0644);
+	if (ms->histofd == -1)
+		ms_crash(ms);
+	ms_gethistory(ms);
 	return (0);
 }
 

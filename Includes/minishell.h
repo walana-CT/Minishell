@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 19:38:07 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:07:38 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ typedef struct s_cmd	t_cmd;
 
 typedef struct s_ms
 {
-	char		*rl_str;
-	char		**envp;
-	int			term_fd;
-	char		*line;
-	int			nbcmd;
-	int			**pipe;
-	pid_t		*pid;
-	t_cmd		*cmd;
+	char	*rl_str;
+	char	**envp;
+	int		histofd;
+	int		term_fd;
+	char	*line;
+	int		nbcmd;
+	int		**pipe;
+	pid_t	*pid;
+	t_cmd	*cmd;
 }	t_ms;
 
 struct s_cmd
