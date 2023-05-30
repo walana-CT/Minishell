@@ -1,10 +1,8 @@
 TODO
 * export A+=
 * signaux marchent bizarre / pas dans certains cas (heredoc, passwd, minishell dans minishell)
-* $$ le vrai bash renvoi son pid mais je ne vois pas comment faire avec les
-	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu); -> en vrai je pensais que $$ etait un caractere d'echappement.
 * segfault quand argument invalides.
-* exit n'exit plus ?
+
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -21,3 +19,4 @@ OK
 * Gerer mieux les | | | | |
 * Gerer >| -> syntax error
 * historique permanent dans fichier .ms_history
+* exit n'exit plus ?

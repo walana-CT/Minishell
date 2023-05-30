@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 14:11:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:41:08 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	minishell(t_ms *ms)
 	{
 		stat_interactive(1);
 		ms->rl_str = readline("msh > ");
-		stat_interactive(0);
 		if (!ms->rl_str)
-			ms_close(ms, 127);
+			ms_exit(NULL);
+		stat_interactive(0);
 		ms->line = ft_strtrim(ms->rl_str, SPACES);
 		if (!ms->line)
 			ms_crash(ms);

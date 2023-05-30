@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 14:23:42 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:38:31 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,17 @@ void	ms_child(t_ms *ms, int i)
 int	ms_exec(t_ms *ms)
 {
 	int	i;
+	int err;
 
 	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
 		return (1);
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
-		return (ms_do_builtin(&ms->cmd[0]));
+	{
+		err = ms_do_builtin(&ms->cmd[0]);
+		stat_err(err);
+		return (0);	
+	}
 	i = -1;
 	while (++i < ms->nbcmd)
 	{

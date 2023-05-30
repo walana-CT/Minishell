@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/27 15:49:15 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:54:52 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,17 @@ int	ms_heredoc(t_cmd *cmd)
 	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
 		return (1);
 	stat_interactive(1);
-	str = get_next_line(0);
-	while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
+	str = readline(">");
+	// while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
+	while (!ft_strequal(str, cmd->limiter) && str)
 	{
 		if (!ms_dollar_replace(&str, cmd->ms))
+		{
 			write(cmd->herepipe[1], str, ft_sstrlen(str));
+			write(cmd->herepipe[1], "\n", 1);
+		}
 		free(str);
-		str = get_next_line(0);
+		str = readline(">");
 	}
 	stat_interactive(0);
 	close(cmd->herepipe[1]);

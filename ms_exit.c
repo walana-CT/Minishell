@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/30 14:04:58 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:13:41 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,28 @@
 //tputs
 int	ms_exit(t_cmd *cmd)
 {
+	int	return_val;
+
+	printf("\033[1Fmsh > \033[0mexit\n");
+	if (!cmd)
+	{
+		ms_free(cmd->ms);
+		exit(127);
+	}
+	printf("exit\n");
 	if (!cmd->args[0])
-	{
-		printf("exit received 0 args\n");
-		return (1);
-	}
+		return (printf("exit received 0 args\n"), 1);
 	if (!cmd->args[1])
-		ms_close(cmd->ms, 127);
-	else if (cmd->args[2])
+		return_val = 127;
+	else
 	{
-		printf("exit : too many arguments\n");
-		stat_err(1);
-		return (1);
+		return_val = ft_atoi(cmd->args[1]);
+		if (cmd->args[2])
+			return (printf("exit : too many arguments\n"), 1);
 	}
-	ms_close(cmd->ms, ft_atoi(cmd->args[1]));
+	ms_free(cmd->ms);
+	exit(return_val);
+	//system("leaks minishell");
 	return (0);
 }
 
-int	ms_close(t_ms *ms, int val)
-{
-	printf("\033[1Fmsh > \033[0mexit\n");
-	if (ms->cmd)
-		printf("exit\n");
-	ms_free(ms);
-	system("leaks minishell");
-	exit(val);
-}
