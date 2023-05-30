@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/29 15:28:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/30 14:04:58 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	ms_close(t_ms *ms, int val)
 	if (ms->cmd)
 		printf("exit\n");
 	ms_free(ms);
-	// system("leaks minishell");
+	system("leaks minishell");
 	exit(val);
 }

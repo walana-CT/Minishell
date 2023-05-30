@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/26 23:09:39 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:09:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 		return (1);
 	ms_trimquotes(&cmd->fileout);
 	if (append)
-		cmd->fdout = ms_getappendfd(*cmd);
+		//cmd->fdout = ms_getappendfd(*cmd);
+		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_APPEND, 0644);
 	else
 		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);

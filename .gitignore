@@ -12,3 +12,4 @@ checker
 *.a
 terminal_exemple.c
 .vscode/settings.json
+.ms_history

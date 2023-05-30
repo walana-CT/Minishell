@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 12:04:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:11:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ms_gethistory(t_ms *ms)
 	{
 		str[ft_sstrlen(str) - 1] = 0;
 		add_history(str);
+		free(str);
 		str = get_next_line(ms->histofd);
 	}		
 	free(str);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/28 14:45:23 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/30 14:04:58 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ lib:
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) $(SANITIZE)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) #$(SANITIZE)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:

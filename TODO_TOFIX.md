@@ -4,7 +4,7 @@ TODO
 * $$ le vrai bash renvoi son pid mais je ne vois pas comment faire avec les
 	fonctions autorisées (on pourrait avec sigaction mais c'est vraiment dégueu); -> en vrai je pensais que $$ etait un caractere d'echappement.
 * segfault quand argument invalides.
-* exit exit plus ?
+* exit n'exit plus ?
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -19,5 +19,5 @@ OK
 * quitter une commande avec ctrl-C doit renvoyer 1 dans $?
 * Gestion d'erreurs (code d'erreur de la derniere commande stockée dans $?)
 * Gerer mieux les | | | | |
-* Gerer >| et une ligne comme ps | >| pouet ls (redirections) -> syntax error
+* Gerer >| -> syntax error
 * historique permanent dans fichier .ms_history
