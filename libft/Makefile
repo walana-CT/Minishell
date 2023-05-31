@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/05/30 15:00:45 by rficht           ###   ########.fr        #
+#    Updated: 2023/05/31 11:40:56 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ all: $(NAME)
 
 .c.o:
 #	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) #$(SANITIZE)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) $(SANITIZE)
 
 $(NAME): $(OBJ)
 	@printf '$(GREEN)Creating : $(NAME)$(RESET)\n'

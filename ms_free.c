@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 15:13:47 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 11:48:23 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ void	ms_free_cmd(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		waitpid(ms->pid[i], &err, 0);
-		stat_err(err);
+		if (ms->pid)
+		{
+			waitpid(ms->pid[i], &err, 0);
+			stat_err(err);
+		}
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
 		if (ms->cmd[i].fdout != 1)
@@ -101,7 +104,7 @@ void	ms_free(t_ms *ms)
 		while (ms->envp[n])
 			ft_freestr(&ms->envp[n++]);
 	}
-	if (!stat_interactive(-1))
+	if (!stat_sig(-1))
 		ms_loop_free(ms);
 	close(ms->histofd);
 }

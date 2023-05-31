@@ -6,22 +6,25 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:24:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 15:06:54 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 11:05:36 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+
 /**
- * Allow to simulate a global var.
+ * enum that represent how the signals will be interpreteed depending on where
+ * they are catched
  * @param val Will remplace interactive if >= 0.
  * return Value of interactive.
  */
-int	stat_interactive(int val)
+int	stat_sig(int val)
 {
-	static int	interactive;
+	static t_sig	state;
 
 	if (val >= 0)
-		interactive = val;
-	return (interactive);
+		state = val;
+	return (state);
 }
 
 /**

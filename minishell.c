@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 09:39:34 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 10:51:34 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	minishell(t_ms *ms)
 {
 	while (1)
 	{
-		stat_interactive(1);
+		stat_sig(1);
 		ms->rl_str = readline("msh > ");
 		if (!ms->rl_str)
 			ms_exit(NULL);
-		stat_interactive(0);
+		stat_sig(0);
 		ms->line = ft_strtrim(ms->rl_str, SPACES);
 		if (!ms->line)
 			ms_crash(ms);
@@ -90,7 +90,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_ms	ms;
 
-	stat_interactive(0);
+	stat_sig(0);
 	ms_init(&ms);
 	set_sig();
 	copy_env(envp, &ms);

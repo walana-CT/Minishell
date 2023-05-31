@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 11:07:38 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 11:20:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@
 # define NO_F ": No such file or directory\n"
 
 typedef struct s_cmd	t_cmd;
+
+
+/**
+ * @param normal default mode
+ * @param prompt mode when entering text
+ * @param child mode to quit inside child
+ * @param disabled mode that totaly disable signals when calling a child
+ */
+typedef enum e_sig
+{
+	normal,
+	prompt,
+	child,
+	disabled
+}	t_sig;
 
 typedef struct s_ms
 {
@@ -159,7 +174,7 @@ void	ms_printcmd(t_cmd cmd);
 
 //statics
 
-int		stat_interactive(int val);
+int		stat_sig(int val);
 int		stat_err(int val);
 
 #endif

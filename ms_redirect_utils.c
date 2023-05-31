@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 10:08:06 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 11:36:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	ms_heredoc_child(t_cmd *cmd)
 	char	*str;
 
 	rl_catch_signals = 0;
-	stat_interactive(2);
+	stat_sig(2);
 	str = readline(">");
-	stat_interactive(0);
+	//stat_sig(0);
 	while (!ft_strequal(cmd->limiter, str) && str)
 	{
 		if (!ms_dollar_replace(&str, cmd->ms))
@@ -88,9 +88,9 @@ void	ms_heredoc_child(t_cmd *cmd)
 			write(cmd->herepipe[1], "\n", 1);
 		}
 		free(str);
-		stat_interactive(1);
+		//stat_sig(1);
 		str = readline(">");
-		stat_interactive(0);
+		//stat_sig(0);
 	}
 	close(cmd->herepipe[1]);
 	exit(0);
@@ -99,19 +99,22 @@ void	ms_heredoc_child(t_cmd *cmd)
 int	ms_heredoc(t_cmd *cmd)
 {
 	int		pid;
+	int		err;
 
+	err = 0;
 	cmd->herepipe = malloc(2 * sizeof(int));
 	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
 		return (1);
-	stat_interactive(0);
+	stat_sig(disabled);
 	pid = fork();
 	if (!pid)
 		ms_heredoc_child(cmd);
-	waitpid(pid, 0, 0);
-	stat_interactive(1);
+	waitpid(pid, &err, 0);
+	stat_sig(0);
 	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
 	free(cmd->limiter);
 	free(cmd->herepipe);
-	return (0);
+	printf("err val : %d\n", err);
+	return (err);
 }
