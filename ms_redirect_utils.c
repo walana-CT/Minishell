@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 13:39:51 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 14:30:11 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,8 @@ void	ms_heredoc_child(t_cmd *cmd)
 {
 	char	*str;
 
-	stat_sig(2);
+	stat_sig(child);
 	str = readline(">");
-	//stat_sig(0);
 	while (!ft_strequal(cmd->limiter, str) && str)
 	{
 		if (!ms_dollar_replace(&str, cmd->ms))
@@ -87,9 +86,7 @@ void	ms_heredoc_child(t_cmd *cmd)
 			write(cmd->herepipe[1], "\n", 1);
 		}
 		free(str);
-		//stat_sig(1);
 		str = readline(">");
-		//stat_sig(0);
 	}
 	close(cmd->herepipe[1]);
 	exit(0);
@@ -109,11 +106,10 @@ int	ms_heredoc(t_cmd *cmd)
 	if (!pid)
 		ms_heredoc_child(cmd);
 	waitpid(pid, &err, 0);
-	stat_sig(0);
+	stat_sig(normal);
 	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
 	free(cmd->limiter);
 	free(cmd->herepipe);
-	printf("err val : %d\n", err);
-	return (err);
+	return (WEXITSTATUS(err));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/31 11:47:25 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:24:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 	{
 		if (stat_sig(-1) == disabled)
 			return ;
-		if (stat_sig(-1) == child)
-		{
-			exit (4);
-		}
 		write(1, "\n", 1);
+		if (stat_sig(-1) == child)
+			exit (1);
 		rl_replace_line("", 0);
 		if (stat_sig(-1) == prompt)
-		{
 			rl_on_new_line();
-		}
 		rl_redisplay();
 		stat_err(1);
 	}
