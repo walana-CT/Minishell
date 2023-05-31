@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 14:47:16 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:29:20 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ int	ms_exec(t_ms *ms)
 	{
 		ms->pid[i] = fork();
 		if (!ms->pid[i])
-		{
-			stat_sig(2);
 			ms_child(ms, i);
-		}
 	}
 	return (0);
 }
