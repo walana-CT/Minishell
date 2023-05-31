@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/29 16:11:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:59:18 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	write_args(char **args, int fdout, int n_flag)
 		if (ft_putstr_fd(args[0], fdout) == -1)
 			return (1);
 		args++;
-		if (args)
+		if (args[0])
 		{
 			if (write(fdout, " ", 1) == -1)
 				return (1);
@@ -49,7 +49,7 @@ int	write_args(char **args, int fdout, int n_flag)
 	}
 	if (!n_flag)
 	{
-		if (write(fdout, " ", 1) == -1)
+		if (write(fdout, "\n", 1) == -1)
 			return (1);
 	}
 	return (0);
@@ -71,6 +71,6 @@ int	ms_echo(t_cmd *cmd)
 		n++;
 	if (write_args(cmd->args + n, cmd->fdout, n_flag))
 		return (1);
-	write(cmd->fdout, "\n", 1);
+	//write(cmd->fdout, "\n", 1);
 	return (0);
 }
