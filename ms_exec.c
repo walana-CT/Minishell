@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 13:40:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 14:47:16 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ms_child(t_ms *ms, int i)
 {
 	char	*pathcmd;
 
+	stat_sig(child);
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
@@ -104,7 +105,7 @@ int	ms_exec(t_ms *ms)
 		return (stat_err(err), 0);
 	}
 	i = -1;
-	stat_sig(0);
+	stat_sig(disabled);
 	while (++i < ms->nbcmd)
 	{
 		ms->pid[i] = fork();
@@ -114,6 +115,5 @@ int	ms_exec(t_ms *ms)
 			ms_child(ms, i);
 		}
 	}
-	stat_sig(1);
 	return (0);
 }

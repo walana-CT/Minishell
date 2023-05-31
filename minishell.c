@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 14:07:28 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/05/31 14:51:10 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,22 @@ void	minishell(t_ms *ms)
 	while (1)
 	{
 		tcsetattr(STDIN_FILENO, 0, &settings);
-		stat_sig(1);
+		stat_sig(prompt);
 		ms->rl_str = readline("msh > ");
 		if (!ms->rl_str)
 			ms_exit(NULL);
-		stat_sig(0);
+		stat_sig(normal);
 		ms->line = ft_strtrim(ms->rl_str, SPACES);
 		if (!ms->line)
 			ms_crash(ms);
-		add_history(ms->line);
+		if (ms->line && !ft_strequal(ms->line, ""))
+			add_history(ms->line);
 		write(ms->histofd, ms->line, ft_sstrlen(ms->line));
 		write(ms->histofd, "\n", 1);
 		if (ms_get_cmds(ms))
 			ms_launch_cmds(ms);
 		ms_loop_free(ms);
+		stat_sig(normal);
 	}
 }
 
@@ -94,7 +96,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_ms	ms;
 
 	rl_catch_signals = 0;
-	stat_sig(0);
+	stat_sig(normal);
 	ms_init(&ms);
 	set_sig();
 	copy_env(envp, &ms);
