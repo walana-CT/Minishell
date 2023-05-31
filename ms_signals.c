@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/30 15:38:20 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:08:26 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 	context = 0;
 	if (sig == SIGINT)
 	{
+		if (stat_interactive(-1) == 2)
+			exit (1);
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		if (stat_interactive(-1))

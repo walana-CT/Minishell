@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 15:54:52 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:08:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,15 @@ int	ms_get_fds(t_ms *ms)
 	return (0);
 }
 
-int	ms_heredoc(t_cmd *cmd)
+void	ms_heredoc_child(t_cmd *cmd)
 {
 	char	*str;
 
-	cmd->herepipe = malloc(2 * sizeof(int));
-	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
-		return (1);
-	stat_interactive(1);
+	rl_catch_signals = 0;
+	stat_interactive(2);
 	str = readline(">");
-	// while (ft_strncmp(str, cmd->limiter, ft_sstrlen(str)) != 10)
-	while (!ft_strequal(str, cmd->limiter) && str)
+	stat_interactive(0);
+	while (!ft_strequal(cmd->limiter, str) && str)
 	{
 		if (!ms_dollar_replace(&str, cmd->ms))
 		{
@@ -90,12 +88,29 @@ int	ms_heredoc(t_cmd *cmd)
 			write(cmd->herepipe[1], "\n", 1);
 		}
 		free(str);
+		stat_interactive(1);
 		str = readline(">");
+		stat_interactive(0);
 	}
+	close(cmd->herepipe[1]);
+	exit(0);
+}
+
+int	ms_heredoc(t_cmd *cmd)
+{
+	int		pid;
+
+	cmd->herepipe = malloc(2 * sizeof(int));
+	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
+		return (1);
 	stat_interactive(0);
+	pid = fork();
+	if (!pid)
+		ms_heredoc_child(cmd);
+	waitpid(pid, 0, 0);
+	stat_interactive(1);
 	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
-	free(str);
 	free(cmd->limiter);
 	free(cmd->herepipe);
 	return (0);

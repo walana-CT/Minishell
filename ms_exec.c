@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 14:38:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:08:05 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ms_child(t_ms *ms, int i)
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
-	rl_catch_signals = 1;
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
@@ -94,7 +93,7 @@ void	ms_child(t_ms *ms, int i)
 int	ms_exec(t_ms *ms)
 {
 	int	i;
-	int err;
+	int	err;
 
 	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
@@ -102,15 +101,20 @@ int	ms_exec(t_ms *ms)
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
 	{
 		err = ms_do_builtin(&ms->cmd[0]);
-		stat_err(err);
-		return (0);	
+		return (stat_err(err), 0);
 	}
 	i = -1;
+	stat_interactive(0);
 	while (++i < ms->nbcmd)
 	{
 		ms->pid[i] = fork();
 		if (!ms->pid[i])
+		{
+			stat_interactive(2);
+			rl_catch_signals = 1;
 			ms_child(ms, i);
+		}
 	}
+	stat_interactive(1);
 	return (0);
 }

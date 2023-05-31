@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/30 14:41:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 09:39:34 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_ms	ms;
 
+	stat_interactive(0);
 	ms_init(&ms);
 	set_sig();
-	stat_interactive(1);
 	copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)
