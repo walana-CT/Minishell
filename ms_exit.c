@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/30 15:13:41 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 11:57:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ms_exit(t_cmd *cmd)
 	printf("\033[1Fmsh > \033[0mexit\n");
 	if (!cmd)
 	{
-		ms_free(cmd->ms);
+		system("leaks minishell");
 		exit(127);
 	}
 	printf("exit\n");
@@ -35,8 +35,8 @@ int	ms_exit(t_cmd *cmd)
 			return (printf("exit : too many arguments\n"), 1);
 	}
 	ms_free(cmd->ms);
+	system("leaks minishell");
 	exit(return_val);
-	//system("leaks minishell");
 	return (0);
 }
 

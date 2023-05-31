@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 10:51:34 by rficht           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:07:28 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ int	ms_launch_cmds(t_ms *ms)
  */
 void	minishell(t_ms *ms)
 {
+	struct termios	settings;
+
+	tcgetattr(STDIN_FILENO, &settings);
 	while (1)
 	{
+		tcsetattr(STDIN_FILENO, 0, &settings);
 		stat_sig(1);
 		ms->rl_str = readline("msh > ");
 		if (!ms->rl_str)
@@ -70,7 +74,6 @@ void	ms_gethistory(t_ms *ms)
 int	ms_init(t_ms *ms)
 {
 	stat_err(0);
-	rl_catch_signals = 0;
 	ms->pipe = 0;
 	ms->nbcmd = 0;
 	ms->rl_str = NULL;
@@ -90,6 +93,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_ms	ms;
 
+	rl_catch_signals = 0;
 	stat_sig(0);
 	ms_init(&ms);
 	set_sig();
