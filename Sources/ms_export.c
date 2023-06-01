@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 10:05:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,31 @@ void	env_addvar(char *new_var, t_ms *ms)
 	ms->envp = new_envp;
 }
 
-void	ms_exportvar(char *new_var, t_ms *ms)
+int	valid_var(char *new_var)
+{
+	if (*new_var == '=')
+		return (FALSE);
+	while (*new_var && *new_var != '=')
+	{
+		if (*new_var == '-')
+			return (FALSE);
+		if (ft_isdigit(*new_var))
+			return (FALSE);
+		new_var++;
+	}
+	return (TRUE);
+}
+
+
+int	ms_exportvar(char *new_var, t_ms *ms)
 {
 	int	env_varl;
 
+	if (!valid_var(new_var))
+	{
+		ft_putstr_fd(" not a valid identifier", 2);
+		return (1);
+	}
 	env_varl = ms_getenv_varl(new_var, ms);
 	if (env_varl >= 0)
 	{
@@ -85,6 +106,7 @@ void	ms_exportvar(char *new_var, t_ms *ms)
 	}
 	else
 		env_addvar(new_var, ms);
+	return (0);
 }
 
 int	ms_export(t_cmd *cmd)
@@ -103,6 +125,7 @@ int	ms_export(t_cmd *cmd)
 		return (0);
 	}
 	while (cmd->args[++n])
-		ms_exportvar(cmd->args[n], cmd->ms);
+		if (ms_exportvar(cmd->args[n], cmd->ms))
+			return (1);
 	return (0);
 }
