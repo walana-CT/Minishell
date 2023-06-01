@@ -14,3 +14,4 @@ terminal_exemple.c
 .vscode/settings.json
 .ms_history
 /minishell_tester-main/*
+minishell_tester
