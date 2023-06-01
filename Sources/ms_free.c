@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/31 11:48:23 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
 int	ms_sizeof_tab(char **my_tab)
 {

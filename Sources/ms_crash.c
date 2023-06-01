@@ -6,11 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 14:52:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 08:54:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
 /**
  * Free any memory in ms before to write err message and close.

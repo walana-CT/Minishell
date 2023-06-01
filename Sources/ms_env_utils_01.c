@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   ms_env_utils_01.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lalex-ku <lalex-ku@42sp.org.br>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 17:32:45 by lalex-ku          #+#    #+#             */
-/*   Updated: 2022/06/22 17:32:50 by lalex-ku         ###   ########.fr       */
+/*   Created: 2023/06/01 09:25:44 by rficht            #+#    #+#             */
+/*   Updated: 2023/06/01 09:39:44 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "minishell.h"
 
-int	main(int argc, char const *argv[])
+int	env_var_len(char *str)
 {
-	int	pid;
+	int	len;
 
-	pid = fork();
-	open("infile", O_RDONLY);
-	while (1)
-	{
-		printf("Helloo miniHELL %i\n", pid);
-		sleep(1);
-	}
-	return (0);
+	len = 1;
+	while (!ms_is_dol_sep(str[len]))
+		len++;
+	return (len);
 }

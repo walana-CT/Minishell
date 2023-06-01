@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parsing_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:32:57 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/05/29 20:45:31 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
 char	*ms_trim(char c, char *str)
 {

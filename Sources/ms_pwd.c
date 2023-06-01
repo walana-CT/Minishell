@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_env.c                                           :+:      :+:    :+:   */
+/*   ms_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 15:09:42 by rficht           ###   ########.fr       */
+/*   Created: 2023/04/30 09:55:49 by rficht            #+#    #+#             */
+/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/minishell.h"
+#include "minishell.h"
 
-void	ms_printtab(char **str_tab, int fd)
+int	ms_pwd(t_cmd *cmd)
 {
-	while (*str_tab)
-	{
-		ft_putstr_fd(*str_tab, fd);
-		write(fd, "\n", 1);
-		str_tab++;
-	}
-}
+	char	buffer[MAXPATHLEN + 1];
+	char	*result;
 
-int	ms_env(t_cmd *cmd)
-{
-	t_ms		*ms;
-
-	ms = cmd->ms;
-	if (!cmd->args[0])
-	{
-		printf("env received 0 args\n");
+	buffer[MAXPATHLEN] = 0;
+	result = getcwd(buffer, MAXPATHLEN);
+	if (!result)
 		return (1);
-	}
-	ms_printtab(ms->envp, cmd->fdout);
+	if (ft_putstr_fd(buffer, cmd->fdout) == -1)
+		return (1);
+	write(cmd->fdout, "\n", 1);
 	return (0);
 }

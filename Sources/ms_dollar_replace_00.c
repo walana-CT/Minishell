@@ -6,21 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/28 15:17:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 09:39:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	env_var_len(char *str)
-{
-	int	len;
-
-	len = 1;
-	while (!ms_is_dol_sep(str[len]))
-		len++;
-	return (len);
-}
 
 int	replace_qm(char **str, int pos, t_ms *ms)
 {
@@ -60,6 +50,19 @@ static int	dol_replace(char **str, int pos, t_ms *ms)
 	return (0);
 }
 
+int	is_doll_replaced(char *str, int n)
+{
+	if (str[n] == '$' && ms_quote_status(str, n) != 1)
+	{
+		if (str[n + 1] == ' ' || !str[n + 1])
+			return (FALSE);
+		if ((str[n + 1] == '\"' && ms_quote_status(str, n + 1) == 0))
+			return (FALSE);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 static int	next_dol_pos(char *str)
 {
 	int	n;
@@ -70,7 +73,7 @@ static int	next_dol_pos(char *str)
 		return (-1);
 	while (str[n])
 	{
-		if (str[n] == '$' && ms_quote_status(str, n) != 1)
+		if (is_doll_replaced(str, n))
 			return (n);
 		n++;
 	}
