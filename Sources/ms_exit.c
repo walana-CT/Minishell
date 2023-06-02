@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 11:29:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 14:57:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_long(long int nbr)
 
 static int	isdigit_str(char *str)
 {
-	while (*str)
+	while (str && *str)
 	{
 		if (!ft_isdigit(*str) && *str != '+' && *str != '-')
 			return (FALSE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:54:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:08:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ms_launch_cmds(t_ms *ms)
 {
-	if (ms_get_fds(ms))
-		return (1);
+	ms_get_fds(ms);
 	if (ms_lex(ms))
 		return (1);
 	if (ms_exec(ms))
@@ -50,7 +49,6 @@ void	minishell(t_ms *ms)
 		if (ms_get_cmds(ms))
 			ms_launch_cmds(ms);
 		ms_loop_free(ms);
-		stat_sig(normal);
 	}
 }
 

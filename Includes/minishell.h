@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 09:26:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:27:52 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ struct s_cmd
 	int		*herepipe;
 	int		fdin;
 	int		fdout;
+	int		invalidfd;
 	char	*cmd_name;
 	char	**args;
 	char	*path;
@@ -99,7 +100,7 @@ void	ms_free_cmd(t_ms *ms);
 void	ms_free(t_ms *ms);
 void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
-int		ms_error_msg_nofile(char *file, int err);
+int		ms_error_file(char *file, int err);
 int		ms_bad_child_ending(char *str);
 void	ms_loop_free(t_ms *ms);
 
@@ -121,7 +122,7 @@ int		ms_wrongchars(char	*str);
 
 //parsing 2 (cmd)
 
-int		ms_get_fds(t_ms *ms);
+void	ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
 int		ms_dollar_replace(char **str, t_ms *ms);

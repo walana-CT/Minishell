@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 08:54:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:26:48 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ms_error_msg(char *str, int err)
 	return (err);
 }
 
-int	ms_error_msg_nofile(char *file, int err)
+int	ms_error_file(char *file, int err)
 {
 	write(2, "msh: ", 5);
 	write(2, file, ft_sstrlen(file));

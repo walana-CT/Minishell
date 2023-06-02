@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:16:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ms_child(t_ms *ms, int i)
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
+	if (ms->cmd[i].invalidfd)
+		exit(ms->cmd[i].invalidfd);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else

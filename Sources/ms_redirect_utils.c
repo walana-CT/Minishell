@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirect_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:24:28 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,16 @@ int	ms_getappendfd(t_cmd cmd)
  * @param ms address of minishell.
  * @return return 0 or 1 or whether if the filenames are valids or not. 
  */
-int	ms_get_fds(t_ms *ms)
+void	ms_get_fds(t_ms *ms)
 {
 	int	i;
 
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		if (ms_get_fdin(&(ms->cmd[i])) || ms_get_fdout(&(ms->cmd[i])))
-			return (1);
+		ms_get_fdin(&(ms->cmd[i]));
+		ms_get_fdout(&(ms->cmd[i]));
 	}
-	return (0);
 }
 
 void	ms_heredoc_child(t_cmd *cmd)

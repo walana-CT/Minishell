@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:26:48 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ms_getinfile(t_cmd *cmd, int i)
 		return (1);
 	ms_trimquotes(&cmd->filein);
 	cmd->fdin = open(cmd->filein, O_RDONLY);
+	if (cmd->fdin == -1)
+		cmd->invalidfd = 1;
 	return (0);
 }
 
@@ -61,7 +63,7 @@ int	ms_get_fdin(t_cmd *cmd)
 		}
 		else
 			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
-				return (ms_error_msg_nofile(cmd->filein, 1));
+				return (ms_error_file(cmd->filein, cmd->invalidfd));
 		i = ms_where_is('<', cmd->line);
 	}
 	return (0);
@@ -103,6 +105,8 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	else
 		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
+	if (cmd->fdout == -1)
+		cmd->invalidfd = 1;
 	return (0);
 }
 
@@ -123,7 +127,7 @@ int	ms_get_fdout(t_cmd *cmd)
 		if (cmd->fileout)
 			ft_freenull((void *)cmd->fileout);
 		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
-			return (ms_error_msg_nofile(cmd->fileout, 1));
+			return (ms_error_file(cmd->fileout, cmd->invalidfd));
 		i = ms_where_is('>', cmd->line);
 	}
 	return (0);

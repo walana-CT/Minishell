@@ -5,10 +5,7 @@ TODO
 * export A+=
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
-* signaux marchent bizarre / pas dans certains cas (heredoc, passwd, minishell dans minishell)
-* segfault quand argument invalides.
 * cd
-lucaskuhn
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -26,3 +23,5 @@ OK
 * Gerer >| -> syntax error
 * historique permanent dans fichier .ms_history
 * exit n'exit plus ?
+* signaux marchent bizarre / pas dans certains cas (heredoc, passwd, minishell dans minishell)
+* segfault quand argument invalides.

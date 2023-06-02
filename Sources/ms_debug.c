@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_debug.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/27 13:59:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/02 13:08:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	ms_printcmd(t_cmd cmd)
 	printf("CmdName : %s\n", cmd.cmd_name);
 	printf("Filein : %s \t fdin %d\n", cmd.filein, cmd.fdin);
 	printf("Fileout : %s \t fdout %d\n", cmd.fileout, cmd.fdout);
+	printf("Valid fd : %d\n", cmd.validfd);
 	printf("_____________________________________________\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/01 14:46:50 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,10 @@ void	ms_pipes_close_free_null(t_ms *ms)
 void	ms_free_cmd(t_ms *ms)
 {
 	int	i;
-	int	err;
 
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		if (ms->pid)
-		{
-			waitpid(ms->pid[i], &err, 0);
-			stat_err(err);
-		}
 		if (ms->cmd[i].fdin != 0)
 			close(ms->cmd[i].fdin);
 		if (ms->cmd[i].fdout != 1)
@@ -73,7 +67,9 @@ void	ms_free_cmd(t_ms *ms)
 		if (ms->cmd[i].path)
 			ft_freestr(&(ms->cmd[i].path));
 	}
-	ft_freenull((void **) &ms->cmd);
+	if (ms->nbcmd)
+		ft_freenull((void **) &ms->cmd);
+
 }
 
 /**
@@ -83,10 +79,21 @@ void	ms_free_cmd(t_ms *ms)
  */
 void	ms_loop_free(t_ms *ms)
 {
+	int	i;
+	int	err;
+
+	i = -1;
 	if (ms->pipe)
 		ms_pipes_close_free_null(ms);
-	if (ms->nbcmd)
-		ms_free_cmd(ms);
+	while (++i < ms->nbcmd)
+	{
+		if (ms->pid)
+		{
+			waitpid(ms->pid[i], &err, 0);
+			stat_err(err);
+		}
+	}
+	ms_free_cmd(ms);
 	if (ms->pid)
 		ft_freenull((void **) &ms->pid);
 	ms->nbcmd = 0;
