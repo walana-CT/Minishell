@@ -1,16 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_redirect_utils.c                                :+:      :+:    :+:   */
+/*   ms_redir_outfile.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 12:53:26 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/02 13:24:28 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/06/04 17:08:47 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/06/04 18:24:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ms_getoutfile(t_cmd *cmd, int i)
+{
+	int		delstart;
+	int		start;
+	int		append;
+
+	ms_gof_init(&delstart, &append, &i, cmd);
+	while (cmd->line[i] == ' ')
+		i++;
+	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
+		return (1);
+	start = i;
+	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
+		i = set_end_filename(cmd, i);
+	cmd->fileout = ft_substr(cmd->line, start, i - start);
+	if (!cmd->fileout)
+		ms_crash(cmd->ms);
+	if (ms_dollar_replace(&cmd->fileout, cmd->ms))
+		return (1);
+	ms_trimquotes(&cmd->fileout);
+	if (append)
+		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_APPEND, 0644);
+	else
+		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (cmd->fdout == -1)
+	{
+		cmd->invalidfd = 1;
+		stat_err(errno);
+	}
+	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
+	return (0);
+}
+
+/**
+ * Verify the outfile is valid and interpret it into a Filedescriptor.
+ * @param cmd a cmd struct.
+ * @return return 0 or 1 whether the format of filein is valid or not.
+ */
+int	ms_get_fdout(t_cmd *cmd)
+{
+	int	i;
+	int	del;
+
+	del = 0;
+	while (ms_where_is('>', cmd->line) != -1)
+	{
+		i = ms_where_is('>', cmd->line);
+		if (cmd->fileout)
+			ft_freenull((void **)&cmd->fileout);
+		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
+			return (ms_error_file(cmd->fileout, cmd->invalidfd));
+	}
+	return (0);
+}
 
 /**
  * define the liniter if we encounter a << symbol.
@@ -39,36 +94,6 @@ int	ms_get_limiter(t_cmd *cmd, int i)
 	if (!cmd->limiter)
 		ms_crash(cmd->ms);
 	return (0);
-}
-
-int	ms_getappendfd(t_cmd cmd)
-{
-	int		fd;
-	char	str[1000];
-
-	fd = open(cmd.fileout, O_CREAT | O_RDWR, 0644);
-	if (fd == -1)
-		ms_crash(cmd.ms);
-	while (read(fd, &str, 1000))
-		;
-	return (fd);
-}
-
-/**
- * Interprete the filename given as input and output as Filedescriptors.
- * @param ms address of minishell.
- * @return return 0 or 1 or whether if the filenames are valids or not. 
- */
-void	ms_get_fds(t_ms *ms)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ms->nbcmd)
-	{
-		ms_get_fdin(&(ms->cmd[i]));
-		ms_get_fdout(&(ms->cmd[i]));
-	}
 }
 
 void	ms_heredoc_child(t_cmd *cmd)

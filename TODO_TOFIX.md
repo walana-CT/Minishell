@@ -6,6 +6,8 @@ TODO
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
 * cd
+* echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
+
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt

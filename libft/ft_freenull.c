@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_freenull.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:29:38 by rficht            #+#    #+#             */
-/*   Updated: 2023/05/11 11:48:12 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/04 15:46:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_freenull(void **ptr)
 {
-	if (ptr)
+	if (ptr && *ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;

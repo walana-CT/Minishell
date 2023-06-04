@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/02 13:27:52 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:24:28 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int		ms_error_file(char *file, int err);
 int		ms_bad_child_ending(char *str);
 void	ms_loop_free(t_ms *ms);
 
-//parsing 1 (line)
+//parsing
 
 int		ms_get_cmds(t_ms *ms);
 char	*ms_trim_hashtag(char *str);
@@ -120,15 +120,15 @@ int		ms_pipesplit(t_ms *ms);
 int		ms_trimquotes(char **str);
 int		ms_wrongchars(char	*str);
 
-//parsing 2 (cmd)
-
+// redirection
 void	ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
-int		ms_dollar_replace(char **str, t_ms *ms);
+int		ms_getinfile(t_cmd *cmd, int i);
 int		ms_get_limiter(t_cmd *cmd, int i);
-int		ms_getappendfd(t_cmd cmd);
+void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd);
 int		ms_heredoc(t_cmd *cmd);
+int	set_end_filename(t_cmd *cmd, int i);
 
 //lexing & execution
 
@@ -154,21 +154,20 @@ int		ms_export(t_cmd *cmd);
 int		ms_pwd(t_cmd *cmd);
 
 //utils
-
+int		ms_dollar_replace(char **str, t_ms *ms);
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
-void	ms_printtab(char **str_tab, int fd);
 int		ms_env_pos(char *str, char **envp);
 void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
-void	ms_printcmds(t_ms ms);
 int		ms_is_dol_sep(char c);
 int		is_env(char *str, char *env);
 int		env_var_len(char *str);
 
 //debug
 
+void	ms_printtab(char **str_tab, int fd);
 void	ms_printcmds(t_ms ms);
 void	ms_printcmd(t_cmd cmd);
 void	ms_disp_pipes(t_ms *ms);

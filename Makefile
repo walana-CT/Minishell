@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/02 13:14:36 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/04 17:11:09 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_parsing_utils.c\
 		Sources/ms_parsing_utils2.c\
 		Sources/ms_pwd.c\
-		Sources/ms_redirect_utils.c\
+		Sources/ms_redir_infile.c\
+		Sources/ms_redir_outfile.c\
 		Sources/ms_redirections.c\
 		Sources/ms_signals.c\
 		Sources/ms_split.c\

@@ -6,67 +6,27 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/02 13:26:48 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:40:01 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_getinfile(t_cmd *cmd, int i)
-{
-	int		delstart;
-	int		start;
-
-	delstart = i - 1;
-	while (cmd->line[i] == ' ')
-		i++;
-	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (1);
-	start = i;
-	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
-		i++;
-	cmd->filein = ft_substr(cmd->line, start, i - start);
-	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
-	if (ms_dollar_replace(&cmd->filein, cmd->ms))
-		return (1);
-	ms_trimquotes(&cmd->filein);
-	cmd->fdin = open(cmd->filein, O_RDONLY);
-	if (cmd->fdin == -1)
-		cmd->invalidfd = 1;
-	return (0);
-}
-
 /**
- * Verify the infile is valid and interpret it into a Filedescriptor.
- * @param cmd a cmd struct.
- * @return return 0 or 1 whether the format of filein is valid or not.
+ * Interprete the filename given as input and output as Filedescriptors.
+ * @param ms address of minishell.
+ * @return return 0 or 1 or whether if the filenames are valids or not. 
  */
-int	ms_get_fdin(t_cmd *cmd)
+void	ms_get_fds(t_ms *ms)
 {
 	int	i;
-	int	del;
 
-	del = 0;
-	i = ms_where_is('<', cmd->line);
-	while (i != -1)
+	i = -1;
+	while (++i < ms->nbcmd)
 	{
-		if (cmd->limiter)
-			ft_freestr(&cmd->limiter);
-		if (cmd->filein)
-			ft_freenull((void *)cmd->filein);
-		if (cmd->line[i + 1] == '<')
-		{
-			if (ms_get_limiter(cmd, i + 2))
-				return (1);
-			if (ms_heredoc(cmd))
-				return (1);
-		}
-		else
-			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
-				return (ms_error_file(cmd->filein, cmd->invalidfd));
-		i = ms_where_is('<', cmd->line);
+		if (!ms_get_fdin(&(ms->cmd[i])))
+			ms_get_fdout(&(ms->cmd[i]));
 	}
-	return (0);
 }
 
 void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd)
@@ -80,55 +40,16 @@ void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd)
 	}
 }
 
-int	ms_getoutfile(t_cmd *cmd, int i)
+int	set_end_filename(t_cmd *cmd, int i)
 {
-	int		delstart;
-	int		start;
-	int		append;
+	char	quote;
 
-	ms_gof_init(&delstart, &append, &i, cmd);
-	while (cmd->line[i] == ' ')
-		i++;
-	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (1);
-	start = i;
-	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
-		i++;
-	cmd->fileout = ft_substr(cmd->line, start, i - start);
-	if (!cmd->fileout)
-		ms_crash(cmd->ms);
-	if (ms_dollar_replace(&cmd->fileout, cmd->ms))
-		return (1);
-	ms_trimquotes(&cmd->fileout);
-	if (append)
-		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_APPEND, 0644);
-	else
-		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
-	if (cmd->fdout == -1)
-		cmd->invalidfd = 1;
-	return (0);
-}
-
-/**
- * Verify the outfile is valid and interpret it into a Filedescriptor.
- * @param cmd a cmd struct.
- * @return return 0 or 1 whether the format of filein is valid or not.
- */
-int	ms_get_fdout(t_cmd *cmd)
-{
-	int	i;
-	int	del;
-
-	del = 0;
-	i = ms_where_is('>', cmd->line);
-	while (i != -1)
+	if (ms_isquote(cmd->line[i]))
 	{
-		if (cmd->fileout)
-			ft_freenull((void *)cmd->fileout);
-		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
-			return (ms_error_file(cmd->fileout, cmd->invalidfd));
-		i = ms_where_is('>', cmd->line);
+		quote = cmd->line[i++];
+		while (cmd->line[i] != quote)
+			i++;
 	}
-	return (0);
+	i++;
+	return (i);
 }

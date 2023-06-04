@@ -6,12 +6,13 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/02 13:08:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:04:42 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// On fait quoi des retours là ?
 int	ms_launch_cmds(t_ms *ms)
 {
 	ms_get_fds(ms);

@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/02 13:16:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/04 18:34:37 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ms_do_builtin(t_cmd	*cmd)
 {
+	if (cmd->invalidfd)
+		return (stat_err(1));
 	if (ft_strequal(cmd->cmd_name, "cd"))
 		return (ms_cd(cmd));
 	if (ft_strequal(cmd->cmd_name, "echo"))
@@ -28,7 +30,7 @@ int	ms_do_builtin(t_cmd	*cmd)
 		return (ms_pwd(cmd));
 	if (ft_strequal(cmd->cmd_name, "unset"))
 		return (ms_unset(cmd));
-	return (0);
+	return (1);
 }
 
 void	ms_fixfds(t_cmd	*cmd)
@@ -86,7 +88,7 @@ void	ms_child(t_ms *ms, int i)
 		else
 			pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", \
 				ms->cmd[i].cmd_name, 0);
-		if (pathcmd)
+		if (pathcmd && !ft_strequal(ms->cmd[i].cmd_name, ""))
 			execve(pathcmd, ms->cmd[i].args, ms->envp);
 		ft_freenull((void **)&pathcmd);
 		ms_bad_child_ending(ms->cmd[i].cmd_name);
@@ -96,16 +98,12 @@ void	ms_child(t_ms *ms, int i)
 int	ms_exec(t_ms *ms)
 {
 	int	i;
-	int	err;
 
+	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
+		return (ms_do_builtin(&ms->cmd[0]));
 	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
 		return (1);
-	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
-	{
-		err = ms_do_builtin(&ms->cmd[0]);
-		return (stat_err(err), 0);
-	}
 	i = -1;
 	stat_sig(disabled);
 	while (++i < ms->nbcmd)
