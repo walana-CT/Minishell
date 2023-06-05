@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/04 18:35:17 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:38:37 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ int	ms_error_msg(char *str, int err)
 	return (err);
 }
 
-int	ms_error_file(char *file, int err)
+int	ms_error_file(char *file, char m)
 {
 	write(2, "msh: ", 5);
 	write(2, file, ft_sstrlen(file));
-	write(2, NO_F"\n", 28);
-	return (err);
+	if (m == 'w' && access(file, W_OK) == -1)
+		write(2, ": Permission denied\n", 20);
+	else if (access(file, F_OK))
+		write(2, NO_F"\n", 28);
+	else if (m == 'r' && access(file, R_OK) == -1)
+		write(2, ": Permission denied\n", 20);
+	return (1);
 }
 
 int	ms_bad_child_ending(char *str)
@@ -50,4 +55,12 @@ int	ms_bad_child_ending(char *str)
 	write(2, error, ft_strlen(error));
 	free(error);
 	exit(127);
+}
+
+int	ms_exit_dir(t_cmd cmd)
+{
+	write(2, "msh: ", 5);
+	write(2, cmd.cmd_name, ft_sstrlen(cmd.cmd_name));
+	write(2, " : is a directory\n", 18);
+	exit(126);
 }

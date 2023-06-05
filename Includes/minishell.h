@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/04 18:24:28 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:21:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 
 typedef struct s_cmd	t_cmd;
 
-
 /**
  * @param normal default mode
  * @param prompt mode when entering text
@@ -58,6 +57,10 @@ typedef enum e_sig
 	child,
 	disabled
 }	t_sig;
+
+/*
+* enum pour file perm ?
+*/
 
 typedef struct s_ms
 {
@@ -100,7 +103,8 @@ void	ms_free_cmd(t_ms *ms);
 void	ms_free(t_ms *ms);
 void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
-int		ms_error_file(char *file, int err);
+int		ms_exit_dir(t_cmd cmd);
+int		ms_error_file(char *file, char m);
 int		ms_bad_child_ending(char *str);
 void	ms_loop_free(t_ms *ms);
 
@@ -128,7 +132,8 @@ int		ms_getinfile(t_cmd *cmd, int i);
 int		ms_get_limiter(t_cmd *cmd, int i);
 void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd);
 int		ms_heredoc(t_cmd *cmd);
-int	set_end_filename(t_cmd *cmd, int i);
+void	ms_openfile(t_cmd *cmd, char *file, char m);
+int		set_end_filename(t_cmd *cmd, int i);
 
 //lexing & execution
 

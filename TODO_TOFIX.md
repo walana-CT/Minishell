@@ -6,7 +6,7 @@ TODO
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
 * cd
-* echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
+* (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1) 
 
 
 OK

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 10:07:33 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/05 23:44:28 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	ms_cd(t_cmd *cmd)
 		return (1);
 	if (chdir(cmd->args[1]) == -1)
 	{
-		ft_putstr_fd(" No such file or directory", 2);
+		ft_putstr_fd("msh: cd: ", 2);
+		ft_putstr_fd(cmd->args[1], 2);
+		ft_putstr_fd(": Not a directory\n", 2);
 		stat_err(1);
 		return (1);
 	}

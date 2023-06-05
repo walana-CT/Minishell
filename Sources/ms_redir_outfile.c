@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:08:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/04 18:24:13 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:04:44 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_APPEND, 0644);
 	else
 		cmd->fdout = open(cmd->fileout, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (cmd->fdout == -1)
-	{
-		cmd->invalidfd = 1;
-		stat_err(errno);
-	}
 	ft_strdelnfrom(&cmd->line, delstart, i - delstart);
 	return (0);
 }
@@ -62,7 +57,7 @@ int	ms_get_fdout(t_cmd *cmd)
 		if (cmd->fileout)
 			ft_freenull((void **)&cmd->fileout);
 		if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)
-			return (ms_error_file(cmd->fileout, cmd->invalidfd));
+			return (ms_error_file(cmd->fileout, 'w'));
 	}
 	return (0);
 }

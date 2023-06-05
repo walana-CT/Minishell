@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/04 18:34:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/06 00:04:29 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ms_do_builtin(t_cmd	*cmd)
 {
-	if (cmd->invalidfd)
+	if (cmd->fdin == -1 || cmd->fdout == -1)
 		return (stat_err(1));
 	if (ft_strequal(cmd->cmd_name, "cd"))
 		return (ms_cd(cmd));
@@ -77,8 +77,10 @@ void	ms_child(t_ms *ms, int i)
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
-	if (ms->cmd[i].invalidfd)
-		exit(ms->cmd[i].invalidfd);
+	if (ms->cmd[i].fdin == -1 || ms->cmd[i].fdout == -1)
+		exit(1);
+	if (opendir(ms->cmd[i].cmd_name))
+		ms_exit_dir(ms->cmd[i]);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
