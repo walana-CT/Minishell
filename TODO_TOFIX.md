@@ -5,8 +5,9 @@ TODO
 * export A+=
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
-* cd
-* (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1) 
+* cd, cd - (oldpasswd)
+* (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
+* signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
 
 
 OK
