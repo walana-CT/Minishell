@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace_00.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 09:21:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/07 15:19:24 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	dol_replace(char **str, int pos, t_ms *ms)
 	int		var_len;
 
 	//printf("dol replace called \n");
-	if ((*str)[pos + 1] == '$')
-		return (ft_strtrunc(str, pos, 2));
+	// if ((*str)[pos + 1] == '$')
+	// 	return (ft_strtrunc(str, pos, 2));
 	if ((*str)[pos + 1] == '?')
 		return (replace_qm(str, pos, ms));
 	env_val = ms_getenv_val(&str[0][pos + 1], ms);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/07 09:24:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/07 16:08:55 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,32 @@ void	ms_close_pipes_but(t_ms *ms, int i)
 	}
 }
 
+int	ms_is_localfile(char *file)
+{
+	return (file[0] == '.' || file[0] == '/');
+}
+
+	// if (ms->cmd[i].fdin == -1 || ms->cmd[i].fdout == -1)
+	// 	exit(1);
+void	ms_check_perm_n_fds(t_cmd cmd)
+{
+	if (cmd.invalidfd)
+		exit(1);
+	if (ms_is_localfile(cmd.cmd_name) && access(cmd.cmd_name, X_OK))
+		ms_error_file(cmd.cmd_name, 'x');
+	if (opendir(cmd.cmd_name) && ms_is_localfile(cmd.cmd_name))
+		ms_exit_dir(cmd);
+}
+
 void	ms_child(t_ms *ms, int i)
 {
 	char	*pathcmd;
 
-	stat_sig(child);
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
-	if (ms->cmd[i].fdin == -1 || ms->cmd[i].fdout == -1)
-		exit(1);
-	if (opendir(ms->cmd[i].cmd_name))
-		ms_exit_dir(ms->cmd[i]);
+	ms_check_perm_n_fds(ms->cmd[i]);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
@@ -117,7 +130,10 @@ int	ms_exec(t_ms *ms)
 	{
 		ms->pid[i] = fork();
 		if (!ms->pid[i])
+		{
+			stat_sig(child);
 			ms_child(ms, i);
+		}
 	}
 	return (0);
 }
