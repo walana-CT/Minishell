@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/05 23:38:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/07 16:00:58 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	ms_error_file(char *file, char m)
 	else if (access(file, F_OK))
 		write(2, NO_F"\n", 28);
 	else if (m == 'r' && access(file, R_OK) == -1)
+		write(2, ": Permission denied\n", 20);
+	else if (m == 'x' && ((access(file, R_OK) == -1) || \
+		(access(file, X_OK) == -1)))
 		write(2, ": Permission denied\n", 20);
 	return (1);
 }

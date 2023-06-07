@@ -15,3 +15,6 @@ terminal_exemple.c
 .ms_history
 /minishell_tester-main/*
 minishell_tester
+norights
+tut
+out

@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/06 00:09:15 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:35:22 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	ms_lex(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
+		// remove empty dols now
 		ms->cmd[i].args = ms_quotesplit(ms->cmd[i].line, ' ', ms);
 		if (ms->cmd[i].args)
 		{
