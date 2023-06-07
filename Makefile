@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/06 17:04:09 by rficht           ###   ########.fr        #
+#    Updated: 2023/06/07 16:14:37 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_env.c\
 		Sources/ms_exec.c\
 		Sources/ms_exit.c\
-		Sources/ms_export.c\
+		Sources/ms_export_00.c\
+		Sources/ms_export_01.c\
 		Sources/ms_free.c\
 		Sources/ms_hashignore.c\
 		Sources/ms_lexing.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/05 23:21:45 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/07 11:15:23 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,8 @@ char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
 int		ms_is_dol_sep(char c);
 int		is_env(char *str, char *env);
-int		env_var_len(char *str);
+int		ms_env_var_len(char *str);
+void	ms_no_arg_export(t_ms *ms, int fd_out);
 
 //debug
 
