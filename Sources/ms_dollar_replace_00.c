@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace_00.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/04 17:58:20 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/07 09:21:31 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	replace_qm(char **str, int pos, t_ms *ms)
 	if (ft_strtrunc(str, pos, 2))
 		ms_crash(ms);
 	err = stat_err(-1);
-	err_str = ft_itoa(WEXITSTATUS(err));
+	err_str = ft_itoa(err);
 	if (!err_str)
 		ms_crash(ms);
 	if (ft_strinsert(str, err_str, pos))

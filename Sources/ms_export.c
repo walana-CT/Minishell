@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 10:05:22 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:36:29 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ms_exportvar(char *new_var, t_ms *ms)
 
 	if (!valid_var(new_var))
 	{
-		ft_putstr_fd(" not a valid identifier", 2);
+		ft_putstr_fd(" not a valid identifier\n", 2);
 		return (1);
 	}
 	env_varl = ms_getenv_varl(new_var, ms);
