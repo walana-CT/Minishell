@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/05 23:57:50 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:42:11 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ms_get_fds(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		// if (!ms_get_fdin(&(ms->cmd[i])))
-		// 	ms_get_fdout(&(ms->cmd[i]));
-		ms_get_fdin(&(ms->cmd[i]));
-		ms_get_fdout(&(ms->cmd[i]));
+		if (ms_get_fdin(&(ms->cmd[i])))
+			ms->cmd[i].invalidfd = 1;
+		if (ms_get_fdout(&(ms->cmd[i])))
+			ms->cmd[i].invalidfd = 1;
 	}
 }
 
