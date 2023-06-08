@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export_01.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 16:26:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 18:03:44 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	env_addquotes(char **str)
 	n = 0;
 	while ((*str)[n])
 	{
-
 		if ((*str)[n++] == '=')
 		{
 			if (ft_strinsert(str, "\"", n))
