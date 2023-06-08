@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/07 11:15:23 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 10:04:40 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,8 @@ int		ms_is_dol_sep(char c);
 int		is_env(char *str, char *env);
 int		ms_env_var_len(char *str);
 void	ms_no_arg_export(t_ms *ms, int fd_out);
+int		ms_env_hasval(char *str);
+int		ms_exportvar(char *new_var, t_ms *ms);
 
 //debug
 

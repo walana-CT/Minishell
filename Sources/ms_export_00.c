@@ -6,13 +6,11 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 11:30:44 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 15:15:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 void	env_addvar(char *new_var, t_ms *ms)
 {

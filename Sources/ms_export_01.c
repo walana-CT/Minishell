@@ -6,27 +6,28 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 11:46:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/07 16:26:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	env_addquotes(char *str)
+int	env_addquotes(char **str)
 {
 	int	n;
 
 	n = 0;
-	while (str[n])
+	while ((*str)[n])
 	{
-		if (str[n++] == '=')
+
+		if ((*str)[n++] == '=')
 		{
 			if (ft_strinsert(str, "\"", n))
 				return (1);
 			break ;
 		}
 	}
-	while (str[n])
+	while ((*str)[n])
 		n++;
 	if (ft_strinsert(str, "\"", n))
 		return (1);
@@ -40,13 +41,14 @@ int	format_tab(char **str_tab)
 	n = 0;
 	while (str_tab[n])
 	{
-		if (ft_strinsert(str_tab[n], "declare -x ", 0))
+		if (ft_strinsert(&str_tab[n], "declare -x ", 0))
 			return (1);
 		if (ms_env_hasval(str_tab[n]))
 		{
-			if (env_addquotes(str_tab[n]))
+			if (env_addquotes(&str_tab[n]))
 				return (1);
 		}
+		n++;
 	}
 	return (0);
 }
