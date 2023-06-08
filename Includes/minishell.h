@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 17:59:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:02:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ typedef enum e_sig
 	child,
 	disabled
 }	t_sig;
-
-/*
-* enum pour file perm ?
-*/
 
 typedef struct s_ms
 {
@@ -175,7 +171,10 @@ char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
 int		ms_is_dol_sep(char c);
 int		is_env(char *str, char *env);
-int		env_var_len(char *str);
+int		ms_env_var_len(char *str);
+void	ms_no_arg_export(t_ms *ms, int fd_out);
+int		ms_env_hasval(char *str);
+int		ms_exportvar(char *new_var, t_ms *ms);
 
 //debug
 

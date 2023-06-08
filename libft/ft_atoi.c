@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:46:07 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 10:55:49 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:03:12 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ long long	ft_atoi(const char *str)
 
 	signe = 1;
 	nb = 0;
+	if (ft_strequal((char *)str, "-9223372036854775808"))
+		return (-9223372036854775807 -1);
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')

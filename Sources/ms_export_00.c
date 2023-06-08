@@ -1,61 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_export.c                                        :+:      :+:    :+:   */
+/*   ms_export_00.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 09:36:29 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 15:15:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	sort_tab(char **str_tab)
-{
-	int		is_finished;
-	char	*tmp;
-	int		n;
-
-	is_finished = 0;
-	while (!is_finished)
-	{
-		is_finished = 1;
-		n = 0;
-		while (str_tab[n] && str_tab[n + 1])
-		{
-			if (ft_strcmp(str_tab[n], str_tab [n + 1]) > 0)
-			{
-				tmp = str_tab[n];
-				str_tab[n] = str_tab[n + 1];
-				str_tab[n + 1] = tmp;
-				is_finished = 0;
-			}
-			n++;
-		}
-	}
-}
-
-void	ms_no_arg_export(t_ms *ms, int fd_out)
-{
-	char	**envp_copy;
-	int		n;
-
-	envp_copy = calloc(ms_sizeof_tab(ms->envp) + 1, sizeof(char *));
-	if (!envp_copy)
-	{
-		printf("ms_no_arg_export failed to malloc\n");
-		return ;
-	}
-	n = -1;
-	while (ms->envp[++n])
-		envp_copy[n] = ms->envp[n];
-	sort_tab(envp_copy);
-	ms_printtab(envp_copy, fd_out);
-	free(envp_copy);
-	envp_copy = NULL;
-}
 
 void	env_addvar(char *new_var, t_ms *ms)
 {
@@ -87,7 +42,6 @@ int	valid_var(char *new_var)
 	}
 	return (TRUE);
 }
-
 
 int	ms_exportvar(char *new_var, t_ms *ms)
 {

@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/05 23:44:28 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:33:05 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	refresh_path(char *path, t_ms *ms)
+void	refresh_old(t_ms *ms)
 {
-	int		n;
-	char	*env_path;
-	char	*path_stat;
+	char	buffer[MAXPATHLEN + 1];
+	char	*val_path;
+	char	*path;
 
-	n = 0;
-	path_stat = "PATH=";
-	while (ms->envp[n])
-	{
-		if (is_env(path_stat, ms->envp[n]))
-		{
-			env_path = calloc((ft_sstrlen(path) + 6), sizeof(char));
-			if (!env_path)
-				ms_crash(ms);
-			while (*path_stat)
-				*env_path++ = *path_stat++;
-			while (*path)
-				*env_path++ = *path++;
-			free(ms->envp[n]);
-			ms->envp[n] = env_path;
-		}
-		n++;
-	}
+	buffer[MAXPATHLEN] = 0;
+	val_path = ms_getenv_val("PWD", ms);
+	path = ft_strjoin("OLDPWD=", val_path);
+	//printf("refresh_old path try to refresh : %s\n", path);
+	ms_exportvar(path, ms);
+}
+
+void	refresh_pwd(t_ms *ms)
+{
+	char	buffer[MAXPATHLEN + 1];
+	char	*val_path;
+	char	*path;
+
+	buffer[MAXPATHLEN] = 0;
+	val_path = getcwd(buffer, MAXPATHLEN);
+	path = ft_strjoin("PWD=", val_path);
+	//printf("refresh path try to refresh : %s\n", path);
+	ms_exportvar(path, ms);
 }
 
 int	ms_cd(t_cmd *cmd)
@@ -51,10 +51,11 @@ int	ms_cd(t_cmd *cmd)
 	{
 		ft_putstr_fd("msh: cd: ", 2);
 		ft_putstr_fd(cmd->args[1], 2);
-		ft_putstr_fd(": Not a directory\n", 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		stat_err(1);
 		return (1);
 	}
-	refresh_path(cmd->args[1], cmd->ms);
+	refresh_old(cmd->ms);
+	refresh_pwd(cmd->ms);
 	return (0);
 }

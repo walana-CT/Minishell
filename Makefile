@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/08 17:50:44 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/08 18:02:47 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_exec00.c\
 		Sources/ms_exec01.c\
 		Sources/ms_exit.c\
-		Sources/ms_export.c\
+		Sources/ms_export_00.c\
+		Sources/ms_export_01.c\
 		Sources/ms_free.c\
 		Sources/ms_hashignore.c\
 		Sources/ms_lexing.c\
