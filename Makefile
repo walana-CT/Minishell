@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/06 17:04:09 by rficht           ###   ########.fr        #
+#    Updated: 2023/06/08 17:50:44 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,15 +39,17 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_env_utils_00.c\
 		Sources/ms_env_utils_01.c\
 		Sources/ms_env.c\
-		Sources/ms_exec.c\
+		Sources/ms_exec00.c\
+		Sources/ms_exec01.c\
 		Sources/ms_exit.c\
 		Sources/ms_export.c\
 		Sources/ms_free.c\
 		Sources/ms_hashignore.c\
 		Sources/ms_lexing.c\
-		Sources/ms_parsing.c\
-		Sources/ms_parsing_utils.c\
-		Sources/ms_parsing_utils2.c\
+		Sources/ms_parsing00.c\
+		Sources/ms_parsing01.c\
+		Sources/ms_parsing02.c\
+		Sources/ms_parsing03.c\
 		Sources/ms_pwd.c\
 		Sources/ms_redir_infile.c\
 		Sources/ms_redir_outfile.c\

@@ -170,8 +170,7 @@ aucun des descripteurs 0, 1 ou 2 n'est associé avec un terminal trouvé dans la
 elle renvoie 0 sur Unix V6 et V7 les systèmes BSD, mais -1 sur les autres systèmes System V.
 */
 
-
-int	ioctl(int d, int requête, ...);
+int ioctl(int d, int requête, ...);
 /*
 - La fonction ioctl() modifie le comportement des périphériques sous-jacents des fichiers spéciaux.
 En particulier, de nombreuses caractéristiques des fichiers spéciaux en mode caractère (par

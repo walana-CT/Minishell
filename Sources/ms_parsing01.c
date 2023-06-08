@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_parsing_utils.c                                 :+:      :+:    :+:   */
+/*   ms_parsing2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 17:42:32 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,29 +71,6 @@ int	*ms_where_are(char c, char *str)
 	res[++cpt] = -1;
 	return (res);
 }
-
-// renvoie 0, 1 ou 2 selon que str[j] est hors quotes, entre
-// simples quotes ou entre doubles quotes
-/*int	ms_quote_status(char *str, int j)
-{
-	int	i;
-	int	q;
-
-	q = 0;
-	i = -1;
-	while (++i < j)
-	{
-		if (q == 0)
-			q = ms_isquote(str[i]);
-		else if (q == ms_isquote(str[i]))
-		{
-			if (q == i)
-				return (ms_quote_status(str, i));
-			q = 0;
-		}
-	}
-	return (q);
-}*/
 
 /**
  * Allow to know if a char is affected by quotes.
