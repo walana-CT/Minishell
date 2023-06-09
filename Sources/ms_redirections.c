@@ -6,30 +6,11 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 22:31:10 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 23:31:06 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
- * Interprete the filename given as input and output as Filedescriptors.
- * @param ms address of minishell.
- * @return return 0 or 1 or whether if the filenames are valids or not. 
- */
-// void	ms_get_fds(t_ms *ms)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < ms->nbcmd)
-// 	{
-// 		if (ms_get_fdin(&(ms->cmd[i])))
-// 			ms->cmd[i].invalidfd = 1;
-// 		if (ms_get_fdout(&(ms->cmd[i])))
-// 			ms->cmd[i].invalidfd = 1;
-// 	}
-// }
 
 void	ms_get_successive_fds(t_cmd *cmd)
 {
