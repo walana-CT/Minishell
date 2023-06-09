@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_exec.c                                          :+:      :+:    :+:   */
+/*   ms_exec01.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/07 16:08:55 by mdjemaa          ###   ########.fr       */
+/*   Created: 2023/06/08 17:50:04 by mdjemaa           #+#    #+#             */
+/*   Updated: 2023/06/08 18:29:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,6 @@ void	ms_fixfds(t_cmd	*cmd)
 	}
 }
 
-void	ms_close_pipes_but(t_ms *ms, int i)
-{
-	int	j;
-
-	j = -1;
-	while (++j < ms->nbcmd - 1)
-	{
-		if (j != i - 1)
-			close(ms->pipe[j][0]);
-		if (j != i)
-			close(ms->pipe[j][1]);
-	}
-}
-
-int	ms_is_localfile(char *file)
-{
-	return (file[0] == '.' || file[0] == '/');
-}
-
-	// if (ms->cmd[i].fdin == -1 || ms->cmd[i].fdout == -1)
-	// 	exit(1);
-void	ms_check_perm_n_fds(t_cmd cmd)
-{
-	if (cmd.invalidfd)
-		exit(1);
-	if (ms_is_localfile(cmd.cmd_name) && access(cmd.cmd_name, X_OK))
-		ms_error_file(cmd.cmd_name, 'x');
-	if (opendir(cmd.cmd_name) && ms_is_localfile(cmd.cmd_name))
-		ms_exit_dir(cmd);
-}
-
 void	ms_child(t_ms *ms, int i)
 {
 	char	*pathcmd;
@@ -113,14 +82,9 @@ void	ms_child(t_ms *ms, int i)
 int	ms_exec(t_ms *ms)
 {
 	int	i;
-	int	err;
 
 	if (ms->nbcmd == 1 && ms_isbuiltin(ms->cmd[0].cmd_name))
-	{
-		err = ms_do_builtin(&ms->cmd[0]);
-		stat_err(err);
-		return (0);
-	}
+		return (stat_err(ms_do_builtin(&ms->cmd[0])));
 	ms->pid = ft_calloc(ms->nbcmd, sizeof(int));
 	if (!ms->pid)
 		return (1);

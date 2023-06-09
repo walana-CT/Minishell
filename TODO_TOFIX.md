@@ -10,6 +10,7 @@ TODO
 * signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
 * enlever les $EMPTY au debut de ms_lex avant de quotesplit
 * permission denied a l'execution d'un fichier ./ ou / si chmod -x
+* exit segfault
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt

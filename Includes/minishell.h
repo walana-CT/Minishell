@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 10:04:40 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 18:02:45 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ typedef enum e_sig
 	child,
 	disabled
 }	t_sig;
-
-/*
-* enum pour file perm ?
-*/
 
 typedef struct s_ms
 {
@@ -157,6 +153,13 @@ int		ms_unset(t_cmd *cmd);
 int		ms_echo(t_cmd *cmd);
 int		ms_export(t_cmd *cmd);
 int		ms_pwd(t_cmd *cmd);
+
+// exec
+int		ms_do_builtin(t_cmd	*cmd);
+void	ms_fixfds(t_cmd	*cmd);
+void	ms_close_pipes_but(t_ms *ms, int i);
+int		ms_is_localfile(char *file);
+void	ms_check_perm_n_fds(t_cmd cmd);
 
 //utils
 int		ms_dollar_replace(char **str, t_ms *ms);
