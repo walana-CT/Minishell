@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 17:06:41 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/09 11:35:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ int	ms_exit(t_cmd *cmd)
 	if (!cmd)
 	{
 		//system("leaks minishell");
-		exit(127);
+		exit(stat_err(-1));
 	}
 	if (!cmd->args[0])
 		return (printf("exit received 0 args\n"), 1);
 	if (!cmd->args[1])
-		return_val = 127;
+	{
+		ms_free(cmd->ms);
+		//system("leaks minishell");
+		exit(stat_err(-1));
+	}
+
 	if (!isdigit_str(cmd->args[1]))
 		return (ft_putstr_fd(" numeric argument required", 2), 255);
 	return_val = ft_atoi(cmd->args[1]);
@@ -58,7 +63,6 @@ int	ms_exit(t_cmd *cmd)
 		return (ft_putstr_fd("exit : too many arguments", 2), 1);
 	ms_free(cmd->ms);
 	//system("leaks minishell");
-	printf("exit\n");
 	exit(return_val);
 	return (0);
 }

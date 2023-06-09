@@ -1,16 +1,13 @@
 TODO
-* export declare -x, content des variables entre quotes
-* env : pas de valeurs vides
 * export leaks
 * export A+=
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
-* cd, cd - (oldpasswd)
 * (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
 * signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
-* enlever les $EMPTY au debut de ms_lex avant de quotesplit
 * permission denied a l'execution d'un fichier ./ ou / si chmod -x
 * exit segfault
+* desactiver sigquit (reactivé pour certains tests)
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -30,3 +27,7 @@ OK
 * exit n'exit plus ?
 * signaux marchent bizarre / pas dans certains cas (heredoc, passwd, minishell dans minishell)
 * segfault quand argument invalides.
+* enlever les $EMPTY au debut de ms_lex avant de quotesplit
+* cd, cd - (oldpasswd)
+* env : pas de valeurs vides
+* export declare -x, content des variables entre quotes
