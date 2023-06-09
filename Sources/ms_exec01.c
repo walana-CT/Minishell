@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:50:04 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 18:29:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 14:21:18 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ms_do_builtin(t_cmd	*cmd)
 {
-	if (cmd->fdin == -1 || cmd->fdout == -1)
-		return (stat_err(1));
+	if (cmd->invalidfd)
+		return (stat_err(ms_check_perm_n_fds(*cmd)));
 	if (ft_strequal(cmd->cmd_name, "cd"))
 		return (ms_cd(cmd));
 	if (ft_strequal(cmd->cmd_name, "echo"))
@@ -62,7 +62,7 @@ void	ms_child(t_ms *ms, int i)
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
 	dup2(ms->cmd[i].fdout, 1);
-	ms_check_perm_n_fds(ms->cmd[i]);
+	ms_exit_check_perm_n_fds(ms->cmd[i]);
 	if (ms_isbuiltin(ms->cmd[i].cmd_name))
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else

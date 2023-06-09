@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 18:29:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 14:32:57 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,37 @@ int	ms_exit_fd(t_cmd cmd)
 	if (cmd.fdin == -1)
 	{
 		if (access(cmd.filein, F_OK) == -1)
-			exit(1);
+			return (ms_error_file(cmd.filein, 'r', 1));
 		if (access(cmd.filein, R_OK) == -1)
-			exit(126);
+			return (ms_error_file(cmd.filein, 'r', 1));
 	}
 	if (cmd.fdout == -1)
 	{
-		if (access(cmd.filein, F_OK) == -1)
-			exit(1);
-		if (access(cmd.filein, W_OK) == -1)
-			exit(126);
+		if (access(cmd.fileout, F_OK) == -1)
+			return (ms_error_file(cmd.fileout, 'w', 1));
+		if (access(cmd.fileout, W_OK) == -1)
+			return (ms_error_file(cmd.fileout, 'w', 1));
 	}
-	exit(1);
+	return (1);
 }
 
-void	ms_check_perm_n_fds(t_cmd cmd)
+void	ms_exit_check_perm_n_fds(t_cmd cmd)
+{
+	int	err;
+
+	err = ms_check_perm_n_fds(cmd);
+	if (err)
+		exit(err);
+}
+
+
+int	ms_check_perm_n_fds(t_cmd cmd)
 {
 	if (cmd.invalidfd)
-		ms_exit_fd(cmd);
+		return (ms_exit_fd(cmd));
 	if (ms_is_localfile(cmd.cmd_name) && access(cmd.cmd_name, X_OK))
-		exit(ms_error_file(cmd.cmd_name, 'x'));
+		return (ms_error_file(cmd.cmd_name, 'x', 126));
 	if (opendir(cmd.cmd_name) && ms_is_localfile(cmd.cmd_name))
-		ms_exit_dir(cmd);
+		return (ms_exit_dir(cmd));
+	return (0);
 }

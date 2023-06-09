@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/05 23:27:51 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 13:37:41 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ms_get_fdin(t_cmd *cmd)
 		}
 		else
 			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
-				return (ms_error_file(cmd->filein, 'r'));
+				return (1);
 	}
 	return (0);
 }
