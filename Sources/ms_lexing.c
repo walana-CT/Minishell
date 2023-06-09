@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 17:54:25 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 10:29:21 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ms_lex(t_ms *ms)
 	i = -1;
 	while (++i < ms->nbcmd)
 	{
-		// remove empty dols now
+		ms_trim_empty_dolls(&ms->cmd[i].line, ms);
 		ms->cmd[i].args = ms_quotesplit(ms->cmd[i].line, ' ', ms);
 		if (ms->cmd[i].args)
 		{

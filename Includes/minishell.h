@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/08 18:02:45 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 10:28:27 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,10 @@ void	ms_printcmd(t_cmd cmd);
 
 int		stat_sig(int val);
 int		stat_err(int val);
+
+//doll replacing
+int		dol_replace(char **str, int pos, t_ms *ms);
+int		is_doll_replaced(char *str, int n);
+int		ms_trim_empty_dolls(char **str, t_ms *ms);
 
 #endif
