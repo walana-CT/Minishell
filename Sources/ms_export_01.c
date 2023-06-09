@@ -6,11 +6,21 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 16:26:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:00:26 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_export(char **str_tab, int fd)
+{
+	while (*str_tab)
+	{
+		ft_putstr_fd(*str_tab, fd);
+		write(fd, "\n", 1);
+		str_tab++;
+	}
+}
 
 int	env_addquotes(char **str)
 {
@@ -19,7 +29,6 @@ int	env_addquotes(char **str)
 	n = 0;
 	while ((*str)[n])
 	{
-
 		if ((*str)[n++] == '=')
 		{
 			if (ft_strinsert(str, "\"", n))
@@ -94,7 +103,7 @@ void	ms_no_arg_export(t_ms *ms, int fd_out)
 		envp_copy[n] = ms->envp[n];
 	sort_tab(envp_copy);
 	format_tab(envp_copy);
-	ms_printtab(envp_copy, fd_out);
+	print_export(envp_copy, fd_out);
 	free(envp_copy);
 	envp_copy = NULL;
 }

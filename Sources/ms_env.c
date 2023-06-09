@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 16:27:36 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/09 09:57:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ms_printtab(char **str_tab, int fd)
 		{
 			ft_putstr_fd(*str_tab, fd);
 			write(fd, "\n", 1);
-			str_tab++;
 		}
+		str_tab++;
 	}
 }
 

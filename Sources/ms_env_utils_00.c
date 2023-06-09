@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 09:25:05 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/08 17:57:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,5 @@ void	copy_env(char *envp[], t_ms *ms)
 	ms->envp = envp_copy;
 	if (incr_shell_lvl(ms))
 		ms_crash(ms);
+	ms_exportvar("OLDPWD", ms);
 }
