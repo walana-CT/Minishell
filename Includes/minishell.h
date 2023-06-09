@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 14:20:22 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 23:11:10 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	ms_free_cmd(t_ms *ms);
 void	ms_free(t_ms *ms);
 void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
-int		ms_exit_dir(t_cmd cmd);
+int		ms_exit_dir(char *str);
 int		ms_error_file(char *file, char m, int err);
-int		ms_bad_child_ending(char *str);
+void	ms_bad_child_ending(char *str);
 void	ms_loop_free(t_ms *ms);
 
 //parsing

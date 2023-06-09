@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 14:32:57 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:53:15 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,13 @@ void	ms_exit_check_perm_n_fds(t_cmd cmd)
 		exit(err);
 }
 
-
 int	ms_check_perm_n_fds(t_cmd cmd)
 {
 	if (cmd.invalidfd)
 		return (ms_exit_fd(cmd));
-	if (ms_is_localfile(cmd.cmd_name) && access(cmd.cmd_name, X_OK))
-		return (ms_error_file(cmd.cmd_name, 'x', 126));
-	if (opendir(cmd.cmd_name) && ms_is_localfile(cmd.cmd_name))
-		return (ms_exit_dir(cmd));
+	// if (ms_is_localfile(cmd.cmd_name) && access(cmd.cmd_name, X_OK))
+	// 	return (ms_error_file(cmd.cmd_name, 'x', 126));
+	// if (opendir(cmd.cmd_name) && ms_is_localfile(cmd.cmd_name))
+	// 	return (ms_exit_dir(cmd));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 13:37:41 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:06:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ms_get_fdin(t_cmd *cmd)
 	int	del;
 
 	del = 0;
-	while (ms_where_is('<', cmd->line) != -1)
-	{
+	// while (ms_where_is('<', cmd->line) != -1)
+	// {
 		i = ms_where_is('<', cmd->line);
 		if (cmd->limiter)
 			ft_freestr(&cmd->limiter);
@@ -40,7 +40,7 @@ int	ms_get_fdin(t_cmd *cmd)
 		else
 			if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
 				return (1);
-	}
+	// }
 	return (0);
 }
 

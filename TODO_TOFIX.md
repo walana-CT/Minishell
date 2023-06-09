@@ -1,12 +1,10 @@
 TODO
+* appeler deux fois export segfault
 * export leaks
 * export A+=
 * export doit dol_replace
 * unset detruit toutes les variables apres le arg
-* (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
 * signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
-* permission denied a l'execution d'un fichier ./ ou / si chmod -x
-* exit segfault
 * desactiver sigquit (reactivé pour certains tests)
 
 OK
@@ -31,3 +29,6 @@ OK
 * cd, cd - (oldpasswd)
 * env : pas de valeurs vides
 * export declare -x, content des variables entre quotes
+* permission denied a l'execution d'un fichier ./ ou / si chmod -x
+* exit segfault
+* (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
