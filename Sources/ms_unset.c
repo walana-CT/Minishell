@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:08:08 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,25 @@ int	ms_env_pos(char *str, char **envp)
 
 void	unset_arg(char *arg, t_ms *ms)
 {
-	int		n;
+	int		i;
+	int		j;
 	int		pos;
 	char	**new_envp;
 
-	n = 0;
+
 	pos = ms_env_pos(arg, ms->envp);
 	if (pos == -1)
 		return ;
 	new_envp = calloc((ms_sizeof_tab(ms->envp) - 1), sizeof(char *));
 	if (!new_envp)
 		ms_crash(ms);
-	while (ms->envp[n])
+	i = 0;
+	j = 0;
+	while (ms->envp[i])
 	{
-		if (n == pos)
-			n++;
-		if (ms->envp[n])
-			new_envp[n] = ms->envp[n];
-		n++;
+		if (i == pos)
+			i++;
+		new_envp[j++] = ms->envp[i++];
 	}
 	ft_freestr(&ms->envp[pos]);
 	free(ms->envp);
