@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 09:59:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:34:33 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ int	valid_var(char *new_var)
 	return (TRUE);
 }
 
+
+/**
+ * export a new var into ms_env. Carefull, it doesn't free new var.
+ * @param new_var the new variable to export.
+ * @param ms a pointer to minishell.
+ * @return 0 if succes 1 if fail. 
+ */
 int	ms_exportvar(char *new_var, t_ms *ms)
 {
 	int	env_varl;

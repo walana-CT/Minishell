@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/08 17:48:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:24:34 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	refresh_old(t_ms *ms)
 	path = ft_strjoin("OLDPWD=", val_path);
 	//printf("refresh_old path try to refresh : %s\n", path);
 	ms_exportvar(path, ms);
+	ft_freestr(&path);
 }
 
 void	refresh_pwd(t_ms *ms)
@@ -36,6 +37,7 @@ void	refresh_pwd(t_ms *ms)
 	path = ft_strjoin("PWD=", val_path);
 	//printf("refresh path try to refresh : %s\n", path);
 	ms_exportvar(path, ms);
+	ft_freestr(&path);
 }
 
 int	ms_cd(t_cmd *cmd)

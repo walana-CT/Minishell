@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 10:03:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:34:58 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	ms_no_arg_export(t_ms *ms, int fd_out)
 	sort_tab(envp_copy);
 	format_tab(envp_copy);
 	print_export(envp_copy, fd_out);
-	free(envp_copy);
+	ft_freetab(envp_copy);
 	envp_copy = NULL;
 }
