@@ -1,9 +1,7 @@
 TODO
 * appeler deux fois export segfault
-* export leaks
 * export A+=
-* export doit dol_replace
-* unset detruit toutes les variables apres le arg
+* export doit dol_replace(comment ça px ile fait pas le sacripan)
 * signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
 * desactiver sigquit (reactivé pour certains tests)
 * supection de leaks sur cd impossibl a reprodruire peut etre parce que j'avais
@@ -34,3 +32,5 @@ OK
 * permission denied a l'execution d'un fichier ./ ou / si chmod -x
 * exit segfault
 * (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
+* unset detruit toutes les variables apres le arg
+* export leaks

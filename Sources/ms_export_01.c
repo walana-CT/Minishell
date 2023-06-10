@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/10 11:34:58 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:52:19 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ms_no_arg_export(t_ms *ms, int fd_out)
 	}
 	n = -1;
 	while (ms->envp[++n])
-		envp_copy[n] = ms->envp[n];
+		envp_copy[n] = ft_strdup(ms->envp[n]);
 	sort_tab(envp_copy);
 	format_tab(envp_copy);
 	print_export(envp_copy, fd_out);
