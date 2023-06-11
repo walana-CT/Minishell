@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 09:50:42 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/11 09:46:23 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	set_sig(void)
 
 	sa.sa_flags = SA_RESTART;
 	sa.sa_sigaction = ft_sighandle;
+	
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		ms_crash(NULL);
-	/*if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		ms_crash(NULL);*/
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		ms_crash(NULL);
 }

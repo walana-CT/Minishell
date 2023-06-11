@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/08 17:57:24 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 17:26:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	*ms_getenv_val(char *str, t_ms *ms)
 	}
 	return (NULL);
 }
-
 
 /**
  * Search if a variable exists and return a ptr to it if it does

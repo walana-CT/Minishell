@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 10:26:11 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 17:25:48 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	replace_qm(char **str, int pos, t_ms *ms)
 		ms_crash(ms);
 	return (0);
 }
-
 
 int	dol_replace(char **str, int pos, t_ms *ms)
 {

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/10 12:01:32 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 17:26:32 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	ms_exit(t_cmd *cmd)
 		system("leaks minishell");
 		exit(stat_err(-1));
 	}
-
 	if (!isdigit_str(cmd->args[1]))
 		return (ft_putstr_fd(" numeric argument required", 2), 255);
 	return_val = ft_atoi(cmd->args[1]);

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:44:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 10:28:10 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/10 17:25:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ms_is_dol_sep(char c)
 	else
 		return (0);
 }
-
 
 static int	next_empty_dol_pos(char *str, t_ms *ms)
 {
@@ -38,7 +37,6 @@ static int	next_empty_dol_pos(char *str, t_ms *ms)
 	}
 	return (-1);
 }
-
 
 int	ms_trim_empty_dolls(char **str, t_ms *ms)
 {
