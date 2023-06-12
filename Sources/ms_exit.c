@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/10 17:26:32 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 10:29:04 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,32 @@ static int	isdigit_str(char *str)
 	return (TRUE);
 }
 
+static void	exit_test1(t_cmd *cmd)
+{
+	if (!isdigit_str(cmd->args[1]))
+	{
+		ft_putstr_fd("msh: exit: ", 2);
+		ft_putstr_fd(cmd->args[1], 2);
+		ft_putstr_fd(" numeric argument required\n", 2);
+		ms_free(cmd->ms);
+		system("leaks minishell");
+		exit (255);
+	}
+}
+
+static void	exit_test2(t_cmd *cmd, long return_val)
+{
+	if (is_toolong(return_val, cmd->args[1]))
+	{
+		ft_putstr_fd("msh: exit: ", 2);
+		ft_putstr_fd(cmd->args[1], 2);
+		ft_putstr_fd(" numeric argument required\n", 2);
+		ms_free(cmd->ms);
+		system("leaks minishell");
+		exit (255);
+	}
+}
+
 //tputs
 int	ms_exit(t_cmd *cmd)
 {
@@ -47,19 +73,18 @@ int	ms_exit(t_cmd *cmd)
 	}
 	if (!cmd->args[0])
 		return (printf("exit received 0 args\n"), 1);
+	printf("exit\n");
 	if (!cmd->args[1])
 	{
 		ms_free(cmd->ms);
 		system("leaks minishell");
 		exit(stat_err(-1));
 	}
-	if (!isdigit_str(cmd->args[1]))
-		return (ft_putstr_fd(" numeric argument required", 2), 255);
+	exit_test1(cmd);
 	return_val = ft_atoi(cmd->args[1]);
-	if (is_toolong(return_val, cmd->args[1]))
-		return (ft_putstr_fd(" numeric argument required", 2), 255);
+	exit_test2(cmd, return_val);
 	if (cmd->args[2])
-		return (ft_putstr_fd("exit : too many arguments", 2), 1);
+		return (ft_putstr_fd("msh: exit : too many arguments\n", 2), 1);
 	ms_free(cmd->ms);
 	system("leaks minishell");
 	exit(return_val);
