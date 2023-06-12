@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:44:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/10 17:25:56 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:08:04 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	next_empty_dol_pos(char *str, t_ms *ms)
 {
 	int	n;
 
-	//printf("next dol pos called on %s\n", str);
 	n = 0;
 	if (!str)
 		return (-1);
@@ -45,7 +44,6 @@ int	ms_trim_empty_dolls(char **str, t_ms *ms)
 	empty_dol_pos = next_empty_dol_pos(*str, ms);
 	while (empty_dol_pos != (-1))
 	{
-		//printf("dol pos found : %d\n", dol_pos);
 		if (dol_replace(str, empty_dol_pos, ms))
 			return (1);
 		empty_dol_pos = next_empty_dol_pos(*str, ms);

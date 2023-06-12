@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:36:39 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/07 09:23:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:05:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ int	ms_echo(t_cmd *cmd)
 		n++;
 	if (write_args(cmd->args + n, cmd->fdout, n_flag))
 		return (1);
-	//write(cmd->fdout, "\n", 1);
 	return (0);
 }

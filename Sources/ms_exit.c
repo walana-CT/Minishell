@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:01:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 12:07:32 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	exit_test2(t_cmd *cmd, long return_val)
 	}
 }
 
-//tputs
 int	ms_exit(t_cmd *cmd)
 {
 	long	return_val;

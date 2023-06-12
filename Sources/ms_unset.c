@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 10:08:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:07:51 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	unset_arg(char *arg, t_ms *ms)
 	int		j;
 	int		pos;
 	char	**new_envp;
-
 
 	pos = ms_env_pos(arg, ms->envp);
 	if (pos == -1)
