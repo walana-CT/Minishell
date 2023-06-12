@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 18:30:34 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 01:01:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	exp_free(t_export **exp)
  * @param new_var the new variable to export.
  * @param ms a pointer to minishell.
  * @return 0 if succes 1 if fail. 
- */
+*/
 int	ms_exportvar(char *new_var, t_ms *ms)
 {
 	int	env_varl;
@@ -88,35 +88,72 @@ int	ms_exportvar(char *new_var, t_ms *ms)
 		env_addvar(new_var, ms);
 	return (0);
 }
+ 
+
+/**
+ * export a new var into ms_env. Carefull, it doesn't free new var.
+ * @param exp the new variable to export.
+ * @param ms a pointer to minishell.
+ * @return 0 if succes 1 if fail. 
+ */
+int	ms_exp_exportvar(t_export *exp, t_ms *ms)
+{
+	int	env_varl;
+
+	env_varl = ms_getenv_varl(exp->name, ms);
+	if (env_varl >= 0 && !exp->add)
+	{
+		free(ms->envp[env_varl]);
+		ms->envp[env_varl] = ft_strmanyjoin(exp->name, "=", exp->value, 0);
+	}
+	else
+		env_addvar(exp->name, ms);
+	return (0);
+}
 
 int	exp_split(t_export *exp, char *arg)
 {
 	int	pos;
+	int	flagadd;
 
 	pos = ms_where_is('=', arg);
-	if (arg[pos - 1] == '+')
+	flagadd = 0;
+	if (pos == -1)
 	{
-		pos--;
-		exp->add = 1;
+		exp->name = ft_strdup(arg);
+		exp->value = 0;
+		return (0);
 	}
-	exp->name = ft_substr(arg, 0, pos);
-	exp->value = ft_substr(arg, pos + 1 + exp->add, ft_sstrlen(arg) - (pos + 1 + exp->add));
-	printf("SPLIT %s %s %d\n", exp->name, exp->value, exp->add);
+	else if (pos == (int) ft_sstrlen(arg) - 1)
+	{
+		exp->name = ft_substr(arg, 0, pos);
+		exp->value = "";
+		return (0);
+	}
+	else if (arg[pos - 1] == '+')
+		flagadd = 1;
+	exp->name = ft_substr(arg, 0, pos - flagadd);
+	exp->value = ft_substr(arg, pos + 1 , ft_sstrlen(arg) - pos);
 	if (!exp->name || !exp->value)
 		return (1);
+	exp->add = flagadd;
+	printf("Name : %s\tValue : %s\tFlag+ : %d\n", exp->name, exp->value, exp->add);
 	return (0);
 }
 
-void	disp_exp(t_export **exp)
+void	disp_exp(t_export *exp, int max)
 {
 	int	n;
 
 	n = -1;
-	while (exp[++n])
-		printf("export %d _ Name : %s Value : %s Flag+ : %d\n", n, exp[n]->name, exp[n]->value, exp[n]->add);
+	while (++n < max)
+		printf("export %d _ ", n);
+		puts(exp[n].name);
+		puts(exp[n].value);
+		printf("export %d _ \n", exp[n].add);
 }
 
-int	ms_exp_init(t_export **exp, char **args)
+int	ms_exp_init(t_export *exp, char **args)
 {
 	int	n;
 
@@ -125,25 +162,19 @@ int	ms_exp_init(t_export **exp, char **args)
 	{
 		if (!valid_name(args[n]))
 			return (1);
-		exp[n] = malloc(sizeof(exp));
-		exp[n]->name = 0;
-		exp[n]->value = 0;
-		exp[n]->add = 0;
 	}
-	disp_exp(exp);
 	n = -1;
 	while (args[++n])
 	{
-		if (exp_split(exp[n], args[n]))
-			return (exp_free(exp), 1);
+		if (exp_split(&exp[n], args[n]))
+			return (exp_free(&exp), 1);
 	}
-	disp_exp(exp);
 	return (0);
 }
 
 int	ms_export(t_cmd *cmd)
 {
-	t_export	**exp;
+	t_export	*exp;
 	int			n;
 
 	if (!cmd || !cmd->args[0])
@@ -153,12 +184,13 @@ int	ms_export(t_cmd *cmd)
 	n = 0;
 	while (cmd->args[n])
 		n++;
-	exp = ft_calloc(n, sizeof(*exp));
+	exp = malloc(n * sizeof(exp));
 	if (!exp)
 		return (1);
 	if (ms_exp_init(exp, cmd->args + 1))
-		return (exp_free(exp), 1);
-/*	if (ms_exportvar(exp, cmd->ms))
-		return (1);*/
+		return (exp_free(&exp), 1);
+	disp_exp(exp, n);
+	// if (ms_exp_exportvar(exp, cmd->ms))
+	// 	return (1);
 	return (0);
 }

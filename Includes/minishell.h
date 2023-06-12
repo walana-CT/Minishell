@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/12 14:40:18 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 01:01:31 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_export	t_export;
  * @param normal default mode
  * @param prompt mode when entering text
  * @param child mode to quit inside child
- * @param disabled mode that totaly disable signals when calling a child
+ * @param disabled mode that totally disable signals when calling a child
  */
 typedef enum e_sig
 {
@@ -91,9 +91,9 @@ struct s_cmd
 
 struct s_export
 {
+	int		add;
 	char	*name;
 	char	*value;
-	int		add;
 };
 
 //init
@@ -185,6 +185,8 @@ int		ms_env_var_len(char *str);
 void	ms_no_arg_export(t_ms *ms, int fd_out);
 int		ms_env_hasval(char *str);
 int		ms_exportvar(char *new_var, t_ms *ms);
+int		ms_exp_exportvar(t_export *exp, t_ms *ms);
+
 
 //debug
 
