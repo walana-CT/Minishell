@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/12 11:12:08 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/12 14:40:18 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define NO_F ": No such file or directory\n"
 
 typedef struct s_cmd	t_cmd;
+typedef struct s_export	t_export;
 
 /**
  * @param normal default mode
@@ -86,6 +87,13 @@ struct s_cmd
 	char	**args;
 	char	*path;
 	t_ms	*ms;
+};
+
+struct s_export
+{
+	char	*name;
+	char	*value;
+	int		add;
 };
 
 //init
