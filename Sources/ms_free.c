@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/10 15:45:10 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:11:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,16 @@ void	ms_loop_free(t_ms *ms)
 	i = -1;
 	if (ms->pipe)
 		ms_pipes_close_free_null(ms);
-	while (++i < ms->nbcmd)
+	while (++i < ms->nbcmd && ms->pid)
 	{
-		if (ms->pid)
+		waitpid(ms->pid[i], &err, 0);
+		if (err == 2)
 		{
-			waitpid(ms->pid[i], &err, 0);
-			if (err == 2)
-			{
-				write(1, "\n", 1);
-				stat_err(1);			
-			}
-			else
-				stat_err(WEXITSTATUS(err));
+			write(1, "\n", 1);
+			stat_err(1);
 		}
+		else
+			stat_err(WEXITSTATUS(err));
 	}
 	ms_free_cmd(ms);
 	if (ms->pid)

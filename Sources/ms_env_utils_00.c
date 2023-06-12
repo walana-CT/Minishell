@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env_utils_00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/10 17:26:07 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:12:31 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	incr_shell_lvl(t_ms *ms)
+int	incr_shell_lvl(t_ms *ms)
 {
 	char	*shlvl_envl;
 	int		n;
@@ -36,7 +36,6 @@ static int	incr_shell_lvl(t_ms *ms)
 
 char	*env_linetovar(char *envl)
 {
-	//printf("envl line to var called on %s\n", envl);
 	while (*envl != '=' && *envl)
 		envl++;
 	if (*envl == 0)
@@ -50,10 +49,8 @@ int	envcmp(char *str, char *envl)
 	int	n;
 
 	n = 0;
-	//printf("comparing %s with %s\n", str, envl);
 	while (!ms_is_dol_sep(str[n]) && envl[n])
 	{
-		//printf("comparing %c with %c\n", str[n], envl[n]);
 		if (envl[n] != str[n])
 			return (FALSE);
 		if (envl[n] == '=' && str[n] == '=')
@@ -80,7 +77,6 @@ char	*ms_getenv_val(char *str, t_ms *ms)
 
 	i = -1;
 	envp = ms->envp;
-	//printf("searshing for %s inside env\n", str);
 	while (envp[++i])
 	{
 		if (envcmp(str, envp[i]))
@@ -102,39 +98,10 @@ int	ms_getenv_varl(char *str, t_ms *ms)
 
 	i = -1;
 	envp = ms->envp;
-	//printf("searshing for %s inside env\n", str);
 	while (envp[++i])
 	{
 		if (envcmp(str, envp[i]))
 			return (i);
 	}
 	return (-1);
-}
-
-/**
- * Create a copy of envp directclty inside minishell so we can modify it later.
- * Also increase the shlvl. 
- * @param envp The original envp
- * @param ms The addresse of minishell
- */
-void	copy_env(char *envp[], t_ms *ms)
-{
-	char	**envp_copy;
-	int		n;
-
-	n = 0;
-	envp_copy = calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
-	if (!envp_copy)
-		ms_crash(NULL);
-	while (envp[n])
-	{
-		envp_copy[n] = ft_strdup(envp[n]);
-		if (!envp_copy[n])
-			ms_crash(ms);
-		n++;
-	}
-	ms->envp = envp_copy;
-	if (incr_shell_lvl(ms))
-		ms_crash(ms);
-	ms_exportvar("OLDPWD", ms);
 }

@@ -1,11 +1,7 @@
 TODO
-* appeler deux fois export segfault
 * export A+=
 * export doit dol_replace(comment ça px ile fait pas le sacripan)
-* signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
 * desactiver sigquit (reactivé pour certains tests)
-* supection de leaks sur cd impossibl a reprodruire peut etre parce que j'avais
-pas re
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -34,3 +30,5 @@ OK
 * (est-ce le cas pour toutes les builtins ?) echo $? renvoie 0 apres un fd incorrect (devrait renvoyer 1)
 * unset detruit toutes les variables apres le arg
 * export leaks
+* signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
+* appeler deux fois export segfault

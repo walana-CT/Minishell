@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 10:29:04 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:10:07 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	exit_test2(t_cmd *cmd, long return_val)
 	}
 }
 
-//tputs
 int	ms_exit(t_cmd *cmd)
 {
 	long	return_val;

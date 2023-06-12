@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 23:11:10 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/12 11:12:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	ms_exit_check_perm_n_fds(t_cmd cmd);
 int		ms_dollar_replace(char **str, t_ms *ms);
 void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
+int		incr_shell_lvl(t_ms *ms);
 int		ms_env_pos(char *str, char **envp);
 void	copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv_val(char *str, t_ms *ms);
