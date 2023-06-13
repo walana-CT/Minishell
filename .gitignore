@@ -9,7 +9,7 @@ objects
 tags
 *.ini
 checker
-.vscode
+.vscode/*
 *.a
 terminal_exemple.c
 .vscode/settings.json

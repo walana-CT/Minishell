@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 12:07:32 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/13 10:29:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ms_exit(t_cmd *cmd)
 	printf("\033[1Fmsh > \033[0mexit\n");
 	if (!cmd)
 	{
-		system("leaks minishell");
+		//system("leaks minishell");
 		exit(stat_err(-1));
 	}
 	if (!cmd->args[0])
@@ -76,7 +76,7 @@ int	ms_exit(t_cmd *cmd)
 	if (!cmd->args[1])
 	{
 		ms_free(cmd->ms);
-		system("leaks minishell");
+		//system("leaks minishell");
 		exit(stat_err(-1));
 	}
 	exit_test1(cmd);
@@ -85,7 +85,7 @@ int	ms_exit(t_cmd *cmd)
 	if (cmd->args[2])
 		return (ft_putstr_fd("msh: exit : too many arguments\n", 2), 1);
 	ms_free(cmd->ms);
-	system("leaks minishell");
+	//system("leaks minishell");
 	exit(return_val);
 	return (0);
 }

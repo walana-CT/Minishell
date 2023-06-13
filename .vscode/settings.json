@@ -20,6 +20,7 @@
 		"unordered_map": "c",
 		"utility": "c",
 		"vector": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"typeinfo": "c"
 	}
 }

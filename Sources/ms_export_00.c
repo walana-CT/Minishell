@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export_00.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 01:01:17 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 12:05:19 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 void	env_addvar(char *new_var, t_ms *ms)
 {
@@ -26,6 +27,28 @@ void	env_addvar(char *new_var, t_ms *ms)
 	new_envp[n] = strdup(new_var);
 	free(ms->envp);
 	ms->envp = new_envp;
+}
+
+int	env_exp_addvar(t_export *exp, t_ms *ms)
+{
+	char	**new_envp;
+	int		n;
+
+	n = -1;
+	new_envp = calloc(ms_sizeof_tab(ms->envp) + 2, sizeof(char *));
+	if (!new_envp)
+		return (1);
+	while (ms->envp[++n])
+		new_envp[n] = ms->envp[n];
+	if (exp->value)
+		new_envp[n] = ft_strmanyjoin(exp->name, "=", exp->value, 0);
+	else
+		new_envp[n] = ft_strdup(exp->name);
+	if (!new_envp[n])
+		return (1);
+	free(ms->envp);
+	ms->envp = new_envp;
+	return (0);
 }
 
 int	valid_name(char *new_var)
@@ -47,18 +70,17 @@ int	valid_name(char *new_var)
 	return (TRUE);
 }
 
-void	exp_free(t_export **exp)
+void	exp_free(t_export *exp, int max)
 {
 	int	n;
 
 	n = -1;
-	while (exp[++n])
+	while (++n < max)
 	{
-		if (exp[n]->name)
-			ft_freestr(&exp[n]->name);
-		if (exp[n]->value)
-			ft_freestr(&exp[n]->value);
-		ft_freenull((void **) &exp[n]);
+		if (exp[n].name)
+			ft_freestr(&exp[n].name);
+		if (exp[n].value)
+			ft_freestr(&exp[n].value);
 	}
 	free(exp);
 }
@@ -88,7 +110,11 @@ int	ms_exportvar(char *new_var, t_ms *ms)
 		env_addvar(new_var, ms);
 	return (0);
 }
- 
+
+
+
+
+
 
 /**
  * export a new var into ms_env. Carefull, it doesn't free new var.
@@ -96,19 +122,43 @@ int	ms_exportvar(char *new_var, t_ms *ms)
  * @param ms a pointer to minishell.
  * @return 0 if succes 1 if fail. 
  */
-int	ms_exp_exportvar(t_export *exp, t_ms *ms)
+int	ms_exp_one(t_export *exp, t_ms *ms)
 {
 	int	env_varl;
 
 	env_varl = ms_getenv_varl(exp->name, ms);
-	if (env_varl >= 0 && !exp->add)
+	if (env_varl == -1)
+	{
+		if (env_exp_addvar(exp, ms))
+			return (1);
+	}
+	else if (env_varl >= 0 && !exp->add && exp->value)
 	{
 		free(ms->envp[env_varl]);
 		ms->envp[env_varl] = ft_strmanyjoin(exp->name, "=", exp->value, 0);
+		if (!ms->envp[env_varl])
+			return (1);
 	}
-	else
-		env_addvar(exp->name, ms);
+	else if (env_varl >= 0 && exp->add && exp->value)
+	{
+		if (ft_strinsert(&ms->envp[env_varl], exp->value, ft_strlen(ms->envp[env_varl])))
+			return (1);
+	}
 	return (0);
+}
+
+
+int	ms_exp_all(t_export *exp, t_ms *ms, int max)
+{
+	int n;
+
+	n = -1;
+	while (++n < max)
+	{
+		if (ms_exp_one(&exp[n], ms))
+			return (1);
+	}
+	return (0);	
 }
 
 int	exp_split(t_export *exp, char *arg)
@@ -126,14 +176,20 @@ int	exp_split(t_export *exp, char *arg)
 	}
 	else if (pos == (int) ft_sstrlen(arg) - 1)
 	{
-		exp->name = ft_substr(arg, 0, pos);
+		if (arg[pos - 1] == '+')
+		{
+			exp->name = ft_substr(arg, 0, pos - 1);
+			exp->add = 1;
+		}
+		else
+			exp->name = ft_substr(arg, 0, pos);
 		exp->value = "";
 		return (0);
 	}
 	else if (arg[pos - 1] == '+')
 		flagadd = 1;
 	exp->name = ft_substr(arg, 0, pos - flagadd);
-	exp->value = ft_substr(arg, pos + 1 , ft_sstrlen(arg) - pos);
+	exp->value = ft_substr(arg, pos + 1, ft_sstrlen(arg) - pos);
 	if (!exp->name || !exp->value)
 		return (1);
 	exp->add = flagadd;
@@ -147,13 +203,15 @@ void	disp_exp(t_export *exp, int max)
 
 	n = -1;
 	while (++n < max)
-		printf("export %d _ ", n);
-		puts(exp[n].name);
-		puts(exp[n].value);
-		printf("export %d _ \n", exp[n].add);
+	{
+		printf("	export %d _ \n", n);
+		printf("name : %s\n", exp[n].name);
+		printf("val : %s\n", exp[n].value);
+		printf("flag : %d\n", exp[n].add);
+	}
 }
 
-int	ms_exp_init(t_export *exp, char **args)
+int	ms_exp_init(t_export *exp, char **args, int max)
 {
 	int	n;
 
@@ -161,13 +219,16 @@ int	ms_exp_init(t_export *exp, char **args)
 	while (args[++n])
 	{
 		if (!valid_name(args[n]))
+		{
+			ft_putstr_fd("msh: export: not a valid identifier\n", 2);
 			return (1);
+		}
 	}
 	n = -1;
 	while (args[++n])
 	{
 		if (exp_split(&exp[n], args[n]))
-			return (exp_free(&exp), 1);
+			return (exp_free(exp, max), 1);
 	}
 	return (0);
 }
@@ -184,13 +245,14 @@ int	ms_export(t_cmd *cmd)
 	n = 0;
 	while (cmd->args[n])
 		n++;
-	exp = malloc(n * sizeof(exp));
+	exp = ft_calloc(n, sizeof(exp));
 	if (!exp)
 		return (1);
-	if (ms_exp_init(exp, cmd->args + 1))
-		return (exp_free(&exp), 1);
-	disp_exp(exp, n);
-	// if (ms_exp_exportvar(exp, cmd->ms))
-	// 	return (1);
+	if (ms_exp_init(exp, cmd->args + 1, n - 1))
+		return (exp_free(exp, n - 1), 1);
+	disp_exp(exp, n - 1);
+	if (ms_exp_all(exp, cmd->ms, n - 1))
+		return (exp_free(exp, n - 1), 1);
+	exp_free(exp, n - 1);
 	return (0);
 }
