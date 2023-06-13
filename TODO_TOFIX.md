@@ -1,10 +1,26 @@
 TODO
 
-* tests sous linux avec fsanitize de compet. Qques leaks (random !), pas mal de segfault souvent liés à unset on dirait. Bcp de tests c/c en dessous..
-
+* tests sous linux avec fsanitize de compet. Qques leaks (random !), pas mal de segfault souvent liés à unset on dirait. Bcp de tests c/c en dessous, 3 patterns de plantage détectés p/r fonctions qui plantent
 
 
 * unset crash random ?
+
+msh > unset QDFGFSD
+msh > unset HOME
+msh > unset USER
+msh > unset PATH
+LeakSanitizer:DEADLYSIGNAL
+==9224==ERROR: LeakSanitizer: SEGV on unknown address 0x616000010000 (pc 0x55ccd90733de bp 0x7fff28ffbfa0 sp 0x7fff28ffbf70 T0)
+==9224==The signal is caused by a WRITE memory access.
+    #0 0x55ccd90733de in unset_arg Sources/ms_unset.c:65
+    #1 0x55ccd90734a2 in ms_unset Sources/ms_unset.c:84
+    #2 0x55ccd906f209 in ms_do_builtin Sources/ms_exec01.c:32
+    #3 0x55ccd906f5ee in ms_exec Sources/ms_exec01.c:87
+    #4 0x55ccd906d557 in ms_launch_cmds Sources/minishell.c:21
+    #5 0x55ccd906d6c9 in minishell Sources/minishell.c:51
+
+
+//////////////// autre session ////////////////////////
 msh > unset HOME
 msh > unset SHLVL
 msh > unset USER
