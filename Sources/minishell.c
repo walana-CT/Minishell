@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/07 09:23:31 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:23:16 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char *argv[], char *envp[])
 	stat_sig(normal);
 	ms_init(&ms);
 	set_sig();
-	copy_env(envp, &ms);
+	ms_copy_env(envp, &ms);
 	(void) argv;
 	if (argc > 1)
 		printf("minishell doesn't need arguments ;)\n");

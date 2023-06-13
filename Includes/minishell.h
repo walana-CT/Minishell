@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 01:01:31 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:41:32 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ struct s_export
 };
 
 //init
-
 void	line_init(char	*str, t_ms *p);
 
 //err and memory
-
 void	ms_crash(t_ms *ms);
 void	ms_free_cmd(t_ms *ms);
 void	ms_free(t_ms *ms);
@@ -113,7 +111,6 @@ void	ms_bad_child_ending(char *str);
 void	ms_loop_free(t_ms *ms);
 
 //parsing
-
 int		ms_get_cmds(t_ms *ms);
 char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c);
@@ -140,7 +137,6 @@ void	ms_openfile(t_cmd *cmd, char *file, char m);
 int		set_end_filename(t_cmd *cmd, int i);
 
 //lexing & execution
-
 int		ms_isbuiltin(char *str);
 int		ms_lex(t_ms *ms);
 int		ms_exec(t_ms *ms);
@@ -148,12 +144,10 @@ int		ms_launch_children(t_ms *ms);
 int		ms_close(t_ms *ms, int val);
 
 //terminal
-
 int		ms_terminal_init(t_ms *ms);
 int		ms_terminal_reset(t_ms *ms);
 
 //builtins
-
 int		ms_cd(t_cmd *cmd);
 int		ms_exit(t_cmd *cmd);
 int		ms_env(t_cmd *cmd);
@@ -176,7 +170,7 @@ void	set_sig(void);
 int		ms_sizeof_tab(char **my_tab);
 int		incr_shell_lvl(t_ms *ms);
 int		ms_env_pos(char *str, char **envp);
-void	copy_env(char *envp[], t_ms *ms);
+void	ms_copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
 int		ms_is_dol_sep(char c);
@@ -186,10 +180,11 @@ void	ms_no_arg_export(t_ms *ms, int fd_out);
 int		ms_env_hasval(char *str);
 int		ms_exportvar(char *new_var, t_ms *ms);
 int		ms_exp_exportvar(t_export *exp, t_ms *ms);
-
+int		ms_valid_name(char *new_var);
+void	ms_exp_free(t_export *exp, int max);
+int		ms_exp_all(t_export *exp, t_ms *ms, int max);
 
 //debug
-
 void	ms_printtab(char **str_tab, int fd);
 void	ms_printcmds(t_ms ms);
 void	ms_printcmd(t_cmd cmd);
@@ -197,7 +192,6 @@ void	ms_disp_pipes(t_ms *ms);
 void	ms_printcmd(t_cmd cmd);
 
 //statics
-
 int		stat_sig(int val);
 int		stat_err(int val);
 
