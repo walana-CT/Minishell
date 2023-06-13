@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 12:05:19 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:02:22 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,12 @@ int	ms_exp_one(t_export *exp, t_ms *ms)
 	}
 	else if (env_varl >= 0 && exp->add && exp->value)
 	{
+		if (ms_where_is('=', ms->envp[env_varl]) == -1)
+		{
+			if (ft_strinsert(&ms->envp[env_varl], "=", ft_strlen(ms->envp[env_varl])))
+				return (1);
+		}
+		
 		if (ft_strinsert(&ms->envp[env_varl], exp->value, ft_strlen(ms->envp[env_varl])))
 			return (1);
 	}
@@ -164,10 +170,9 @@ int	ms_exp_all(t_export *exp, t_ms *ms, int max)
 int	exp_split(t_export *exp, char *arg)
 {
 	int	pos;
-	int	flagadd;
 
 	pos = ms_where_is('=', arg);
-	flagadd = 0;
+	exp->add = 0;
 	if (pos == -1)
 	{
 		exp->name = ft_strdup(arg);
@@ -187,12 +192,11 @@ int	exp_split(t_export *exp, char *arg)
 		return (0);
 	}
 	else if (arg[pos - 1] == '+')
-		flagadd = 1;
-	exp->name = ft_substr(arg, 0, pos - flagadd);
+		exp->add = 1;
+	exp->name = ft_substr(arg, 0, pos - exp->add);
 	exp->value = ft_substr(arg, pos + 1, ft_sstrlen(arg) - pos);
 	if (!exp->name || !exp->value)
 		return (1);
-	exp->add = flagadd;
 	printf("Name : %s\tValue : %s\tFlag+ : %d\n", exp->name, exp->value, exp->add);
 	return (0);
 }
@@ -245,7 +249,7 @@ int	ms_export(t_cmd *cmd)
 	n = 0;
 	while (cmd->args[n])
 		n++;
-	exp = ft_calloc(n, sizeof(exp));
+	exp = malloc((n - 1) * sizeof(t_export));
 	if (!exp)
 		return (1);
 	if (ms_exp_init(exp, cmd->args + 1, n - 1))
