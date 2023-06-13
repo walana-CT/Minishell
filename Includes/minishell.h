@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 15:41:32 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:17:29 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/param.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
 # include <term.h>
 # include <unistd.h>
 # include "libft.h"

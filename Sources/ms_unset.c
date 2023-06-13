@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:07:51 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:20:24 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int	is_env(char *str, char *env)
 int	ms_env_pos(char *str, char **envp)
 {
 	int		n;
-	int		j;
 
 	n = 0;
-	j = 0;
 	while (envp[n])
 	{
 		if (is_env(str, envp[n]))

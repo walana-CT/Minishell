@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:03:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:16:18 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	refresh_old(t_ms *ms)
 {
-	char	buffer[MAXPATHLEN + 1];
 	char	*val_path;
 	char	*path;
 
-	buffer[MAXPATHLEN] = 0;
 	val_path = ms_getenv_val("PWD", ms);
 	path = ft_strjoin("OLDPWD=", val_path);
 	ms_exportvar(path, ms);
