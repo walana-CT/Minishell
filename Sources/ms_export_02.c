@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:24:12 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 15:46:52 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:49:01 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,9 @@ int	ms_exp_one(t_export *exp, t_ms *ms)
 	int	env_varl;
 
 	env_varl = ms_getenv_varl(exp->name, ms);
-	if (env_varl == -1)
-	{
-		if (env_exp_addvar(exp, ms))
-			return (1);
-	}
-	else if (env_varl >= 0 && !exp->add && exp->value)
+	if (env_varl == -1 && env_exp_addvar(exp, ms))
+		return (1);
+	if (env_varl >= 0 && !exp->add && exp->value)
 	{
 		free(ms->envp[env_varl]);
 		ms->envp[env_varl] = ft_strmanyjoin(exp->name, "=", exp->value, 0);
@@ -94,9 +91,11 @@ int	ms_exp_one(t_export *exp, t_ms *ms)
 	else if (env_varl >= 0 && exp->add && exp->value)
 	{
 		if (ms_where_is('=', ms->envp[env_varl]) == -1)
-			if (ft_strinsert(&ms->envp[env_varl], "=", ft_strlen(ms->envp[env_varl])))
+			if (ft_strinsert(&ms->envp[env_varl], "=",
+					ft_strlen(ms->envp[env_varl])))
 				return (1);
-		if (ft_strinsert(&ms->envp[env_varl], exp->value, ft_strlen(ms->envp[env_varl])))
+		if (ft_strinsert(&ms->envp[env_varl], exp->value,
+				ft_strlen(ms->envp[env_varl])))
 			return (1);
 	}
 	return (0);

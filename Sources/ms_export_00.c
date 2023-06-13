@@ -6,11 +6,20 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 15:32:51 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 15:53:57 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	exp_split2(t_export *exp, char *arg, int pos)
+{
+	exp->name = ft_substr(arg, 0, pos - exp->add);
+	exp->value = ft_substr(arg, pos + 1, ft_sstrlen(arg) - pos);
+	if (!exp->name || !exp->value)
+		return (1);
+	return (0);
+}
 
 int	exp_split(t_export *exp, char *arg)
 {
@@ -38,11 +47,7 @@ int	exp_split(t_export *exp, char *arg)
 	}
 	else if (arg[pos - 1] == '+')
 		exp->add = 1;
-	exp->name = ft_substr(arg, 0, pos - exp->add);
-	exp->value = ft_substr(arg, pos + 1, ft_sstrlen(arg) - pos);
-	if (!exp->name || !exp->value)
-		return (1);
-	return (0);
+	return (exp_split2(exp, arg, pos));
 }
 
 int	ms_exp_init(t_export *exp, char **args, int max)

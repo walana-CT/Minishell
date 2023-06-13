@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:52 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 15:42:19 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:01:11 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	exit_test1(t_cmd *cmd)
 		ft_putstr_fd(cmd->args[1], 2);
 		ft_putstr_fd(" numeric argument required\n", 2);
 		ms_free(cmd->ms);
-		system("leaks minishell");
 		exit (255);
 	}
 }
@@ -55,7 +54,6 @@ static void	exit_test2(t_cmd *cmd, long return_val)
 		ft_putstr_fd(cmd->args[1], 2);
 		ft_putstr_fd(" numeric argument required\n", 2);
 		ms_free(cmd->ms);
-		system("leaks minishell");
 		exit (255);
 	}
 }
@@ -66,17 +64,13 @@ int	ms_exit(t_cmd *cmd)
 
 	printf("\033[1Fmsh > \033[0mexit\n");
 	if (!cmd)
-	{
-		system("leaks minishell");
 		exit(stat_err(-1));
-	}
 	if (!cmd->args[0])
 		return (printf("exit received 0 args\n"), 1);
 	printf("exit\n");
 	if (!cmd->args[1])
 	{
 		ms_free(cmd->ms);
-		system("leaks minishell");
 		exit(stat_err(-1));
 	}
 	exit_test1(cmd);
@@ -85,7 +79,6 @@ int	ms_exit(t_cmd *cmd)
 	if (cmd->args[2])
 		return (ft_putstr_fd("msh: exit : too many arguments\n", 2), 1);
 	ms_free(cmd->ms);
-	system("leaks minishell");
 	exit(return_val);
 	return (0);
 }
