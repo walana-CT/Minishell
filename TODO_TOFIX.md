@@ -1,7 +1,9 @@
 TODO
-* export A+=
-* export doit dol_replace(comment ça px ile fait pas le sacripan)
-* desactiver sigquit (reactivé pour certains tests)
+* unset path segfault des fois
+* permission denied sur creation de fichier dans repertoire sans droit
+* shlvl10
+* unset SHLVL puis relancer ./minishell segfault (bash met SHLVL à 1 dans ce cas)
+
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -32,3 +34,6 @@ OK
 * export leaks
 * signaux : sauter une ligne apres ctrl-C (apres passwd, as, ce genre de plans)
 * appeler deux fois export segfault
+* export A+=
+* export doit dol_replace(comment ça px ile fait pas le sacripan)
+* desactiver sigquit (reactivé pour certains tests)
