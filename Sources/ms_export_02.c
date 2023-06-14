@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export_02.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:24:12 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 15:49:01 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:43:17 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	env_exp_addvar(t_export *exp, t_ms *ms)
 
 int	ms_valid_name(char *new_var)
 {
-	if (*new_var == '=' || *new_var == '+')
+	if (!ft_isalpha(*new_var) && *new_var != '_')
 		return (FALSE);
 	while (*new_var && *new_var != '=')
 	{
