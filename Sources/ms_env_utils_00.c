@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/14 11:46:05 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/14 14:07:07 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	incr_shell_lvl(t_ms *ms)
 	char	*shlvl_val;
 	long	new_val;
 	char	*new_valstr;
+	char	*new_envl;
 
 	shlvl_val = ms_getenv_val("SHLVL", ms);
 	if (shlvl_val == NULL)
@@ -26,8 +27,10 @@ int	incr_shell_lvl(t_ms *ms)
 		new_val = ft_atoi(shlvl_val);
 		new_val++;
 		new_valstr = ft_itoa(new_val);
-		ms_exportvar(ft_strjoin("SHLVL=", new_valstr), ms);
+		new_envl = ft_strjoin("SHLVL=", new_valstr);
+		ms_exportvar(new_envl, ms);
 		ft_freestr(&new_valstr);
+		ft_freestr(&new_envl);
 	}
 	return (0);
 }
