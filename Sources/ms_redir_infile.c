@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_infile.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/12 22:54:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:18:56 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 int	ms_get_fdin(t_cmd *cmd)
 {
 	int	i;
-	int	del;
 
-	del = 0;
 	i = ms_where_is('<', cmd->line);
 	if (cmd->limiter)
 		ft_freestr(&cmd->limiter);

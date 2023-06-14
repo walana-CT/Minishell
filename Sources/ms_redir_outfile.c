@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_outfile.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:08:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 15:43:14 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:19:10 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 int	ms_get_fdout(t_cmd *cmd)
 {
 	int	i;
-	int	del;
 
-	del = 0;
-		i = ms_where_is('>', cmd->line);
+	i = ms_where_is('>', cmd->line);
 	if (cmd->fileout)
 		ft_freenull((void **)&cmd->fileout);
 	if (ms_getoutfile(cmd, i + 1) || cmd->fdout == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:07:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 00:20:00 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_sighandle(int sig, siginfo_t *info, void *context)
 {
-	info = 0;
-	context = 0;
+	(void) info;
+	(void) context;
 	if (sig == SIGINT)
 	{
 		if (stat_sig(-1) == disabled)

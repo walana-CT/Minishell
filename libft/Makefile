@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: mamat <mamat@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/13 15:57:16 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/14 01:11:28 by mamat            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET	:= \033[0m
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
-SANITIZE := -fsanitize=address
+SANITIZE := -fsanitize=leak
 
 NAME = libft.a
 
@@ -113,7 +113,7 @@ all: $(NAME)
 
 .c.o:
 #	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) #$(SANITIZE)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $(<:.c=.o) $(SANITIZE)
 
 $(NAME): $(OBJ)
 	@printf '$(GREEN)Creating : $(NAME)$(RESET)\n'
