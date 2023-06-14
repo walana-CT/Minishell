@@ -27,7 +27,7 @@ CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g
 INCLUDES = -I Includes -I /Users/$$USER/.brew/opt/readline/include
 LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib -lft -L ./libft
-SANITIZE := -fsanitize=leak
+SANITIZE := -fsanitize=address
 
 SRC :=	Sources/minishell.c\
 		Sources/ms_cd.c\

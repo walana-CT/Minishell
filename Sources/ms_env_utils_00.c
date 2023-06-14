@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env_utils_00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:12:31 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:46:05 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 int	incr_shell_lvl(t_ms *ms)
 {
-	char	*shlvl_envl;
-	int		n;
+	char	*shlvl_val;
+	long	new_val;
+	char	*new_valstr;
 
-	shlvl_envl = ms_getenv_val("SHLVL", ms);
-	n = 0;
-	while (shlvl_envl[n])
-		n++;
-	if (shlvl_envl[n - 1] == '9')
-	{
-		if (ft_strresize(&shlvl_envl, 1))
-			return (1);
-		while (shlvl_envl[--n] == '9')
-			shlvl_envl[n] = '0';
-	}
+	shlvl_val = ms_getenv_val("SHLVL", ms);
+	if (shlvl_val == NULL)
+		ms_exportvar("SHLVL=1", ms);
 	else
-		n--;
-	shlvl_envl[n] += 1;
+	{
+		new_val = ft_atoi(shlvl_val);
+		new_val++;
+		new_valstr = ft_itoa(new_val);
+		ms_exportvar(ft_strjoin("SHLVL=", new_valstr), ms);
+		ft_freestr(&new_valstr);
+	}
 	return (0);
 }
 
