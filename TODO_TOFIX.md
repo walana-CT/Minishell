@@ -91,7 +91,7 @@ LeakSanitizer:DEADLYSIGNAL
 msh > unset PATH
 msh > ls
 msh: ls: command not found
--> comportmeent ok
+-> comportement ok
 
 //////////////// autre session ////////////////////////
 msh > unset PATH
