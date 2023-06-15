@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:37:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/01 08:55:16 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/15 09:54:34 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*str_cut(char *str, int n)
 		printf("str_cur received invalid arg \n");
 		return (NULL);
 	}
-	result = calloc((n + 1), sizeof(char));
+	result = ft_calloc((n + 1), sizeof(char));
 	while (n)
 	{
 		result[n] = str[n];

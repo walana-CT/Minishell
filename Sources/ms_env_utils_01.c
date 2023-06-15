@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env_utils_01.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 09:25:44 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 15:23:27 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 09:53:45 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ms_copy_env(char *envp[], t_ms *ms)
 	int		n;
 
 	n = 0;
-	envp_copy = calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
+	envp_copy = ft_calloc(ms_sizeof_tab(envp) + 1, sizeof(char *));
 	if (!envp_copy)
 		ms_crash(NULL);
 	while (envp[n])
@@ -67,7 +67,7 @@ void	ms_env_addvar(char *new_var, t_ms *ms)
 	int		n;
 
 	n = -1;
-	new_envp = calloc(ms_sizeof_tab(ms->envp) + 2, sizeof(char *));
+	new_envp = ft_calloc(ms_sizeof_tab(ms->envp) + 2, sizeof(char *));
 	if (!new_envp)
 		ms_crash(ms);
 	while (ms->envp[++n])
