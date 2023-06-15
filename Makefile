@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/15 14:23:43 by rficht           ###   ########.fr        #
+#    Updated: 2023/06/15 16:31:09 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_parsing_02.c\
 		Sources/ms_parsing_03.c\
 		Sources/ms_pwd.c\
+		Sources/ms_redir_heredoc.c\
 		Sources/ms_redir_infile.c\
 		Sources/ms_redir_outfile.c\
 		Sources/ms_redirections.c\

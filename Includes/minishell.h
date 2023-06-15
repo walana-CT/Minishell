@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/14 00:17:29 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/15 16:52:51 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ int		ms_get_fdout(t_cmd *cmd);
 int		ms_getinfile(t_cmd *cmd, int i);
 int		ms_get_limiter(t_cmd *cmd, int i);
 void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd);
+int		ms_is_heredoc(t_cmd *cmd);
+int		ms_get_heredoc(t_cmd *cmd);
 int		ms_heredoc(t_cmd *cmd);
 void	ms_openfile(t_cmd *cmd, char *file, char m);
 int		set_end_filename(t_cmd *cmd, int i);

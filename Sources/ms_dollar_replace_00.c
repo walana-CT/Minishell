@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:04:10 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:07:08 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	replace_qm(char **str, int pos, t_ms *ms)
 		ms_crash(ms);
 	if (ft_strinsert(str, err_str, pos))
 		ms_crash(ms);
+	ft_freestr(&err_str);
 	return (0);
 }
 

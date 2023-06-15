@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_infile.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/15 15:09:00 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:29:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,47 +88,4 @@ int	ms_get_limiter(t_cmd *cmd, int i)
 	if (!cmd->limiter)
 		ms_crash(cmd->ms);
 	return (0);
-}
-
-void	ms_heredoc_child(t_cmd *cmd)
-{
-	char	*str;
-
-	stat_sig(child);
-	str = readline(">");
-	while (!ft_strequal(cmd->limiter, str) && str)
-	{
-		if (!ms_dollar_replace(&str, cmd->ms))
-		{
-			write(cmd->herepipe[1], str, ft_sstrlen(str));
-			write(cmd->herepipe[1], "\n", 1);
-		}
-		free(str);
-		str = readline(">");
-	}
-	close(cmd->herepipe[1]);
-	exit(0);
-}
-
-int	ms_heredoc(t_cmd *cmd)
-{
-	int		pid;
-	int		err;
-
-	err = 0;
-	cmd->herepipe = malloc(2 * sizeof(int));
-	if (!cmd->herepipe || pipe(cmd->herepipe) == -1)
-		return (1);
-	stat_sig(disabled);
-	pid = fork();
-	if (!pid)
-		ms_heredoc_child(cmd);
-	waitpid(pid, &err, 0);
-	stat_sig(normal);
-	close(cmd->herepipe[1]);
-	cmd->fdin = cmd->herepipe[0];
-	ft_freestr(&cmd->limiter);
-	free(cmd->herepipe);
-	cmd->herepipe = 0;
-	return (WEXITSTATUS(err));
 }

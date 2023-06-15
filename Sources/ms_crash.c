@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/09 23:19:04 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:59:24 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,20 @@ int	ms_error_file(char *file, char m, int err)
 
 void	ms_bad_child_ending(char *str)
 {
+	DIR	*dirp;
+
 	if (ft_strequal(str, ""))
 		exit(0);
 	if (ms_is_localfile(str) && access(str, F_OK) == -1)
 		exit(ms_error_file(str, 'f', 127));
 	if (ms_is_localfile(str) && access(str, X_OK) == -1)
 		exit(ms_error_file(str, 'x', 126));
-	if (ms_where_is('/', str) != -1 && opendir(str))
+	dirp = opendir(str);
+	if (ms_where_is('/', str) != -1 && dirp)
+	{
+		closedir(dirp);
 		exit(ms_exit_dir(str));
+	}
 	exit(ms_error_file(str, 'c', 127));
 }
 

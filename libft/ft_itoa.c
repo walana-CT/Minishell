@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:38:43 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/04/29 15:25:27 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:10:17 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_itoa(int n)
 		signe = 1;
 		nb = -nb;
 	}
+	printf("signe %d size %d nb %d")
 	ret = (char *) malloc(1 + signe + size(nb));
 	if (!ret)
 		return (NULL);
