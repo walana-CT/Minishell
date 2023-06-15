@@ -24,7 +24,7 @@ RESET	:= \033[0m
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
-SANITIZE := -fsanitize=leak
+SANITIZE := -fsanitize=address
 
 NAME = libft.a
 
