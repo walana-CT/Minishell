@@ -1,8 +1,8 @@
 TODO
 
 * permission denied dans un repertoire sans droits
-* echo banane >   >out fonctionne et devrait pas !
-
+* echo banane >   >out fonctionne et devrait pas ! (fonctionne pas, renvoie le bon code d'erreur mais pas de message d'erreur)
+* OLDPWD se recrée tout seul apres unset ?
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
