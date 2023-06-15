@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:18:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/15 16:29:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:11:50 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ void	ms_get_next_fd(t_cmd *cmd)
 	int	in;
 	int	out;
 
-
 	while ((ms_where_is('<', cmd->line) != -1 || \
 		ms_where_is('>', cmd->line) != -1) && !cmd->invalidfd)
 	{
 		in = ms_where_is('<', cmd->line);
 		out = ms_where_is('>', cmd->line);
-
 		if (ms_is_heredoc(cmd))
 			ms_get_heredoc(cmd);
 		else if ((in < out && in != -1) || out == -1)

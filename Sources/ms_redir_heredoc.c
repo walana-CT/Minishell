@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:27:44 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/15 16:29:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:11:50 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ms_get_heredoc(t_cmd *cmd)
 	}
 	return (0);
 }
-
 
 void	ms_heredoc_child(t_cmd *cmd)
 {

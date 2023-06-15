@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/15 16:31:09 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/15 17:10:42 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,3 @@ fclean: clean
 re: fclean $(NAME)
 
 ftre: ftclean lib
-
-
-

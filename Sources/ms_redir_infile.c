@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/15 16:29:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:11:50 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,8 @@ int	ms_get_fdin(t_cmd *cmd)
 	int	i;
 
 	i = ms_where_is('<', cmd->line);
-	/*if (cmd->limiter)
-		ft_freestr(&cmd->limiter);*/
 	if (cmd->filein)
 		ft_freenull((void **)&cmd->filein);
-	/*if (cmd->line[i + 1] == '<')
-	{
-		if (ms_get_limiter(cmd, i + 2))
-			return (1);
-		if (ms_heredoc(cmd))
-			return (1);
-	}
-	else*/
 	if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
 		return (1);
 	return (0);
