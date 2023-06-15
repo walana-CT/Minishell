@@ -294,6 +294,9 @@ AddressSanitizer:DEADLYSIGNAL
     #10 0x55d68ef6f614 in _start (/mnt/data/Docs/42/minishell/minishell+0x2614)
 
 
+cat <empty <<stop <stop | ls
+
+
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
 * leaks sur les builtins

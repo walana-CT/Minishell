@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamat <mamat@student.42.fr>                +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 18:50:34 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/14 01:11:28 by mamat            ###   ########.fr        #
+#    Updated: 2023/06/15 14:23:59 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET	:= \033[0m
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
-SANITIZE := -fsanitize=leak
+SANITIZE := -fsanitize=address
 
 NAME = libft.a
 

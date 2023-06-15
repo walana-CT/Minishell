@@ -6,7 +6,7 @@
 #    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/15 09:57:10 by rficht           ###   ########.fr        #
+#    Updated: 2023/06/15 14:23:43 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g
 INCLUDES = -I Includes -I /Users/$$USER/.brew/opt/readline/include
 LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib -lft -L ./libft
-SANITIZE := -fsanitize=leak
+SANITIZE := -fsanitize=address
 
 SRC :=	Sources/minishell.c\
 		Sources/ms_cd.c\
