@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:14:32 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:04:29 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/15 09:53:43 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ms_no_arg_export(t_ms *ms, int fd_out)
 	char	**envp_copy;
 	int		n;
 
-	envp_copy = calloc(ms_sizeof_tab(ms->envp) + 1, sizeof(char *));
+	envp_copy = ft_calloc(ms_sizeof_tab(ms->envp) + 1, sizeof(char *));
 	if (!envp_copy)
 	{
 		printf("ms_no_arg_export failed to malloc\n");

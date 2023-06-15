@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/14 00:20:24 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/15 09:49:36 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	unset_arg(char *arg, t_ms *ms)
 	pos = ms_env_pos(arg, ms->envp);
 	if (pos == -1)
 		return ;
-	new_envp = calloc((ms_sizeof_tab(ms->envp) - 1), sizeof(char *));
+	new_envp = ft_calloc((ms_sizeof_tab(ms->envp)), sizeof(char *));
 	if (!new_envp)
 		ms_crash(ms);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:24:12 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/13 17:43:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/15 09:53:41 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	env_exp_addvar(t_export *exp, t_ms *ms)
 	int		n;
 
 	n = -1;
-	new_envp = calloc(ms_sizeof_tab(ms->envp) + 2, sizeof(char *));
+	new_envp = ft_calloc(ms_sizeof_tab(ms->envp) + 2, sizeof(char *));
 	if (!new_envp)
 		return (1);
 	while (ms->envp[++n])
