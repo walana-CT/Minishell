@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_infile.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/14 00:18:56 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/15 15:09:00 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ int	ms_get_fdin(t_cmd *cmd)
 	int	i;
 
 	i = ms_where_is('<', cmd->line);
-	if (cmd->limiter)
-		ft_freestr(&cmd->limiter);
+	/*if (cmd->limiter)
+		ft_freestr(&cmd->limiter);*/
 	if (cmd->filein)
 		ft_freenull((void **)&cmd->filein);
-	if (cmd->line[i + 1] == '<')
+	/*if (cmd->line[i + 1] == '<')
 	{
 		if (ms_get_limiter(cmd, i + 2))
 			return (1);
 		if (ms_heredoc(cmd))
 			return (1);
 	}
-	else
-		if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
-			return (1);
+	else*/
+	if (ms_getinfile(cmd, i + 1) || cmd->fdin == -1)
+		return (1);
 	return (0);
 }
 
@@ -127,7 +127,8 @@ int	ms_heredoc(t_cmd *cmd)
 	stat_sig(normal);
 	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
-	free(cmd->limiter);
+	ft_freestr(&cmd->limiter);
 	free(cmd->herepipe);
+	cmd->herepipe = 0;
 	return (WEXITSTATUS(err));
 }
