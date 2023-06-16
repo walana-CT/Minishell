@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/16 15:56:48 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/15 14:23:43 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,3 +89,6 @@ fclean: clean
 re: fclean $(NAME)
 
 ftre: ftclean lib
+
+
+

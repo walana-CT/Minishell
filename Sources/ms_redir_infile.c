@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/16 15:58:36 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/16 17:36:59 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ms_getinfile(t_cmd *cmd, int i)
 	while (cmd->line[i] == ' ')
 		i++;
 	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (1);
+		return (ms_error_msg(SYN_EUNEXT"<", 1));
 	start = i;
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i = set_end_filename(cmd, i);

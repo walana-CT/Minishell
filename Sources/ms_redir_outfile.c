@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_outfile.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:08:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/14 00:19:10 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/16 17:38:36 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ms_getoutfile(t_cmd *cmd, int i)
 	while (cmd->line[i] == ' ')
 		i++;
 	if (cmd->line[i] && ft_is_in(cmd->line[i], FORBID_REDIR) >= 0)
-		return (1);
+		return (ms_error_msg(SYN_EUNEXT">", 1));
 	start = i;
 	while (cmd->line[i] && ft_is_in(cmd->line[i], END_REDIR) == -1)
 		i = set_end_filename(cmd, i);
