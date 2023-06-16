@@ -1,6 +1,6 @@
 TODO
 
-*OLDPWD se recree tout seul apres unset quand on env ou export
+* OLDPWD se recree tout seul apres unset quand on env ou export
 * il faudrait afficher permission denied dans un repertoire sans droits
 * export PATH=$PATH:$PWD -> $PWD ecrase tout
 * execve lance un fichier qui est dans le repertoire courant sans qu'il commence par ./
