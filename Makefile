@@ -6,7 +6,7 @@
 #    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/15 17:17:37 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/16 15:56:48 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_parsing_02.c\
 		Sources/ms_parsing_03.c\
 		Sources/ms_pwd.c\
-		Sources/ms_redir_heredoc.c\
 		Sources/ms_redir_infile.c\
 		Sources/ms_redir_outfile.c\
 		Sources/ms_redirections.c\
@@ -74,7 +73,7 @@ lib:
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) #$(SANITIZE)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) $(SANITIZE)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:
