@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/14 00:17:29 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/18 11:50:03 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int		ms_env_pos(char *str, char **envp);
 void	ms_copy_env(char *envp[], t_ms *ms);
 char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
-int		ms_is_dol_sep(char c);
+int		ms_env_valid_char(char *str, int pos);
 int		is_env(char *str, char *env);
 int		ms_env_var_len(char *str);
 void	ms_no_arg_export(t_ms *ms, int fd_out);

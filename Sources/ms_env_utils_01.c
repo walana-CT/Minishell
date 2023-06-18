@@ -6,20 +6,20 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 09:25:44 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/15 09:53:45 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/18 14:58:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_env_var_len(char *str)
+int	ms_env_var_len(char *var)
 {
-	int	len;
+	int	n;
 
-	len = 1;
-	while (!ms_is_dol_sep(str[len]))
-		len++;
-	return (len);
+	n = 0;
+	while (ms_env_valid_char(var, n))
+		n++;
+	return (n + 1);
 }
 
 int	ms_env_hasval(char *str)

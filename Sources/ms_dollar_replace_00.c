@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace_00.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/16 17:16:37 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:59:37 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	dol_replace(char **str, int pos, t_ms *ms)
 	if ((*str)[pos + 1] == '?')
 		return (replace_qm(str, pos, ms));
 	env_val = ms_getenv_val(&str[0][pos + 1], ms);
-	var_len = ms_env_var_len(&str[0][pos]);
+	var_len = ms_env_var_len(&str[0][pos + 1]);
 	if (ft_strtrunc(str, pos, var_len))
 		ms_crash(ms);
 	if (ft_strinsert(str, env_val, pos))
@@ -77,13 +77,16 @@ static int	next_dol_pos(char *str)
 int	ms_dollar_replace(char **str, t_ms *ms)
 {
 	int	dol_pos;
+	int	n;
 
+	n = 0;
 	dol_pos = next_dol_pos(*str);
-	while (dol_pos != (-1))
+	while (dol_pos != (-1) && n < 3)
 	{
 		if (dol_replace(str, dol_pos, ms))
 			return (1);
 		dol_pos = next_dol_pos(*str);
+		n++;
 	}
 	return (0);
 }

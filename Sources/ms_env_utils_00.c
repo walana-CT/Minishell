@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/18 11:07:38 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/18 11:55:24 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	envcmp(char *str, char *envl)
 	int	n;
 
 	n = 0;
-	while (!ms_is_dol_sep(str[n]) && envl[n])
+	while (ms_env_valid_char(str, n) && envl[n])
 	{
 		if (envl[n] != str[n])
 			return (FALSE);
@@ -58,7 +58,7 @@ int	envcmp(char *str, char *envl)
 			return (TRUE);
 		n++;
 	}
-	if ((ms_is_dol_sep(str[n]) || str[n] == '=')
+	if ((!ms_env_valid_char(str, n) || str[n] == '=')
 		&& (envl[n] == 0 || envl[n] == '='))
 		return (TRUE);
 	else

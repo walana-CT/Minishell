@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_replace_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:44:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/12 11:08:04 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:49:04 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_is_dol_sep(char c)
+int	ms_env_valid_char(char *str, int pos)
 {
-	if (c == ' ' || c == 0 || c == '$' || c == '\''
-		|| c == '\"' || c == '<' || c == '>')
-		return (1);
-	else
-		return (0);
+	if (pos == 0)
+	{
+		if (!ft_isalpha(str[pos]) && str[pos] != '_')
+			return (FALSE);
+	}
+	else if (!ft_isalnum(str[pos]) && str[pos] != '_')
+		return (FALSE);
+	return (TRUE);
 }
 
 static int	next_empty_dol_pos(char *str, t_ms *ms)

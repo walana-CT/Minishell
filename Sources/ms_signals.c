@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/14 00:20:00 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/18 14:47:42 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	set_sig(void)
 	sa.sa_sigaction = ft_sighandle;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		ms_crash(NULL);
-	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		ms_crash(NULL);
+	/*if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		ms_crash(NULL);*/
 }
