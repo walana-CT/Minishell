@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/14 00:16:18 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/18 11:08:15 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	ms_cd(t_cmd *cmd)
 		stat_err(1);
 		return (1);
 	}
-	refresh_old(cmd->ms);
+	if (ms_getenv_varl("OLDPWD", cmd->ms) != -1)
+		refresh_old(cmd->ms);
 	refresh_pwd(cmd->ms);
 	return (0);
 }

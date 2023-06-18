@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:36:45 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/14 14:09:17 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/18 11:07:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ char	*ms_getenv_val(char *str, t_ms *ms)
 }
 
 /**
- * Search if a variable exists and return a ptr to it if it does
+ * Search if a variable exists and return the index of the var if does
  * @param envp the variable we are looking for
  * @param ms the addresse of minishell
- * @return a pointer to the first 
+ * @return line index inside env
  */
 int	ms_getenv_varl(char *str, t_ms *ms)
 {

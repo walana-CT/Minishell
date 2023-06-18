@@ -1,6 +1,5 @@
 TODO
 
-* OLDPWD se recree tout seul apres unset quand on env ou export
 * il faudrait afficher permission denied dans un repertoire sans droits
 * export PATH=$PATH:$PWD -> $PWD ecrase tout
 * execve lance un fichier qui est dans le repertoire courant sans qu'il commence par ./
@@ -41,3 +40,5 @@ OK
 * export doit dol_replace(comment ça px ile fait pas le sacripan)
 * desactiver sigquit (reactivé pour certains tests)
 * echo banane >   >out fonctionne et devrait pas !
+* OLDPWD se recree tout seul apres unset quand on env ou export
+* unset fonctionne aussi avec les variables vides

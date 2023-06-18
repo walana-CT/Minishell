@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:03:19 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/15 09:49:36 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/18 11:08:52 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int	is_env(char *str, char *env)
 		str++;
 		env++;
 	}
-	if (!(*env))
-		return (FALSE);
-	if (*env == '=')
+	if (*env == '=' || !(*env))
 		return (TRUE);
 	else
 		return (FALSE);
