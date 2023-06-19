@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:50:04 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 14:21:18 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:28:18 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ void	ms_child(t_ms *ms, int i)
 		exit(ms_do_builtin(&ms->cmd[i]));
 	else
 	{
-		if (!ms->cmd[i].path)
-			pathcmd = ft_strdup(ms->cmd[i].cmd_name);
-		else
-			pathcmd = ft_strmanyjoin(ms->cmd[i].path, "/", \
-				ms->cmd[i].cmd_name, 0);
-		if (pathcmd && !ft_strequal(ms->cmd[i].cmd_name, ""))
+		pathcmd = ft_strjoin(ms->cmd[i].path, ms->cmd[i].cmd_name);
+		if (!pathcmd)
+			return ;
+		if (ms->cmd[i].path && !ft_strequal(ms->cmd[i].cmd_name, ""))
 			execve(pathcmd, ms->cmd[i].args, ms->envp);
 		ft_freenull((void **)&pathcmd);
 		ms_bad_child_ending(ms->cmd[i].cmd_name);

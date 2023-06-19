@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 10:30:08 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/19 17:37:00 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ms_findpath(char *cmd, char **path)
 		if (!access(fullcmd, F_OK | X_OK))
 		{
 			ft_freestr(&fullcmd);
-			return (ft_strdup(*path));
+			return (ft_strjoin(*path, "/"));
 		}
 		ft_freestr(&fullcmd);
 		path++;
@@ -77,6 +77,20 @@ int	ms_dealwith_quotes_and_dols(t_cmd *cmd)
 	return (err);
 }
 
+int	ms_get_path_from_name(t_ms *ms, int i)
+{
+	int		pos;
+	char	*tmp;
+
+	pos = ms_where_is_last('/', ms->cmd[i].cmd_name);
+	ms->cmd[i].path = ft_substr(ms->cmd[i].cmd_name, 0, pos + 1);
+	tmp = ft_substr(ms->cmd[i].cmd_name, pos + 1, \
+		ft_sstrlen(ms->cmd[i].cmd_name) - pos);
+	ft_freestr(&ms->cmd[i].cmd_name);
+	ms->cmd[i].cmd_name = tmp;
+	return (0);
+}
+
 /**
  * will turn lines into an arg array to conform with c program syntax.
  * It will first split with spcaces, replace dollars and remove quotes.
@@ -97,10 +111,12 @@ int	ms_lex(t_ms *ms)
 		if (ms->cmd[i].args)
 		{
 			ms_dealwith_quotes_and_dols(&ms->cmd[i]);
-			ms->cmd[i].cmd_name = ms->cmd[i].args[0];
+			ms->cmd[i].cmd_name = ft_strdup(ms->cmd[i].args[0]);
 		}
 		else
 			return (1);
+		if (ms_where_is('/', ms->cmd[i].cmd_name) != -1)
+			return (ms_get_path_from_name(ms, i));
 		path = ms_getpath(ms);
 		ms->cmd[i].path = ms_findpath(ms->cmd[i].cmd_name, path);
 		ft_freetab(path);

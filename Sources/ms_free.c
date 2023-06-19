@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/12 11:11:03 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:37:47 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freenull((void **)&ms->cmd[i].fileout);
 		if (ms->cmd[i].args)
 			ft_freetab(ms->cmd[i].args);
+		if (ms->cmd[i].cmd_name)
+			ft_freestr(&(ms->cmd[i].cmd_name));
 		if (ms->cmd[i].line)
 			ft_freestr(&(ms->cmd[i].line));
 		if (ms->cmd[i].path)

@@ -1,9 +1,6 @@
 TODO
 
 * il faudrait afficher permission denied dans un repertoire sans droits
-* export PATH=$PATH:$PWD -> $PWD ecrase tout
-* execve lance un fichier qui est dans le repertoire courant sans qu'il commence par ./
-* "cat <not_exist <<A <file" Pour moi notre gestion est ok. Trop relou de faire marcher exactement comme dans bash, et notre comportement final reste valable. C'est notamment chiant dans le cas ou "cmd <fileok <<HEREDOC" ou "cmd <<HEREDOC <fileok" de garder le fil des fd et en fait ca a du putain de sens de faire dans le vrai ordre ou c'est ecrit.
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
@@ -42,3 +39,6 @@ OK
 * unset fonctionne aussi avec les variables vides
 * $? ne doit pas perdre sa valeur quand on fait des entrees vides (appuyer plusieurs fois sur entree doit conserver la derniere valeur de retour et pas remettre a 0)
 * echo $USER+4 devrait afficher mdjemaa+4 (dolreplace doit s'arreter des que on n'est plus dans un caractere autorise par le nom de variable (donc des que alpha ou  _, beacuse pas de chiffre en premier dans un nom de variable))
+* export PATH=$PATH:$PWD -> $PWD ecrase tout
+* execve lance un fichier qui est dans le repertoire courant sans qu'il commence par ./
+* "cat <not_exist <<A <file" Pour moi notre gestion est ok. Trop relou de faire marcher exactement comme dans bash, et notre comportement final reste valable. C'est notamment chiant dans le cas ou "cmd <fileinok <<HEREDOC" ou "cmd <<HEREDOC <fileok" de garder le fil des fd et en fait ca a du putain de sens de faire dans le vrai ordre ou c'est ecrit.

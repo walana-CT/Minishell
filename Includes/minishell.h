@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/18 11:50:03 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/19 12:39:20 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c);
 int		*ms_where_are(char c, char *str);
 int		ms_where_is(char c, char *str);
+int		ms_where_is_last(char c, char *str);
 int		ms_quote_status(char *str, int j);
 char	**ms_quotesplit(char *s, char sep, t_ms *ms);
 char	*ms_noquotes(char *str);

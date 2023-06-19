@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/16 17:09:11 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/19 12:44:00 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ int	ms_error_file(char *file, char m, int err)
 	write(2, "msh: ", 5);
 	write(2, file, ft_sstrlen(file));
 	if (m == 'c')
-		write(2, ": command not found\n", 20);
+	{
+		if (ms_where_is('/', file) != -1)
+			write(2, NO_F"\n", 28);
+		else
+			write(2, ": command not found\n", 20);
+	}
 	else if (access(file, F_OK) == -1)
 		write(2, NO_F"\n", 28);
 	else if (m == 'w' && access(file, W_OK) == -1)

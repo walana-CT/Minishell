@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_parsing01.c                                     :+:      :+:    :+:   */
+/*   ms_parsing_01.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:12:27 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/09 10:03:39 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/19 12:39:43 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,23 @@ int	ms_where_is(char c, char *str)
 	return (-1);
 }
 
+int	ms_where_is_last(char c, char *str)
+{
+	int	i;
+
+	i = ft_sstrlen(str);
+	while (str[--i] >= 0)
+		if (str[i] == c && !ms_quote_status(str, i))
+			return (i);
+	return (-1);
+}
+
 /**
  * @param c The char we try to locate.
  * @param str The str in wich we are searching.
  * @return the index of every occurence of c inside str (result[0] contains the
  * number of occurences).
- */
+
 int	*ms_where_are(char c, char *str)
 {
 	int	i;
@@ -70,7 +81,7 @@ int	*ms_where_are(char c, char *str)
 			res[++cpt] = i;
 	res[++cpt] = -1;
 	return (res);
-}
+} */
 
 /**
  * Allow to know if a char is affected by quotes.

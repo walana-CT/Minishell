@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 20:28:47 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/12 11:05:24 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/19 11:40:25 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ms_close_pipes_but(t_ms *ms, int i)
 
 int	ms_is_localfile(char *file)
 {
-	return (file[0] == '.' || file[0] == '/');
+	return (file[0] == '.' && file[1] == '/');
 }
 
 int	ms_exit_fd(t_cmd cmd)
