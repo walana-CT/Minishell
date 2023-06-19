@@ -6,7 +6,7 @@
 /*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/20 01:29:08 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/20 01:39:27 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	ms_error_msg(char *str, int err)
 
 int	ms_error_file(char *file, char m, int err)
 {
-	// printf("cmd %s mode %c\n", file, m);
 	write(2, "msh: ", 5);
 	write(2, file, ft_sstrlen(file));
 	if (m == 'c')
