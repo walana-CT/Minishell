@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/19 12:39:20 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:58:22 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
 int		ms_exit_dir(char *str);
 int		ms_error_file(char *file, char m, int err);
-void	ms_bad_child_ending(char *str);
+void	ms_bad_child_ending(char *pathcmd);
 void	ms_loop_free(t_ms *ms);
 
 //parsing
@@ -163,8 +163,8 @@ int		ms_do_builtin(t_cmd	*cmd);
 void	ms_fixfds(t_cmd	*cmd);
 void	ms_close_pipes_but(t_ms *ms, int i);
 int		ms_is_localfile(char *file);
-int		ms_check_perm_n_fds(t_cmd cmd);
-void	ms_exit_check_perm_n_fds(t_cmd cmd);
+int		ms_check_fds(t_cmd cmd);
+void	ms_exit_check_fds(t_cmd cmd);
 
 //utils
 int		ms_dollar_replace(char **str, t_ms *ms);

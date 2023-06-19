@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_crash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/19 12:44:00 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/20 01:29:08 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ int	ms_error_msg(char *str, int err)
 
 int	ms_error_file(char *file, char m, int err)
 {
+	// printf("cmd %s mode %c\n", file, m);
 	write(2, "msh: ", 5);
 	write(2, file, ft_sstrlen(file));
 	if (m == 'c')
-	{
-		if (ms_where_is('/', file) != -1)
-			write(2, NO_F"\n", 28);
-		else
-			write(2, ": command not found\n", 20);
-	}
+		write(2, ": command not found\n", 20);
 	else if (access(file, F_OK) == -1)
 		write(2, NO_F"\n", 28);
 	else if (m == 'w' && access(file, W_OK) == -1)
@@ -55,23 +51,23 @@ int	ms_error_file(char *file, char m, int err)
 	return (err);
 }
 
-void	ms_bad_child_ending(char *str)
+void	ms_bad_child_ending(char *pathcmd)
 {
 	DIR	*dirp;
 
-	if (ft_strequal(str, ""))
+	if (ft_strequal(pathcmd, ""))
 		exit(0);
-	if (ms_is_localfile(str) && access(str, F_OK) == -1)
-		exit(ms_error_file(str, 'f', 127));
-	if (ms_is_localfile(str) && access(str, X_OK) == -1)
-		exit(ms_error_file(str, 'x', 126));
-	dirp = opendir(str);
-	if (ms_where_is('/', str) != -1 && dirp)
+	dirp = opendir(pathcmd);
+	if (ms_where_is('/', pathcmd) != -1 && dirp)
 	{
 		closedir(dirp);
-		exit(ms_exit_dir(str));
+		ms_exit_dir(pathcmd);
 	}
-	exit(ms_error_file(str, 'c', 127));
+	if (ms_where_is('/', pathcmd) != -1 && access(pathcmd, F_OK) == -1)
+		exit(ms_error_file(pathcmd, 'f', 127));
+	if (ms_where_is('/', pathcmd) != -1 && access(pathcmd, X_OK) == -1)
+		exit(ms_error_file(pathcmd, 'x', 126));
+	exit(ms_error_file(pathcmd, 'c', 127));
 }
 
 int	ms_exit_dir(char *str)

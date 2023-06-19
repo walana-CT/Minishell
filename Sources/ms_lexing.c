@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/19 17:37:00 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/20 01:22:39 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,12 @@ char	**ms_getpath(t_ms *ms)
 	return (0);
 }
 
-int	ms_isbuiltin(char *str)
-{
-	if (ft_strequal(str, "cd"))
-		return (1);
-	if (ft_strequal(str, "echo"))
-		return (1);
-	if (ft_strequal(str, "env"))
-		return (1);
-	if (ft_strequal(str, "exit"))
-		return (1);
-	if (ft_strequal(str, "export"))
-		return (1);
-	if (ft_strequal(str, "pwd"))
-		return (1);
-	if (ft_strequal(str, "unset"))
-		return (1);
-	return (0);
-}
-
 char	*ms_findpath(char *cmd, char **path)
 {
 	char	*fullcmd;
 
+	if (!cmd || ft_strequal(cmd, ""))
+		return (0);
 	while (path && *path)
 	{
 		fullcmd = ft_strmanyjoin(*path, "/", cmd, 0);
