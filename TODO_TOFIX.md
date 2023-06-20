@@ -1,6 +1,10 @@
 TODO
-* gerer les fd invalides plus tot.
+
+* repmplacer les SPACES par ' ' (au tout debut)
+* desactiver SIGQUIT
 * il faudrait afficher permission denied dans un repertoire sans droits
+* cd sans parametre equivaut a cd $HOME (et renvoie cd: HOME not set si on a unset HOME)
+* ./script.sh | ./script.sh
 
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
