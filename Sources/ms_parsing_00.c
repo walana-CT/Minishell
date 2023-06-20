@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:20:11 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/18 11:26:50 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:20:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ms_openquotes(char *str)
 			quote = str[i];
 			open = TRUE;
 		}
-		else if (str[i] == quote)
+		else if (open && str[i] == quote)
 			open = FALSE;
 	}
 	return (open);

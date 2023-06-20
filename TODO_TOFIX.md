@@ -1,5 +1,5 @@
 TODO
-
+* gerer les fd invalides plus tot.
 * il faudrait afficher permission denied dans un repertoire sans droits
 
 OK

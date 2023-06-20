@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/18 11:08:15 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:22:28 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int	ms_cd(t_cmd *cmd)
 	if (chdir(cmd->args[1]) == -1)
 	{
 		ft_putstr_fd("msh: cd: ", 2);
-		ft_putstr_fd(cmd->args[1], 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		perror(cmd->args[1]);
 		stat_err(1);
 		return (1);
 	}
