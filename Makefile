@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/19 12:44:00 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/20 15:32:56 by rficht           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRC :=	Sources/minishell.c\
 		Sources/ms_export_02.c\
 		Sources/ms_free.c\
 		Sources/ms_hashignore.c\
-		Sources/ms_lexing.c\
+		Sources/ms_lexing_00.c\
+		Sources/ms_lexing_01.c\
 		Sources/ms_parsing_00.c\
 		Sources/ms_parsing_01.c\
 		Sources/ms_parsing_02.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/20 00:58:22 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/20 15:32:34 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int		ms_trimquotes(char **str);
 int		ms_wrongchars(char	*str);
 
 // redirection
-void	ms_get_fds(t_ms *ms);
+int		ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
 int		ms_getinfile(t_cmd *cmd, int i);
@@ -144,6 +144,7 @@ int		ms_lex(t_ms *ms);
 int		ms_exec(t_ms *ms);
 int		ms_launch_children(t_ms *ms);
 int		ms_close(t_ms *ms, int val);
+char	**ms_getpath(t_ms *ms);
 
 //terminal
 int		ms_terminal_init(t_ms *ms);
